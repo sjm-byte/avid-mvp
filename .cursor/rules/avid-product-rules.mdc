@@ -1,0 +1,83 @@
+---
+description: Product and engineering rules for Avid MVP
+alwaysApply: true
+---
+
+# Avid Product Rules
+
+## Product identity
+
+Avid is a Persian RTL project-based investment participation management platform.
+It is not a classic investment fund UI, not a retail shopping UI, and not a real wallet app.
+
+## Critical financial rule
+
+Money does not flow through Avid in the MVP.
+Do not implement real wallet, payment gateway, bank integration, balance top-up or withdrawal.
+Use these concepts instead:
+
+- investment request
+- payment instructions
+- receipt upload
+- admin verification
+- investment allocation
+- ledger entry
+- settlement record
+
+## Language
+
+All user-facing text must be Persian and RTL.
+Use a serious, transparent, financial tone.
+Avoid hype.
+
+## Risk language
+
+Never write:
+
+- سود تضمینی
+- بدون ریسک
+- سود قطعی
+- اصل سرمایه محفوظ
+- درآمد ثابت
+
+Unless explicitly attached to a project-specific legal document, which is not part of MVP.
+
+Always show a disclaimer near expected returns:
+
+«این عدد پیش‌بینی است و سود قطعی یا تضمینی محسوب نمی‌شود.»
+
+## Ledger rule
+
+Ledger is the financial source of truth.
+Do not allow hard delete for posted ledger entries.
+Use adjustment entries for corrections.
+
+## Authorization rule
+
+Investors can only see their own:
+
+- investment requests
+- receipts
+- investments
+- settlements
+- ledger entries
+- project updates for projects they invested in
+
+Admins can see all.
+
+## UI rule
+
+The product should feel like a modern private investment office:
+
+- clean dashboard
+- neutral cards
+- clear tables
+- status badges
+- timelines
+- no flashy sales design
+
+## Development rule
+
+Work Sprint by Sprint.
+Do not implement future modules unless requested by the current Sprint prompt.
+Do not add payment gateway or wallet even if a component library suggests it.
