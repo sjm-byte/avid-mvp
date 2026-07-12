@@ -62,10 +62,10 @@ export default async function AdminProjectsPage() {
                   <td className="px-4 py-3">{project.updateCount}</td>
                   <td className="px-4 py-3">
                     <Link
-                      href={`/projects/${project.slug}`}
+                      href={`/admin/projects/${project.slug}`}
                       className="text-primary hover:underline"
                     >
-                      مشاهده
+                      جزئیات و ثبت مشارکت
                     </Link>
                   </td>
                 </tr>

@@ -86,19 +86,33 @@ export async function getAdminProjectSummaries(): Promise<AdminProjectSummary[]>
     }
   }
 
-  return projects.map((p) => ({
-    id: p.id,
-    title: p.title,
-    slug: p.slug,
-    status: p.status,
-    maxRaise: p.maxRaise,
-    totalVerifiedAmount: p.funding.totalVerifiedAmount,
-    investorCount: p.funding.investorCount,
-    allocationCount: allocations.filter(
+  return projects.map((p) => {
+    const projectAllocs = allocations.filter(
       (a) => a.projectId === p.id && a.status === "active"
-    ).length,
-    updateCount: updates.filter((u) => u.projectId === p.id).length,
-  }));
+    );
+    const fromAllocations = projectAllocs.reduce(
+      (sum, a) => sum + a.verifiedAmount,
+      0
+    );
+    const uniqueInvestors = new Set(projectAllocs.map((a) => a.investorId))
+      .size;
+
+    return {
+      id: p.id,
+      title: p.title,
+      slug: p.slug,
+      status: p.status,
+      maxRaise: p.maxRaise,
+      totalVerifiedAmount:
+        projectAllocs.length > 0
+          ? fromAllocations
+          : p.funding.totalVerifiedAmount,
+      investorCount:
+        projectAllocs.length > 0 ? uniqueInvestors : p.funding.investorCount,
+      allocationCount: projectAllocs.length,
+      updateCount: updates.filter((u) => u.projectId === p.id).length,
+    };
+  });
 }
 
 export async function getInvestorActiveProjects(

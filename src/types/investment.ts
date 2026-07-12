@@ -43,8 +43,8 @@ export interface InvestorAllocation {
   projectId: string;
   projectTitle: string;
   projectSlug: string;
-  investmentRequestId: string;
-  receiptId: string;
+  investmentRequestId: string | null;
+  receiptId: string | null;
   verifiedAmount: number;
   ownershipPercent: number | null;
   status: string;

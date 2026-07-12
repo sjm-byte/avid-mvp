@@ -7,17 +7,46 @@ export type InvestmentAllocationStatus =
 export interface InvestmentAllocationRecord {
   id: string;
   investorId: string;
+  /** Display name entered by admin after contract (outside-platform flow). */
+  investorName: string | null;
   projectId: string;
   projectTitle: string;
   projectSlug: string;
-  investmentRequestId: string;
-  receiptId: string;
+  /** Optional — legacy request/receipt flow; null for manager-entered records. */
+  investmentRequestId: string | null;
+  receiptId: string | null;
   verifiedAmount: number;
   ownershipPercent: number | null;
   status: InvestmentAllocationStatus;
   allocatedAt: string;
   projectStatus: string;
   expectedReturnBase: number | null;
+  /** Optional admin note after contract confirmation. */
+  adminNote: string | null;
+}
+
+export interface AdminInvestorSummary {
+  investorId: string;
+  investorName: string;
+  totalAllocated: number;
+  projectCount: number;
+  allocations: Array<{
+    projectId: string;
+    projectTitle: string;
+    projectSlug: string;
+    amount: number;
+    allocatedAt: string;
+  }>;
+}
+
+export interface ProjectInvestorRow {
+  allocationId: string;
+  investorId: string;
+  investorName: string;
+  amount: number;
+  allocatedAt: string;
+  ownershipPercent: number | null;
+  adminNote: string | null;
 }
 
 export interface LedgerEntryRecord {

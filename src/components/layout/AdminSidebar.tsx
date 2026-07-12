@@ -3,15 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  BarChart3,
-  ClipboardList,
-  FileText,
   LayoutDashboard,
   List,
-  Receipt,
-  Settings,
   Users,
-  Wallet,
 } from "lucide-react";
 import { LogoutButton } from "@/components/auth/LogoutButton";
 import { AvidLogo } from "@/components/brand/AvidLogo";
@@ -24,13 +18,6 @@ const adminNavItems = [
   { href: "/admin", label: "داشبورد مدیرعامل", icon: LayoutDashboard },
   { href: "/admin/projects", label: "پروژه‌ها", icon: List },
   { href: "/admin/investors", label: "سرمایه‌گذاران", icon: Users },
-  { href: "/admin/requests", label: "درخواست‌ها", icon: ClipboardList },
-  { href: "/admin/receipts", label: "رسیدها", icon: Receipt },
-  { href: "/admin/ledger", label: "ثبت حسابداری", icon: Wallet },
-  { href: "/admin/reports", label: "گزارش‌ها", icon: BarChart3 },
-  { href: "/admin/settlements", label: "تسویه‌ها", icon: Wallet },
-  { href: "/admin/documents", label: "اسناد", icon: FileText },
-  { href: "/admin/settings", label: "تنظیمات", icon: Settings },
 ];
 
 interface AdminSidebarProps {

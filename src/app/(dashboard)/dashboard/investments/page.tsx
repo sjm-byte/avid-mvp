@@ -1,14 +1,6 @@
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth/get-current-user";
 import { getInvestorDashboardData } from "@/lib/data/investor-dashboard";
-import { getPaymentInstructionsForRequests } from "@/lib/data/payment-instructions";
-import {
-  getInvestorPaymentReceipts,
-  receiptsByRequestId,
-} from "@/lib/data/receipts";
-import { getInvestorFinalizedSettlementResults } from "@/lib/data/settlement-distribution";
-import { InvestmentRequestsList } from "@/components/investments/InvestmentRequestsList";
-import { InvestorSettlementResultsList } from "@/components/investments/InvestorSettlementResultsList";
 import { formatPercent, formatToman } from "@/lib/utils";
 import {
   Card,
@@ -18,49 +10,45 @@ import {
 } from "@/components/ui/card";
 import { ProjectStatusBadge } from "@/components/projects/ProjectStatusBadge";
 import { ProjectStatus } from "@/types/database";
+import { Button } from "@/components/ui/button";
 
 export default async function DashboardInvestmentsPage() {
   const user = await getCurrentUser();
   if (!user) return null;
 
   const data = await getInvestorDashboardData(user.id);
-  const [paymentInstructionsByRequestId, receipts, finalizedSettlements] =
-    await Promise.all([
-      getPaymentInstructionsForRequests(data.requests),
-      getInvestorPaymentReceipts(user.id),
-      getInvestorFinalizedSettlementResults(user.id),
-    ]);
-  const receiptsByRequestIdMap = receiptsByRequestId(receipts);
+  const total = data.allocations.reduce((s, a) => s + a.verifiedAmount, 0);
 
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold">سرمایه‌گذاری‌های من</h1>
+        <h1 className="text-2xl font-bold">مشارکت‌های من</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          درخواست‌های مشارکت و تخصیص‌های تأییدشده شما
+          پس از تأیید قرارداد و واریز خارج از سامانه، مدیر مشارکت شما را اینجا
+          ثبت می‌کند. درخواست و رسید روی پلتفرم انجام نمی‌شود.
         </p>
       </div>
 
-      <InvestorSettlementResultsList settlements={finalizedSettlements} />
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">جمع کل سرمایه ثبت‌شده</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-2xl font-bold">{formatToman(total)}</p>
+          <p className="mt-2 text-xs text-muted-foreground">
+            این مبلغ فقط ثبت حسابداری است؛ وجهی نزد آوید نگهداری نمی‌شود.
+          </p>
+        </CardContent>
+      </Card>
 
       <section>
-        <h2 className="mb-4 text-lg font-semibold">درخواست‌های مشارکت</h2>
-        <InvestmentRequestsList
-          requests={data.requests}
-          showConfirmations
-          paymentInstructionsByRequestId={paymentInstructionsByRequestId}
-          receiptsByRequestId={receiptsByRequestIdMap}
-        />
-      </section>
-
-      <section>
-        <h2 className="mb-4 text-lg font-semibold">تخصیص‌های فعال</h2>
+        <h2 className="mb-4 text-lg font-semibold">به‌تفکیک پروژه</h2>
         {data.allocations.length === 0 ? (
           <div className="rounded-lg border bg-muted/30 px-4 py-6 text-sm text-muted-foreground">
-            <p>هنوز تخصیص تأییدشده‌ای ندارید.</p>
+            <p>هنوز مشارکتی برای شما ثبت نشده است.</p>
             <p className="mt-2 text-xs">
-              پس از تأیید درخواست و ثبت رسید واریز، تیم مالی رسید را بررسی
-              می‌کند و سرمایه شما به‌صورت حسابداری به پروژه تخصیص می‌یابد.
+              پس از قرارداد و واریز به حساب پروژه، مدیر مبلغ را در پنل مدیریت
+              ثبت می‌کند و اینجا نمایش داده می‌شود.
             </p>
           </div>
         ) : (
@@ -69,28 +57,27 @@ export default async function DashboardInvestmentsPage() {
               <Card key={allocation.id}>
                 <CardHeader>
                   <CardTitle className="text-base">
-                    <Link
-                      href={`/projects/${allocation.projectSlug}`}
-                      className="hover:underline"
-                    >
-                      {allocation.projectTitle}
-                    </Link>
+                    {allocation.projectTitle}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3 text-sm">
                   <div className="rounded-md border bg-muted/30 p-3">
-                    <p className="text-xs text-muted-foreground">مبلغ تأییدشده</p>
+                    <p className="text-xs text-muted-foreground">
+                      مبلغ مشارکت ثبت‌شده
+                    </p>
                     <p className="text-lg font-semibold">
                       {formatToman(allocation.verifiedAmount)}
                     </p>
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    تاریخ تخصیص:{" "}
-                    {new Date(allocation.allocatedAt).toLocaleDateString("fa-IR")}
+                    تاریخ ثبت:{" "}
+                    {new Date(allocation.allocatedAt).toLocaleDateString(
+                      "fa-IR"
+                    )}
                   </p>
                   {allocation.ownershipPercent != null && (
                     <p>
-                      سهم از پروژه:{" "}
+                      سهم تقریبی از هدف پروژه:{" "}
                       {formatPercent(allocation.ownershipPercent)}
                     </p>
                   )}
@@ -104,12 +91,13 @@ export default async function DashboardInvestmentsPage() {
                       است، همان نتیجه واقعی پروژه نیست.
                     </p>
                   )}
-                  <Link
-                    href={`/dashboard/projects/${allocation.projectSlug}`}
-                    className="inline-flex items-center rounded-md border px-3 py-1.5 text-sm text-primary hover:bg-muted/50"
-                  >
-                    گزارش‌ها و وضعیت پروژه
-                  </Link>
+                  <Button variant="outline" size="sm" asChild>
+                    <Link
+                      href={`/dashboard/projects/${allocation.projectSlug}`}
+                    >
+                      جزئیات پروژه
+                    </Link>
+                  </Button>
                 </CardContent>
               </Card>
             ))}

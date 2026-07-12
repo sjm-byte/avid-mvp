@@ -214,6 +214,7 @@ async function createAllocationFromReceipt(
   const allocation: InvestmentAllocationRecord = {
     id: investmentId,
     investorId: receipt.investorId,
+    investorName: receipt.investorName,
     projectId: receipt.projectId,
     projectTitle: receipt.projectTitle,
     projectSlug: receipt.projectSlug,
@@ -227,6 +228,7 @@ async function createAllocationFromReceipt(
     expectedReturnBase: project?.expected_return_base
       ? Number(project.expected_return_base)
       : null,
+    adminNote: null,
   };
 
   const ledgerEntry: LedgerEntryRecord = {

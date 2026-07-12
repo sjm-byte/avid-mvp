@@ -3,12 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Bell,
-  FileText,
   LayoutDashboard,
   List,
-  Receipt,
-  User,
   Wallet,
 } from "lucide-react";
 import { LogoutButton } from "@/components/auth/LogoutButton";
@@ -16,17 +12,12 @@ import { AvidLogo } from "@/components/brand/AvidLogo";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { UserProfile } from "@/types/user";
 
 const investorNavItems = [
   { href: "/dashboard", label: "داشبورد", icon: LayoutDashboard },
-  { href: "/dashboard/projects", label: "پروژه‌ها", icon: List },
-  { href: "/dashboard/investments", label: "سرمایه‌گذاری‌های من", icon: Wallet },
-  { href: "/dashboard/ledger", label: "ثبت حسابداری", icon: Receipt },
-  { href: "/dashboard/documents", label: "اسناد", icon: FileText },
-  { href: "/dashboard/notifications", label: "اعلان‌ها", icon: Bell },
-  { href: "/dashboard/profile", label: "پروفایل", icon: User },
+  { href: "/dashboard/investments", label: "مشارکت‌های من", icon: Wallet },
+  { href: "/dashboard/projects", label: "پروژه‌های من", icon: List },
 ];
 
 interface DashboardSidebarProps {

@@ -35,7 +35,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({
   project,
-  ctaLabel = "بررسی جزئیات و ثبت درخواست",
+  ctaLabel = "مشاهده جزئیات پروژه",
   requestStatus = null,
 }: ProjectCardProps) {
   const baseReturn = project.expectedReturnBase;

@@ -106,8 +106,8 @@ function mapMockAllocationToInvestor(
     projectId: record.projectId,
     projectTitle: record.projectTitle,
     projectSlug: record.projectSlug,
-    investmentRequestId: record.investmentRequestId,
-    receiptId: record.receiptId,
+    investmentRequestId: record.investmentRequestId ?? null,
+    receiptId: record.receiptId ?? null,
     verifiedAmount: record.verifiedAmount,
     ownershipPercent: record.ownershipPercent,
     status: record.status,
@@ -200,8 +200,8 @@ async function fetchSupabaseAllocations(
       projectId: row.project_id,
       projectTitle: project?.title ?? "پروژه",
       projectSlug: project?.slug ?? "",
-      investmentRequestId: row.investment_request_id ?? "",
-      receiptId: "",
+      investmentRequestId: row.investment_request_id ?? null,
+      receiptId: null,
       verifiedAmount: Number(row.verified_amount),
       ownershipPercent: row.ownership_percent
         ? Number(row.ownership_percent)

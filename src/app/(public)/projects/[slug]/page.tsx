@@ -13,14 +13,12 @@ import { ProjectTimeline } from "@/components/projects/ProjectTimeline";
 import { AvidDocumentList } from "@/components/documents/AvidDocumentList";
 import { ProjectUpdatesList } from "@/components/projects/ProjectUpdatesList";
 import { ProjectFinancialReportCard } from "@/components/projects/ProjectFinancialReportCard";
-import { InvestmentRequestForm } from "@/components/investments/InvestmentRequestForm";
 import { ProjectDetailTabs } from "@/components/projects/ProjectDetailTabs";
 import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaimer";
 import { ProjectImagePlaceholder } from "@/components/brand/ProjectImagePlaceholder";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -86,31 +84,29 @@ export default async function ProjectDetailPage({
 
         <Card className="w-full shrink-0 lg:max-w-sm">
           <CardHeader className="space-y-1 pb-3">
-            <CardTitle className="text-base">ثبت درخواست مشارکت</CardTitle>
-            <CardDescription>
-              حداقل مشارکت: {formatToman(project.minInvestment)}
-            </CardDescription>
+            <CardTitle className="text-base">نحوه مشارکت</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <InvestmentRequestForm
-              projectId={project.id}
-              projectSlug={project.slug}
-              projectTitle={project.title}
-              minInvestment={project.minInvestment}
-              isAuthenticated={!!user && user.role === "investor"}
-              loginRedirectUrl={`/login?redirect=/projects/${project.slug}`}
-            />
-            <p className="text-xs leading-relaxed text-muted-foreground">
-              ثبت درخواست به معنی پرداخت فوری نیست. پس از بررسی آوید، در صورت
-              تأیید، دستورالعمل واریز جداگانه ارسال می‌شود.
+          <CardContent className="space-y-4 text-sm leading-relaxed text-muted-foreground">
+            <p>
+              اعلام علاقه، هماهنگی و واریز به حساب پروژه خارج از سامانه آوید
+              انجام می‌شود. پس از قرارداد، مدیر مشارکت را در پنل ثبت می‌کند.
             </p>
-            {user?.role === "investor" && (
-              <Button variant="link" size="sm" className="h-auto p-0" asChild>
-                <Link href="/dashboard/investments">
-                  مشاهده وضعیت درخواست‌های من
-                </Link>
+            <p className="text-xs">
+              حداقل مشارکت اعلام‌شده: {formatToman(project.minInvestment)} —
+              این عدد اطلاع‌رسانی است و به معنی پرداخت از طریق آوید نیست.
+            </p>
+            {user?.role === "investor" ? (
+              <Button variant="outline" size="sm" asChild>
+                <Link href="/dashboard/investments">مشارکت‌های ثبت‌شده من</Link>
+              </Button>
+            ) : (
+              <Button variant="outline" size="sm" asChild>
+                <Link href="/login">ورود به پنل</Link>
               </Button>
             )}
+            <Button variant="link" size="sm" className="h-auto p-0" asChild>
+              <Link href="/contact">تماس با تیم آوید</Link>
+            </Button>
           </CardContent>
         </Card>
       </div>
@@ -264,9 +260,9 @@ export default async function ProjectDetailPage({
                     پرداخت چگونه انجام می‌شود؟
                   </p>
                   <p className="mt-2 text-muted-foreground">
-                    پس از تأیید درخواست، اطلاعات واریز به حساب معرفی‌شده همین
-                    پروژه در پنل شما نمایش داده می‌شود. پرداخت خارج از سامانه
-                    آوید انجام می‌شود.
+                    پس از توافق و قرارداد خارج از سامانه، واریز مستقیماً به حساب
+                    معرفی‌شده پروژه انجام می‌شود. آوید وجهی دریافت نمی‌کند و
+                    درخواست/رسید روی پلتفرم ثبت نمی‌شود.
                   </p>
                 </div>
                 <div className="rounded-lg border p-4">
