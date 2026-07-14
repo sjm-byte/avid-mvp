@@ -1,4 +1,5 @@
 import { getAllMockInvestments } from "@/lib/data/mock/investment-store";
+import { getAllProjectOps } from "@/lib/data/mock/project-ops-store";
 import {
   AdminInvestorSummary,
   ProjectInvestorRow,
@@ -22,46 +23,53 @@ export async function getProjectInvestorRows(
     .sort((a, b) => b.amount - a.amount);
 }
 
+/**
+ * Investor summaries for admin — built from shared project-ops mock
+ * (same source as /admin/projects table).
+ */
 export async function getAdminInvestorSummaries(): Promise<
   AdminInvestorSummary[]
 > {
-  const all = await getAllMockInvestments();
-  const active = all.filter((a) => a.status === "active");
+  const projects = await getAllProjectOps();
   const byInvestor = new Map<string, AdminInvestorSummary>();
 
-  for (const row of active) {
-    const name = row.investorName?.trim() || row.investorId;
-    const existing = byInvestor.get(row.investorId);
-    const projectEntry = {
-      projectId: row.projectId,
-      projectTitle: row.projectTitle,
-      projectSlug: row.projectSlug,
-      amount: row.verifiedAmount,
-      allocatedAt: row.allocatedAt,
-    };
+  for (const project of projects) {
+    for (const inv of project.investors) {
+      const name = inv.name.trim();
+      if (!name) continue;
+      const investorId = inv.isDemoInvestor
+        ? "mock-investor-1"
+        : `ops-investor-${name}`;
 
-    if (!existing) {
-      byInvestor.set(row.investorId, {
-        investorId: row.investorId,
-        investorName: name,
-        totalAllocated: row.verifiedAmount,
-        projectCount: 1,
-        allocations: [projectEntry],
-      });
-    } else {
-      existing.totalAllocated += row.verifiedAmount;
-      existing.allocations.push(projectEntry);
-      existing.projectCount = new Set(
-        existing.allocations.map((a) => a.projectId)
-      ).size;
-      if (!existing.investorName || existing.investorName === row.investorId) {
-        existing.investorName = name;
+      const projectEntry = {
+        projectId: project.id,
+        projectTitle: project.title,
+        projectSlug: project.slug,
+        amount: inv.amount,
+        allocatedAt: project.startDate ?? new Date().toISOString(),
+      };
+
+      const existing = byInvestor.get(investorId);
+      if (!existing) {
+        byInvestor.set(investorId, {
+          investorId,
+          investorName: name,
+          totalAllocated: inv.amount,
+          projectCount: 1,
+          allocations: [projectEntry],
+        });
+      } else {
+        existing.totalAllocated += inv.amount;
+        existing.allocations.push(projectEntry);
+        existing.projectCount = new Set(
+          existing.allocations.map((a) => a.projectId),
+        ).size;
       }
     }
   }
 
   return Array.from(byInvestor.values()).sort(
-    (a, b) => b.totalAllocated - a.totalAllocated
+    (a, b) => b.totalAllocated - a.totalAllocated,
   );
 }
 

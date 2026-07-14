@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { getFeaturedProjects, getTransparencyStats } from "@/lib/data/projects";
+import { getTransparencyStats } from "@/lib/data/projects";
+import { getFeaturedPublicProjects } from "@/lib/data/public-projects";
 import { formatToman, formatPersianNumber } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { ProjectCard } from "@/components/projects/ProjectCard";
+import { PublicProjectCard } from "@/components/projects/PublicProjectCard";
 import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaimer";
 import {
   Card,
@@ -84,10 +85,8 @@ const faqItems = [
 ];
 
 export default async function HomePage() {
-  const [featuredProjects, stats] = await Promise.all([
-    getFeaturedProjects(3),
-    getTransparencyStats(),
-  ]);
+  const featuredProjects = getFeaturedPublicProjects(3);
+  const stats = await getTransparencyStats();
 
   return (
     <>
@@ -190,7 +189,7 @@ export default async function HomePage() {
         </div>
         <div className="mt-8 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {featuredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <PublicProjectCard key={project.id} project={project} />
           ))}
         </div>
       </section>
