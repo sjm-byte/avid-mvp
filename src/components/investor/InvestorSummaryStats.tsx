@@ -91,36 +91,43 @@ function ExpandableStatCard({
   const [open, setOpen] = useState(false);
 
   return (
-    <Card className={cn("relative overflow-visible", className)}>
+    <Card
+      className={cn(
+        "relative flex h-full flex-col overflow-visible",
+        className,
+      )}
+    >
       <CardHeader className="pb-2">
         <CardTitle className="text-sm font-medium text-muted-foreground">
           {title}
         </CardTitle>
       </CardHeader>
-      <CardContent className="relative">
+      <CardContent className="relative flex flex-1 flex-col">
         <p className="text-2xl font-semibold tracking-tight">{value}</p>
         {description && (
           <p className="mt-1 text-xs text-muted-foreground">{description}</p>
         )}
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          className="mt-3 w-full justify-between"
-          aria-expanded={open}
-          aria-controls={panelId}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className="inline-flex items-center gap-2">
-            <List className="size-3.5" aria-hidden />
-            {open ? "بستن جزئیات" : "مشاهده جزئیات"}
-          </span>
-          {open ? (
-            <ChevronUp className="size-3.5" aria-hidden />
-          ) : (
-            <ChevronDown className="size-3.5" aria-hidden />
-          )}
-        </Button>
+        <div className="mt-auto pt-3">
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="w-full justify-between"
+            aria-expanded={open}
+            aria-controls={panelId}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className="inline-flex items-center gap-2">
+              <List className="size-3.5" aria-hidden />
+              {open ? "بستن جزئیات" : "مشاهده جزئیات"}
+            </span>
+            {open ? (
+              <ChevronUp className="size-3.5" aria-hidden />
+            ) : (
+              <ChevronDown className="size-3.5" aria-hidden />
+            )}
+          </Button>
+        </div>
         <DetailPanel
           open={open}
           panelId={panelId}
@@ -149,7 +156,7 @@ export function InvestorSummaryStats({ summary }: InvestorSummaryStatsProps) {
         </p>
       </div>
 
-      <div className="grid items-start gap-4 md:grid-cols-3">
+      <div className="grid items-stretch gap-4 md:grid-cols-3">
         <ExpandableStatCard
           title="تراز سرمایه نزد آوید"
           value={formatToman(summary.activeProjectCapital)}
@@ -160,25 +167,29 @@ export function InvestorSummaryStats({ summary }: InvestorSummaryStatsProps) {
           showProjectInDetails
           className="ring-1 ring-blue-200/80"
         />
-        <Card>
+        <Card className="flex h-full flex-col">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
               تراز ریالی نزد آوید
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-1 flex-col">
             <p className="text-2xl font-semibold tracking-tight">
               {formatToman(summary.rialBalanceWithAvid)}
             </p>
             <p className="mt-1 text-xs text-muted-foreground">
               مانده پروژه‌های پایان‌یافته تا انتقال یا تسویه ریالی
             </p>
+            {/* Spacer matches the «مشاهده جزئیات» footer on neighbor cards */}
+            <div className="mt-auto pt-3" aria-hidden>
+              <div className="h-9" />
+            </div>
           </CardContent>
         </Card>
         <ExpandableStatCard
-          title="تراز تسویه شده تاکنون"
+          title="تراز ریالی تسویه شده"
           value={formatToman(summary.settledBalanceToDate)}
-          description="مبالغی که تاکنون خارج / تسویه شده‌اند"
+          description="مبالغی که تاکنون تسویه شده اند."
           panelTitle="تسویه‌ها (تاریخ و مبلغ)"
           emptyText="هنوز تسویه خروجی ثبت نشده است."
           details={summary.settlementDetails}
