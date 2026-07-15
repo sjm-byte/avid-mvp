@@ -40,6 +40,26 @@ export interface CapitalMovementDetail {
   note: string | null;
 }
 
+/** Cash-flow event kinds shown on the investor timeline. */
+export type CashFlowKind = "deposit" | "withdrawal" | "profit";
+
+export const CASH_FLOW_KIND_LABELS: Record<CashFlowKind, string> = {
+  deposit: "واریز وجه",
+  withdrawal: "برداشت وجه",
+  profit: "واریز سود",
+};
+
+export interface CashFlowEvent {
+  id: string;
+  kind: CashFlowKind;
+  date: string;
+  amount: number;
+  /** Running cash balance after this event (rial). */
+  balanceAfter: number;
+  projectTitle: string | null;
+  note: string | null;
+}
+
 export interface InvestorPortfolioSummary {
   /** Total capital entered (admin-recorded deposits). */
   cumulativeCapital: number;
@@ -64,6 +84,8 @@ export interface InvestorPortfolioSummary {
   depositDetails: CapitalMovementDetail[];
   /** Settlement-out lines for hover on تراز تسویه شده */
   settlementDetails: CapitalMovementDetail[];
+  /** Ordered cash-flow events for the liquidity timeline. */
+  cashFlowEvents: CashFlowEvent[];
   timelineStartDate: string;
   timelineStartLabel: string;
   projects: InvestorProjectRow[];

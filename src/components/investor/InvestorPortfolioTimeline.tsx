@@ -3,9 +3,10 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
+  CASH_FLOW_KIND_LABELS,
+  CashFlowEvent,
+  CashFlowKind,
   InvestorPortfolioSummary,
-  InvestorProjectRow,
-  TIMELINE_STATUS_LABELS,
 } from "@/lib/data/mock/investor-portfolio-mock";
 import { cn, formatToman } from "@/lib/utils";
 import {
@@ -22,15 +23,21 @@ function formatDate(iso: string | null): string {
   return d.toLocaleDateString("fa-IR");
 }
 
-function lifecycleColor(lifecycle: InvestorProjectRow["lifecycle"]): string {
-  switch (lifecycle) {
-    case "active":
+function kindColor(kind: CashFlowKind): string {
+  switch (kind) {
+    case "deposit":
       return "border-blue-500 bg-blue-50 text-blue-900";
-    case "completed":
-      return "border-amber-500 bg-amber-50 text-amber-900";
-    case "settled":
+    case "profit":
       return "border-emerald-600 bg-emerald-50 text-emerald-900";
+    case "withdrawal":
+      return "border-amber-500 bg-amber-50 text-amber-900";
   }
+}
+
+function signedAmount(kind: CashFlowKind, amount: number): string {
+  const formatted = formatToman(amount);
+  if (kind === "withdrawal") return `− ${formatted}`;
+  return `+ ${formatted}`;
 }
 
 function TooltipRow({
@@ -47,7 +54,7 @@ function TooltipRow({
       <dt className="shrink-0 text-muted-foreground">{label}</dt>
       <dd
         className={cn(
-          "max-w-[9rem] text-left font-medium leading-snug",
+          "max-w-[10rem] text-left font-medium leading-snug",
           emphasize ? "text-foreground" : "text-foreground/90",
         )}
       >
@@ -61,21 +68,13 @@ function TimelineTooltipPortal({
   anchorRef,
   open,
   tooltipId,
-  title,
-  newCapital,
-  transferredFromPrevious,
-  balanceAfter,
-  statusLabel,
+  event,
   isStart,
 }: {
   anchorRef: React.RefObject<HTMLElement | null>;
   open: boolean;
   tooltipId: string;
-  title: string;
-  newCapital: number;
-  transferredFromPrevious: number;
-  balanceAfter: number;
-  statusLabel: string;
+  event?: CashFlowEvent;
   isStart?: boolean;
 }) {
   const [coords, setCoords] = useState<{ top: number; left: number } | null>(
@@ -96,8 +95,7 @@ function TimelineTooltipPortal({
       const gap = 10;
       let left = rect.left + rect.width / 2 - width / 2;
       left = Math.max(8, Math.min(left, window.innerWidth - width - 8));
-      // Prefer just under the circle; if near bottom of viewport, show above.
-      const estimatedHeight = 180;
+      const estimatedHeight = 200;
       const spaceBelow = window.innerHeight - rect.bottom;
       const top =
         spaceBelow < estimatedHeight + gap
@@ -125,26 +123,38 @@ function TimelineTooltipPortal({
       style={{ top: coords.top, left: coords.left }}
     >
       <dl className="space-y-1.5">
-        <TooltipRow
-          label={isStart ? "نقطه شروع" : "نام پروژه"}
-          value={title}
-          emphasize
-        />
-        <TooltipRow label="آورده جدید" value={formatToman(newCapital)} />
-        <TooltipRow
-          label="آورده قبلی / منتقل‌شده از پروژه قبل"
-          value={
-            transferredFromPrevious > 0
-              ? formatToman(transferredFromPrevious)
-              : "—"
-          }
-        />
-        <TooltipRow
-          label="تراز سرمایه نزد آوید"
-          value={formatToman(balanceAfter)}
-          emphasize
-        />
-        <TooltipRow label="وضعیت" value={statusLabel} />
+        {isStart ? (
+          <>
+            <TooltipRow label="نقطه شروع" value="شروع همکاری" emphasize />
+            <TooltipRow label="مانده نقدینگی" value={formatToman(0)} emphasize />
+            <TooltipRow
+              label="توضیح"
+              value="هنوز تراکنشی ثبت نشده است."
+            />
+          </>
+        ) : event ? (
+          <>
+            <TooltipRow
+              label="نوع تراکنش"
+              value={CASH_FLOW_KIND_LABELS[event.kind]}
+              emphasize
+            />
+            <TooltipRow
+              label="مبلغ"
+              value={signedAmount(event.kind, event.amount)}
+            />
+            <TooltipRow
+              label="مانده پس از تراکنش"
+              value={formatToman(event.balanceAfter)}
+              emphasize
+            />
+            <TooltipRow label="تاریخ" value={formatDate(event.date)} />
+            {event.projectTitle && (
+              <TooltipRow label="پروژه مرتبط" value={event.projectTitle} />
+            )}
+            {event.note && <TooltipRow label="یادداشت" value={event.note} />}
+          </>
+        ) : null}
       </dl>
     </div>,
     document.body,
@@ -154,14 +164,12 @@ function TimelineTooltipPortal({
 function TimelineNode({
   label,
   sublabel,
-  lifecycle,
-  project,
+  event,
   isStart,
 }: {
   label: string;
   sublabel?: string;
-  lifecycle?: InvestorProjectRow["lifecycle"];
-  project?: InvestorProjectRow;
+  event?: CashFlowEvent;
   isStart?: boolean;
 }) {
   const tooltipId = useId();
@@ -172,26 +180,6 @@ function TimelineNode({
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  const tooltipProps = isStart
-    ? {
-        title: "شروع همکاری",
-        newCapital: 0,
-        transferredFromPrevious: 0,
-        balanceAfter: 0,
-        statusLabel: "شروع",
-        isStart: true as const,
-      }
-    : project
-      ? {
-          title: project.title,
-          newCapital: project.newCapital,
-          transferredFromPrevious: project.transferredFromPrevious,
-          balanceAfter: project.balanceAfterProject,
-          statusLabel: TIMELINE_STATUS_LABELS[project.timelineStatus],
-          isStart: false as const,
-        }
-      : null;
 
   return (
     <div
@@ -211,12 +199,12 @@ function TimelineNode({
           "hover:shadow-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
           isStart
             ? "border-foreground/40 bg-muted text-foreground"
-            : lifecycleColor(lifecycle ?? "active"),
+            : kindColor(event?.kind ?? "deposit"),
         )}
         aria-label={
           isStart
-            ? "شروع همکاری — تراز سرمایه نزد آوید صفر"
-            : `جزئیات پروژه ${project?.title ?? label}`
+            ? "شروع همکاری — مانده نقدینگی صفر"
+            : `${CASH_FLOW_KIND_LABELS[event?.kind ?? "deposit"]} — ${label}`
         }
       >
         <span aria-hidden>●</span>
@@ -230,12 +218,13 @@ function TimelineNode({
         </p>
       )}
 
-      {mounted && tooltipProps && (
+      {mounted && (
         <TimelineTooltipPortal
           anchorRef={buttonRef}
           open={open}
           tooltipId={tooltipId}
-          {...tooltipProps}
+          event={event}
+          isStart={isStart}
         />
       )}
     </div>
@@ -243,7 +232,6 @@ function TimelineNode({
 }
 
 function TimelineConnector({ variant = 0 }: { variant?: number }) {
-  // Path goes right → left (time direction in RTL UI).
   const wave =
     variant % 2 === 0
       ? "M 44 12 C 32 3, 20 21, 12 12"
@@ -259,7 +247,6 @@ function TimelineConnector({ variant = 0 }: { variant?: number }) {
         className="h-full w-full overflow-visible text-foreground/55"
         fill="none"
       >
-        {/* Wavy dotted line: from right (past) toward left (next) */}
         <path
           d={wave}
           stroke="currentColor"
@@ -267,7 +254,6 @@ function TimelineConnector({ variant = 0 }: { variant?: number }) {
           strokeDasharray="2.5 3.5"
           strokeLinecap="round"
         />
-        {/* Explicit left-pointing arrow (←) at the end of time flow */}
         <path
           d="M14 12 L8 12 M8 12 L11.5 8.5 M8 12 L11.5 15.5"
           stroke="currentColor"
@@ -287,17 +273,41 @@ interface InvestorPortfolioTimelineProps {
 export function InvestorPortfolioTimeline({
   summary,
 }: InvestorPortfolioTimelineProps) {
-  const projects = [...summary.projects].sort(
-    (a, b) =>
-      new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
-  );
+  const events = summary.cashFlowEvents;
 
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className="text-base">خط زمانی مشارکت‌ها</CardTitle>
+      <CardHeader className="space-y-1">
+        <CardTitle className="text-base">خط زمانی جریان نقدینگی</CardTitle>
+        <p className="text-xs text-muted-foreground">
+          ورود وجه، تحقق سود، برداشت و نقدینگی جدید — به‌ترتیب تاریخ ثبت.
+        </p>
       </CardHeader>
       <CardContent>
+        <div className="mb-3 flex flex-wrap gap-3 text-[11px] text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5">
+            <span
+              className="size-2.5 rounded-full border-2 border-blue-500 bg-blue-50"
+              aria-hidden
+            />
+            واریز وجه
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <span
+              className="size-2.5 rounded-full border-2 border-emerald-600 bg-emerald-50"
+              aria-hidden
+            />
+            واریز سود
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <span
+              className="size-2.5 rounded-full border-2 border-amber-500 bg-amber-50"
+              aria-hidden
+            />
+            برداشت وجه
+          </span>
+        </div>
+
         <div className="w-full max-w-full min-w-0 overflow-x-auto overscroll-x-contain py-2">
           <div
             dir="rtl"
@@ -309,26 +319,21 @@ export function InvestorPortfolioTimeline({
               sublabel={formatDate(summary.timelineStartDate)}
             />
 
-            {projects.map((project, index) => (
-              <div key={project.id} className="flex items-start">
+            {events.map((event, index) => (
+              <div key={event.id} className="flex items-start">
                 <TimelineConnector variant={index} />
                 <TimelineNode
-                  label={
-                    project.title.length > 22
-                      ? `${project.title.slice(0, 20)}…`
-                      : project.title
-                  }
-                  sublabel={formatDate(project.startDate)}
-                  lifecycle={project.lifecycle}
-                  project={project}
+                  label={CASH_FLOW_KIND_LABELS[event.kind]}
+                  sublabel={formatDate(event.date)}
+                  event={event}
                 />
               </div>
             ))}
           </div>
         </div>
         <p className="mt-3 text-xs text-muted-foreground">
-          برای دیدن جزئیات، موس را روی هر دایره نگه دارید. جهت زمان از راست به
-          چپ است (←).
+          برای دیدن مبلغ و مانده، موس را روی هر دایره نگه دارید. جهت زمان از راست
+          به چپ است (←).
         </p>
       </CardContent>
     </Card>
