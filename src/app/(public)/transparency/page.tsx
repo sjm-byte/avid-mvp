@@ -1,9 +1,7 @@
 import Link from "next/link";
 import {
   getClosedProjectsForTransparency,
-  getTransparencyStats,
 } from "@/lib/data/projects";
-import { formatDurationDays, formatPercent } from "@/lib/utils";
 import {
   Card,
   CardContent,
@@ -11,14 +9,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ProjectStatusBadge } from "@/components/projects/ProjectStatusBadge";
-import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaimer";
 
 export default async function TransparencyPage() {
-  const [stats, closedProjects] = await Promise.all([
-    getTransparencyStats(),
-    getClosedProjectsForTransparency(),
-  ]);
+  const closedProjects = await getClosedProjectsForTransparency();
 
   return (
     <div className="container mx-auto max-w-6xl px-4 py-12 md:py-16">
@@ -33,38 +26,26 @@ export default async function TransparencyPage() {
         </p>
       </header>
 
-      <div className="mt-8">
-        <ProjectRiskDisclaimer compact />
-      </div>
-
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid gap-4 sm:grid-cols-3">
         <Card>
-          <CardContent className="space-y-1 p-5">
-            <p className="text-2xl font-bold">{stats.closedProjectsCount}</p>
-            <p className="text-xs text-muted-foreground">پروژه خاتمه‌یافته</p>
+          <CardContent className="space-y-1 p-6 text-center">
+            <p className="text-3xl font-bold">+15</p>
+            <p className="text-sm text-muted-foreground">پروژه خاتمه‌یافته</p>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="space-y-1 p-5">
-            <p className="text-lg font-bold">+50 میلیارد تومن</p>
-            <p className="text-xs text-muted-foreground">حجم مشارکت ثبت‌شده</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="space-y-1 p-5">
-            <p className="text-2xl font-bold">
-              {formatDurationDays(stats.averageDurationDays)}
+          <CardContent className="space-y-1 p-6 text-center">
+            <p className="text-3xl font-bold">+50 میلیارد تومن</p>
+            <p className="text-sm text-muted-foreground">
+              حجم مشارکت ثبت‌شده
             </p>
-            <p className="text-xs text-muted-foreground">میانگین مدت اجرا</p>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="space-y-1 p-5">
-            <p className="text-2xl font-bold">
-              {stats.profitableCount} / {stats.lossCount}
-            </p>
-            <p className="text-xs text-muted-foreground">
-              نتیجه مثبت / منفی در تسویه
+          <CardContent className="space-y-1 p-6 text-center">
+            <p className="text-3xl font-bold">+15</p>
+            <p className="text-sm text-muted-foreground">
+              پروژه‌های در جریان
             </p>
           </CardContent>
         </Card>
@@ -73,12 +54,11 @@ export default async function TransparencyPage() {
       <section className="mt-12 space-y-4">
         <div>
           <h2 className="text-xl font-semibold md:text-2xl">
-            پروژه‌های خاتمه‌یافته
+            جدول وضعیت تسویه پروژه‌های خاتمه‌یافته
           </h2>
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-            ستون «بازده پیش‌بینی‌شده» سناریوی اعلام‌شده در زمان مشارکت است.
-            ستون «نتیجه واقعی پروژه» ثبت‌شده پس از تسویه نهایی است. این اعداد
-            نتیجه واقعی پروژه و بازده پیش‌بینی‌شده وعده داده نشده‌اند.
+            این جدول، وضعیت تسویه پروژه‌ها را بر اساس زمان و نتیجه دسته‌بندی
+            می‌کند. تکمیل خانه‌ها طبق لیست و منطق موردنظر شما انجام می‌شود.
           </p>
         </div>
 
@@ -91,14 +71,17 @@ export default async function TransparencyPage() {
             <table className="w-full min-w-[720px] text-sm">
               <thead>
                 <tr className="border-b bg-muted/50 text-right">
-                  <th className="px-4 py-3 font-medium">پروژه</th>
-                  <th className="px-4 py-3 font-medium">وضعیت</th>
+                  <th className="px-4 py-3 font-medium">پروژه‌ها (به ترتیب)</th>
+                  <th className="px-4 py-3 font-medium">سر موعد تسویه شده</th>
                   <th className="px-4 py-3 font-medium">
-                    بازده پیش‌بینی‌شده (پایه)
+                    با یک ماه تأخیر تسویه شد
                   </th>
-                  <th className="px-4 py-3 font-medium">نتیجه واقعی پروژه (تسویه)</th>
-                  <th className="px-4 py-3 font-medium">مدت</th>
-                  <th className="px-4 py-3 font-medium">توضیح اختلاف</th>
+                  <th className="px-4 py-3 font-medium">
+                    با بیش از یک ماه تأخیر ولی با سود اضافه تسویه شد
+                  </th>
+                  <th className="px-4 py-3 font-medium">
+                    با بیش از یک ماه تأخیر ولی بدون سود اضافه تسویه شد
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -112,31 +95,10 @@ export default async function TransparencyPage() {
                         {p.title}
                       </Link>
                     </td>
-                    <td className="px-4 py-3">
-                      <ProjectStatusBadge status={p.status} />
-                    </td>
-                    <td className="px-4 py-3">
-                      {p.expectedReturnBase != null
-                        ? formatPercent(p.expectedReturnBase)
-                        : "—"}
-                    </td>
-                    <td className="px-4 py-3">
-                      {p.actualReturnRate != null
-                        ? formatPercent(p.actualReturnRate)
-                        : "—"}
-                    </td>
-                    <td className="px-4 py-3 text-muted-foreground">
-                      پیش‌بینی: {formatDurationDays(p.expectedDurationDays)}
-                      {p.actualDurationDays != null && (
-                        <>
-                          <br />
-                          واقعی: {formatDurationDays(p.actualDurationDays)}
-                        </>
-                      )}
-                    </td>
-                    <td className="max-w-xs px-4 py-3 text-muted-foreground">
-                      {p.varianceReason ?? "—"}
-                    </td>
+                    <td className="px-4 py-3 text-muted-foreground">—</td>
+                    <td className="px-4 py-3 text-muted-foreground">—</td>
+                    <td className="px-4 py-3 text-muted-foreground">—</td>
+                    <td className="px-4 py-3 text-muted-foreground">—</td>
                   </tr>
                 ))}
               </tbody>
