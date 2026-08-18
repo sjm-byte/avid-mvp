@@ -1,17 +1,14 @@
-import Link from "next/link";
-import { Check } from "lucide-react";
 import {
-  SETTLEMENT_OUTCOME_COLUMNS,
-  getSettlementOutcome,
   getTransparencySettlementRows,
 } from "@/lib/data/transparency-settlement-table";
 import { Card, CardContent } from "@/components/ui/card";
+import { TransparencySettlementTable } from "@/components/transparency/TransparencySettlementTable";
 
 export default function TransparencyPage() {
   const rows = getTransparencySettlementRows();
 
   return (
-    <div className="container mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <div className="container mx-auto max-w-7xl px-4 py-12 md:py-16">
       <header className="max-w-3xl space-y-4">
         <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
           گزارش پروژه‌های خاتمه‌یافته
@@ -69,64 +66,7 @@ export default function TransparencyPage() {
             هنوز پروژه‌ای برای نمایش ثبت نشده است.
           </p>
         ) : (
-          <div className="w-full max-w-full min-w-0 overflow-x-auto rounded-lg border">
-            <table className="w-full min-w-[960px] text-sm">
-              <thead>
-                <tr className="border-b bg-muted/50 text-right">
-                  <th className="sticky right-0 bg-muted/50 px-4 py-3 font-medium">
-                    پروژه‌ها (به ترتیب)
-                  </th>
-                  {SETTLEMENT_OUTCOME_COLUMNS.map((col) => (
-                    <th
-                      key={col.key}
-                      className="min-w-[9.5rem] px-3 py-3 text-center font-medium leading-6"
-                    >
-                      {col.label}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((p) => {
-                  const outcome = getSettlementOutcome(p.id);
-                  return (
-                    <tr key={p.id} className="border-b">
-                      <td className="sticky right-0 bg-background px-4 py-3">
-                        <Link
-                          href={`/projects/${p.slug}`}
-                          className="font-medium hover:underline"
-                        >
-                          {p.title}
-                        </Link>
-                        <p className="mt-1 text-xs text-muted-foreground">
-                          {p.activity}
-                          <span className="mx-1">·</span>
-                          شروع
-                          {" "}
-                          {p.startDate}
-                        </p>
-                      </td>
-                      {SETTLEMENT_OUTCOME_COLUMNS.map((col) => (
-                        <td
-                          key={col.key}
-                          className="px-3 py-3 text-center text-muted-foreground"
-                        >
-                          {outcome === col.key ? (
-                            <Check
-                              className="mx-auto h-5 w-5 text-primary"
-                              aria-label="تیک"
-                            />
-                          ) : (
-                            "—"
-                          )}
-                        </td>
-                      ))}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+          <TransparencySettlementTable rows={rows} />
         )}
       </section>
     </div>
