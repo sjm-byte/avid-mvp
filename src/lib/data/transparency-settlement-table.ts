@@ -22,17 +22,17 @@ export const SETTLEMENT_OUTCOME_COLUMNS: {
   },
   {
     key: "delay_one_month",
-    label: "تا یک ماه تأخیر",
+    label: "تا ۱ ماه تأخیر",
     hint: "تا یک ماه تأخیر تسویه شد",
   },
   {
     key: "delay_over_month_extra_profit",
-    label: "تأخیر بیشتر با سود مازاد",
+    label: "تأخیر با سود مازاد",
     hint: "با بیش از یک ماه تأخیر ولی با سود مازاد تسویه شد",
   },
   {
     key: "delay_over_month_no_extra_profit",
-    label: "تأخیر بیشتر بدون سود مازاد",
+    label: "تأخیر بدون سود مازاد",
     hint: "با بیش از یک ماه تأخیر ولی بدون سود مازاد تسویه شد",
   },
 ];

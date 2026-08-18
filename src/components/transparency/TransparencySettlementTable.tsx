@@ -17,17 +17,17 @@ function TickCell({
   label: string;
 }) {
   return (
-    <td className="bg-navy/[0.04] px-3 py-4 text-center align-middle">
+    <td className="bg-navy/[0.04] px-1 py-2.5 text-center align-middle">
       {checked ? (
         <span
-          className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-50 text-emerald-700"
+          className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-50 text-emerald-700"
           aria-label={label}
           title={label}
         >
-          <Check className="h-4 w-4" strokeWidth={2.5} />
+          <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
         </span>
       ) : (
-        <span className="inline-block h-2 w-2 rounded-full bg-muted-foreground/20" />
+        <span className="inline-block h-1.5 w-1.5 rounded-full bg-muted-foreground/25" />
       )}
     </td>
   );
@@ -40,49 +40,61 @@ export function TransparencySettlementTable({
 }) {
   return (
     <div className="overflow-hidden rounded-xl border bg-card shadow-sm">
-      <div className="w-full max-w-full min-w-0 overflow-x-auto">
-        <table className="w-full min-w-[1240px] border-collapse text-sm">
-          <thead>
-            <tr className="bg-muted/30 text-right">
+      <div className="max-h-[min(70vh,40rem)] overflow-y-auto overflow-x-hidden">
+        <table className="w-full table-fixed border-collapse text-sm">
+          <colgroup>
+            <col className="w-[4%]" />
+            <col className="w-[16%]" />
+            <col className="w-[18%]" />
+            <col className="w-[9%]" />
+            <col className="w-[9%]" />
+            <col className="w-[7%]" />
+            <col className="w-[8%]" />
+            <col className="w-[10%]" />
+            <col className="w-[10%]" />
+            <col className="w-[9%]" />
+          </colgroup>
+          <thead className="sticky top-0 z-20">
+            <tr className="bg-muted text-right">
               <th
                 rowSpan={2}
-                className="w-12 border-b px-4 py-3 text-center align-middle text-xs font-semibold text-muted-foreground"
+                className="border-b bg-muted px-1 py-2 text-center align-middle text-[11px] font-semibold text-muted-foreground"
               >
                 ردیف
               </th>
               <th
                 rowSpan={2}
-                className="min-w-[11rem] border-b px-4 py-3 align-middle text-xs font-semibold"
+                className="border-b bg-muted px-2 py-2 align-middle text-[11px] font-semibold"
               >
                 پروژه
               </th>
               <th
                 rowSpan={2}
-                className="min-w-[12rem] border-b px-4 py-3 align-middle text-xs font-semibold"
+                className="border-b bg-muted px-2 py-2 align-middle text-[11px] font-semibold"
               >
                 موضوع فعالیت
               </th>
               <th
                 rowSpan={2}
-                className="min-w-[7.5rem] whitespace-nowrap border-b px-4 py-3 text-center align-middle text-xs font-semibold"
+                className="border-b bg-muted px-1 py-2 text-center align-middle text-[11px] font-semibold"
               >
                 تاریخ شروع
               </th>
               <th
                 rowSpan={2}
-                className="min-w-[7.5rem] whitespace-nowrap border-b px-4 py-3 text-center align-middle text-xs font-semibold"
+                className="border-b bg-muted px-1 py-2 text-center align-middle text-[11px] font-semibold"
               >
                 تاریخ پایان
               </th>
               <th
                 colSpan={SETTLEMENT_OUTCOME_COLUMNS.length}
-                className="border-b border-r border-l border-navy/10 bg-navy/10 px-3 py-3 text-center align-middle text-xs font-semibold text-navy"
+                className="border-b border-navy/10 bg-navy/15 px-1 py-2 text-center align-middle text-[11px] font-semibold text-navy"
               >
                 وضعیت تسویه پروژه
               </th>
               <th
                 rowSpan={2}
-                className="min-w-[12rem] border-b px-4 py-3 align-middle text-xs font-semibold"
+                className="border-b bg-muted px-2 py-2 align-middle text-[11px] font-semibold"
               >
                 توضیحات
               </th>
@@ -92,7 +104,7 @@ export function TransparencySettlementTable({
                 <th
                   key={col.key}
                   title={col.hint}
-                  className="min-w-[8.5rem] bg-navy/[0.06] px-3 py-2.5 text-center text-[11px] font-medium leading-5 text-navy/80"
+                  className="bg-navy/10 px-1 py-1.5 text-center text-[10px] font-medium leading-4 text-navy/80"
                 >
                   {col.label}
                 </th>
@@ -107,26 +119,26 @@ export function TransparencySettlementTable({
               return (
                 <tr
                   key={project.id}
-                  className="border-b last:border-b-0 odd:bg-background even:bg-muted/20 hover:bg-muted/40"
+                  className="border-b last:border-b-0 odd:bg-background even:bg-muted/20"
                 >
-                  <td className="px-4 py-4 text-center align-middle tabular-nums text-muted-foreground">
+                  <td className="px-1 py-2.5 text-center align-middle text-xs tabular-nums text-muted-foreground">
                     {toPersianDigits(index + 1)}
                   </td>
-                  <td className="px-4 py-4 align-middle">
+                  <td className="px-2 py-2.5 align-middle">
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="font-semibold leading-snug text-foreground hover:text-primary hover:underline"
+                      className="text-xs font-semibold leading-5 text-foreground hover:text-primary hover:underline"
                     >
                       {project.title}
                     </Link>
                   </td>
-                  <td className="px-4 py-4 align-middle leading-6 text-muted-foreground">
+                  <td className="px-2 py-2.5 align-middle text-xs leading-5 text-muted-foreground">
                     {project.activity}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-4 text-center align-middle tabular-nums">
+                  <td className="px-1 py-2.5 text-center align-middle text-[11px] tabular-nums">
                     {formatJalaliDateDisplay(project.startDate)}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-4 text-center align-middle tabular-nums">
+                  <td className="px-1 py-2.5 text-center align-middle text-[11px] tabular-nums">
                     {endDate ? formatJalaliDateDisplay(endDate) : "—"}
                   </td>
                   {SETTLEMENT_OUTCOME_COLUMNS.map((col) => (
@@ -136,7 +148,7 @@ export function TransparencySettlementTable({
                       label={col.hint}
                     />
                   ))}
-                  <td className="max-w-[16rem] px-4 py-4 align-middle text-xs leading-6 text-muted-foreground">
+                  <td className="px-2 py-2.5 align-middle text-[11px] leading-5 text-muted-foreground">
                     {note || "—"}
                   </td>
                 </tr>
