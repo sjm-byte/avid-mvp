@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { getTransparencyStats } from "@/lib/data/projects";
 import { getFeaturedPublicProjects } from "@/lib/data/public-projects";
-import { formatPersianNumber } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { PublicProjectCard } from "@/components/projects/PublicProjectCard";
 import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaimer";
@@ -84,9 +82,8 @@ const faqItems = [
   },
 ];
 
-export default async function HomePage() {
+export default function HomePage() {
   const featuredProjects = getFeaturedPublicProjects(3);
-  const stats = await getTransparencyStats();
 
   return (
     <>
@@ -204,12 +201,10 @@ export default async function HomePage() {
               واقعیت مقایسه کنید.
             </p>
           </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
             <Card>
               <CardContent className="space-y-1 p-6 text-center">
-                <p className="text-3xl font-bold">
-                  {formatPersianNumber(stats.closedProjectsCount)}
-                </p>
+                <p className="text-3xl font-bold">+15</p>
                 <p className="text-sm text-muted-foreground">پروژه خاتمه‌یافته</p>
               </CardContent>
             </Card>
@@ -218,16 +213,6 @@ export default async function HomePage() {
                 <p className="text-3xl font-bold">+50 میلیارد تومن</p>
                 <p className="text-sm text-muted-foreground">
                   حجم مشارکت ثبت‌شده
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="space-y-1 p-6 text-center">
-                <p className="text-3xl font-bold">
-                  {formatPersianNumber(stats.profitableCount)}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  پروژه با نتیجه مثبت در تسویه
                 </p>
               </CardContent>
             </Card>
