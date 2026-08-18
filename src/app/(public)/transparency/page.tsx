@@ -1,7 +1,10 @@
 import Link from "next/link";
+import { Check } from "lucide-react";
 import {
-  getClosedProjectsForTransparency,
-} from "@/lib/data/projects";
+  SETTLEMENT_OUTCOME_COLUMNS,
+  getSettlementOutcome,
+  getTransparencySettlementRows,
+} from "@/lib/data/transparency-settlement-table";
 import {
   Card,
   CardContent,
@@ -10,8 +13,8 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-export default async function TransparencyPage() {
-  const closedProjects = await getClosedProjectsForTransparency();
+export default function TransparencyPage() {
+  const rows = getTransparencySettlementRows();
 
   return (
     <div className="container mx-auto max-w-6xl px-4 py-12 md:py-16">
@@ -20,9 +23,8 @@ export default async function TransparencyPage() {
           شفافیت و مقایسه پیش‌بینی با واقعیت
         </h1>
         <p className="text-base leading-relaxed text-muted-foreground">
-          در این صفحه نتایج پروژه‌های خاتمه‌یافته آوید را می‌بینید: بازده
-          پیش‌بینی‌شده در زمان جذب سرمایه در کنار نتیجه واقعی پروژه پس از تسویه. هدف،
-          تصمیم‌گیری آگاهانه است — نه وعده عملکرد آینده.
+          در این صفحه طرح‌های سرمایه‌گذاری‌شده آوید را به‌ترتیب فهرست می‌بینید
+          و وضعیت تسویه هر طرح، در صورت اعلام، با تیک مشخص می‌شود.
         </p>
       </header>
 
@@ -54,53 +56,74 @@ export default async function TransparencyPage() {
       <section className="mt-12 space-y-4">
         <div>
           <h2 className="text-xl font-semibold md:text-2xl">
-            جدول وضعیت تسویه پروژه‌های خاتمه‌یافته
+            جدول وضعیت تسویه پروژه‌ها
           </h2>
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-            این جدول، وضعیت تسویه پروژه‌ها را بر اساس زمان و نتیجه دسته‌بندی
-            می‌کند. تکمیل خانه‌ها طبق لیست و منطق موردنظر شما انجام می‌شود.
+            ستون اول، فهرست طرح‌ها به‌ترتیب همان فایل فهرست سرمایه‌گذاری است.
+            برای هر طرح حداکثر یک ستون تسویه تیک می‌خورد.
           </p>
         </div>
 
-        {closedProjects.length === 0 ? (
+        {rows.length === 0 ? (
           <p className="rounded-lg border bg-muted/30 px-4 py-6 text-sm text-muted-foreground">
-            هنوز پروژه خاتمه‌یافته‌ای برای نمایش ثبت نشده است.
+            هنوز پروژه‌ای برای نمایش ثبت نشده است.
           </p>
         ) : (
           <div className="w-full max-w-full min-w-0 overflow-x-auto rounded-lg border">
-            <table className="w-full min-w-[720px] text-sm">
+            <table className="w-full min-w-[960px] text-sm">
               <thead>
                 <tr className="border-b bg-muted/50 text-right">
-                  <th className="px-4 py-3 font-medium">پروژه‌ها (به ترتیب)</th>
-                  <th className="px-4 py-3 font-medium">سر موعد تسویه شده</th>
-                  <th className="px-4 py-3 font-medium">
-                    با یک ماه تأخیر تسویه شد
+                  <th className="sticky right-0 bg-muted/50 px-4 py-3 font-medium">
+                    پروژه‌ها (به ترتیب)
                   </th>
-                  <th className="px-4 py-3 font-medium">
-                    با بیش از یک ماه تأخیر ولی با سود اضافه تسویه شد
-                  </th>
-                  <th className="px-4 py-3 font-medium">
-                    با بیش از یک ماه تأخیر ولی بدون سود اضافه تسویه شد
-                  </th>
+                  {SETTLEMENT_OUTCOME_COLUMNS.map((col) => (
+                    <th
+                      key={col.key}
+                      className="min-w-[9.5rem] px-3 py-3 text-center font-medium leading-6"
+                    >
+                      {col.label}
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
-                {closedProjects.map((p) => (
-                  <tr key={p.id} className="border-b">
-                    <td className="px-4 py-3">
-                      <Link
-                        href={`/projects/${p.slug}`}
-                        className="font-medium hover:underline"
-                      >
-                        {p.title}
-                      </Link>
-                    </td>
-                    <td className="px-4 py-3 text-muted-foreground">—</td>
-                    <td className="px-4 py-3 text-muted-foreground">—</td>
-                    <td className="px-4 py-3 text-muted-foreground">—</td>
-                    <td className="px-4 py-3 text-muted-foreground">—</td>
-                  </tr>
-                ))}
+                {rows.map((p) => {
+                  const outcome = getSettlementOutcome(p.id);
+                  return (
+                    <tr key={p.id} className="border-b">
+                      <td className="sticky right-0 bg-background px-4 py-3">
+                        <Link
+                          href={`/projects/${p.slug}`}
+                          className="font-medium hover:underline"
+                        >
+                          {p.title}
+                        </Link>
+                        <p className="mt-1 text-xs text-muted-foreground">
+                          {p.activity}
+                          <span className="mx-1">·</span>
+                          شروع
+                          {" "}
+                          {p.startDate}
+                        </p>
+                      </td>
+                      {SETTLEMENT_OUTCOME_COLUMNS.map((col) => (
+                        <td
+                          key={col.key}
+                          className="px-3 py-3 text-center text-muted-foreground"
+                        >
+                          {outcome === col.key ? (
+                            <Check
+                              className="mx-auto h-5 w-5 text-primary"
+                              aria-label="تیک"
+                            />
+                          ) : (
+                            "—"
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
