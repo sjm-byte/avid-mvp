@@ -1,9 +1,17 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AvidLogo } from "@/components/brand/AvidLogo";
 import { RiskDisclosureBox } from "@/components/shared/RiskDisclosureBox";
 import { Separator } from "@/components/ui/separator";
 
 export function PublicFooter() {
+  const pathname = usePathname();
+  if (pathname === "/transparency") {
+    return null;
+  }
+
   return (
     <footer className="border-t bg-muted/30">
       <div className="container mx-auto px-4 py-12">

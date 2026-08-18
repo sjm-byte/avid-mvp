@@ -192,7 +192,7 @@ export const PUBLIC_PROJECTS: PublicProject[] = [
   },
   {
     id: "p014",
-    title: "روشنا",
+    title: "روشن",
     activity: "ارائه خدمات در حوزه هوش مصنوعی",
     amount: 400_000_000,
     startDate: "1404/11/30",

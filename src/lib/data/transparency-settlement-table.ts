@@ -27,12 +27,27 @@ export const SETTLEMENT_OUTCOME_COLUMNS: {
 ];
 
 /**
- * Outcomes are filled when settlement result is known.
- * Source list (Word, chronological catalog order) currently has names only.
+ * Last status line from the invested-projects Word list.
+ * In-progress projects have no tick.
  */
 export const TRANSPARENCY_SETTLEMENT_OUTCOMES: Partial<
   Record<string, TransparencySettlementOutcome>
-> = {};
+> = {
+  p001: "on_time",
+  p002: "on_time",
+  p003: "delay_one_month",
+  p004: "on_time",
+  p005: "on_time",
+  p006: "on_time",
+  p008: "delay_one_month",
+  p009: "on_time",
+  p010: "delay_one_month",
+  p011: "on_time",
+  p014: "on_time",
+  p016: "delay_over_month_extra_profit",
+  p018: "on_time",
+  p019: "on_time",
+};
 
 export function getTransparencySettlementRows(): PublicProject[] {
   return PUBLIC_PROJECTS;

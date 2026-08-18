@@ -5,13 +5,7 @@ import {
   getSettlementOutcome,
   getTransparencySettlementRows,
 } from "@/lib/data/transparency-settlement-table";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function TransparencyPage() {
   const rows = getTransparencySettlementRows();
@@ -20,11 +14,17 @@ export default function TransparencyPage() {
     <div className="container mx-auto max-w-6xl px-4 py-12 md:py-16">
       <header className="max-w-3xl space-y-4">
         <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
-          شفافیت و مقایسه پیش‌بینی با واقعیت
+          گزارش پروژه‌های خاتمه‌یافته
         </h1>
         <p className="text-base leading-relaxed text-muted-foreground">
-          در این صفحه طرح‌های سرمایه‌گذاری‌شده آوید را به‌ترتیب فهرست می‌بینید
-          و وضعیت تسویه هر طرح، در صورت اعلام، با تیک مشخص می‌شود.
+          در این صفحه نتایج پروژه‌های خاتمه‌یافته آوید را می‌بینید. بررسی سابقه
+          پروژه‌ها می‌تواند به شما در تصمیم‌گیری کمک کند.
+        </p>
+        <p className="text-base leading-relaxed text-muted-foreground">
+          <span className="font-semibold text-foreground">نکته مهم: </span>
+          عملکرد گذشته معیار قطعی برای آینده نیست. هر پروژه جدید، ریسک و بازده
+          پیش‌بینی‌شده مخصوص به خود را دارد که می‌توانید قبل از مشارکت، صفحه
+          همان پروژه و افشای ریسک را مطالعه کنید.
         </p>
       </header>
 
@@ -59,8 +59,8 @@ export default function TransparencyPage() {
             جدول وضعیت تسویه پروژه‌ها
           </h2>
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-            ستون اول، فهرست طرح‌ها به‌ترتیب همان فایل فهرست سرمایه‌گذاری است.
-            برای هر طرح حداکثر یک ستون تسویه تیک می‌خورد.
+            تیک هر طرح بر اساس آخرین بند وضعیت همان طرح گذاشته شده است. طرح‌های
+            در جریان تیک ندارند.
           </p>
         </div>
 
@@ -129,31 +129,6 @@ export default function TransparencyPage() {
           </div>
         )}
       </section>
-
-      <Card className="mt-10 border-amber-200 bg-amber-50/60">
-        <CardHeader>
-          <CardTitle className="text-base">نکته مهم</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-2 text-sm leading-relaxed text-muted-foreground">
-          <p>
-            عملکرد گذشته معیار قطعی برای آینده نیست. هر پروژه جدید ریسک، زمان‌بندی
-            و بازده پیش‌بینی‌شده مخصوص به خود را دارد.
-          </p>
-          <p>
-            قبل از مشارکت، صفحه همان پروژه و افشای ریسک را مطالعه کنید و ریسک
-            همان پروژه را جداگانه بپذیرید.
-          </p>
-        </CardContent>
-      </Card>
-
-      <div className="mt-8 flex flex-wrap gap-3">
-        <Button asChild>
-          <Link href="/projects">مشاهده پروژه‌های باز</Link>
-        </Button>
-        <Button variant="outline" asChild>
-          <Link href="/risk-disclosure">افشای ریسک</Link>
-        </Button>
-      </div>
     </div>
   );
 }
