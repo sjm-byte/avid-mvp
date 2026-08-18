@@ -42,27 +42,50 @@ export function TransparencySettlementTable({
       <div className="w-full max-w-full min-w-0 overflow-x-auto">
         <table className="w-full min-w-[1100px] border-collapse text-sm">
           <thead>
-            <tr className="border-b bg-muted/40 text-right">
-              <th className="w-12 px-4 py-3 text-center text-xs font-semibold text-muted-foreground">
+            <tr className="bg-muted/40 text-right">
+              <th
+                rowSpan={2}
+                className="w-12 border-b px-4 py-3 text-center text-xs font-semibold text-muted-foreground"
+              >
                 ردیف
               </th>
-              <th className="min-w-[11rem] px-4 py-3 text-xs font-semibold">
+              <th
+                rowSpan={2}
+                className="min-w-[11rem] border-b px-4 py-3 text-xs font-semibold"
+              >
                 پروژه
               </th>
-              <th className="min-w-[12rem] px-4 py-3 text-xs font-semibold">
+              <th
+                rowSpan={2}
+                className="min-w-[12rem] border-b px-4 py-3 text-xs font-semibold"
+              >
                 موضوع فعالیت
               </th>
-              <th className="min-w-[7.5rem] whitespace-nowrap px-4 py-3 text-center text-xs font-semibold">
+              <th
+                rowSpan={2}
+                className="min-w-[7.5rem] whitespace-nowrap border-b px-4 py-3 text-center text-xs font-semibold"
+              >
                 تاریخ شروع
               </th>
-              <th className="min-w-[7.5rem] whitespace-nowrap px-4 py-3 text-center text-xs font-semibold">
+              <th
+                rowSpan={2}
+                className="min-w-[7.5rem] whitespace-nowrap border-b px-4 py-3 text-center text-xs font-semibold"
+              >
                 تاریخ پایان
               </th>
+              <th
+                colSpan={SETTLEMENT_OUTCOME_COLUMNS.length}
+                className="border-b border-r px-3 py-2.5 text-center text-xs font-semibold"
+              >
+                وضعیت تسویه پروژه
+              </th>
+            </tr>
+            <tr className="border-b bg-muted/30 text-right">
               {SETTLEMENT_OUTCOME_COLUMNS.map((col) => (
                 <th
                   key={col.key}
                   title={col.hint}
-                  className="min-w-[8.5rem] px-3 py-3 text-center text-xs font-semibold leading-5"
+                  className="min-w-[8.5rem] px-3 py-2.5 text-center text-xs font-medium leading-5 text-muted-foreground"
                 >
                   {col.label}
                 </th>
