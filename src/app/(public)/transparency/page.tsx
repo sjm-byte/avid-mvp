@@ -3,7 +3,7 @@ import {
   getClosedProjectsForTransparency,
   getTransparencyStats,
 } from "@/lib/data/projects";
-import { formatDurationDays, formatPercent, formatToman } from "@/lib/utils";
+import { formatDurationDays, formatPercent } from "@/lib/utils";
 import {
   Card,
   CardContent,
@@ -46,9 +46,7 @@ export default async function TransparencyPage() {
         </Card>
         <Card>
           <CardContent className="space-y-1 p-5">
-            <p className="text-lg font-bold">
-              {formatToman(stats.totalManagedCapital)}
-            </p>
+            <p className="text-lg font-bold">+50 میلیارد تومن</p>
             <p className="text-xs text-muted-foreground">حجم مشارکت ثبت‌شده</p>
           </CardContent>
         </Card>

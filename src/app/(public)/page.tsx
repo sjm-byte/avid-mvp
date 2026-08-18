@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getTransparencyStats } from "@/lib/data/projects";
 import { getFeaturedPublicProjects } from "@/lib/data/public-projects";
-import { formatToman, formatPersianNumber } from "@/lib/utils";
+import { formatPersianNumber } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { PublicProjectCard } from "@/components/projects/PublicProjectCard";
 import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaimer";
@@ -215,9 +215,7 @@ export default async function HomePage() {
             </Card>
             <Card>
               <CardContent className="space-y-1 p-6 text-center">
-                <p className="text-3xl font-bold">
-                  {formatToman(stats.totalManagedCapital)}
-                </p>
+                <p className="text-3xl font-bold">+50 میلیارد تومن</p>
                 <p className="text-sm text-muted-foreground">
                   حجم مشارکت ثبت‌شده
                 </p>
