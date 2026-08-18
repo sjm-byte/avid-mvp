@@ -201,7 +201,7 @@ export default function HomePage() {
               واقعیت مقایسه کنید.
             </p>
           </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
             <Card>
               <CardContent className="space-y-1 p-6 text-center">
                 <p className="text-3xl font-bold">+15</p>
@@ -213,6 +213,14 @@ export default function HomePage() {
                 <p className="text-3xl font-bold">+50 میلیارد تومن</p>
                 <p className="text-sm text-muted-foreground">
                   حجم مشارکت ثبت‌شده
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="space-y-1 p-6 text-center">
+                <p className="text-3xl font-bold">+15</p>
+                <p className="text-sm text-muted-foreground">
+                  پروژه‌های در جریان
                 </p>
               </CardContent>
             </Card>
