@@ -88,8 +88,8 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-navy text-white">
-        <div className="container mx-auto max-w-5xl px-4 py-20 text-center md:py-28">
+      <section className="flex min-h-[calc(100dvh-72px)] items-center bg-navy text-white">
+        <div className="container mx-auto max-w-5xl px-4 py-12 text-center md:py-16">
           <p className="inline-block border-b border-gold/40 pb-2 text-sm font-medium text-gold">
             پلتفرم مشارکت پروژه‌ای — نه صندوق، نه نگهداری وجه
           </p>
