@@ -70,6 +70,13 @@ export function getSettlementOutcome(
   return TRANSPARENCY_SETTLEMENT_OUTCOMES[projectId];
 }
 
+/** Optional one-line notes; fill when a project needs extra explanation. */
+export const TRANSPARENCY_NOTES: Partial<Record<string, string>> = {};
+
+export function getTransparencyNote(projectId: string): string {
+  return TRANSPARENCY_NOTES[projectId]?.trim() ?? "";
+}
+
 const PERSIAN_MONTH_WORDS: Record<string, number> = {
   یک: 1,
   دو: 2,
