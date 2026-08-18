@@ -13,7 +13,7 @@ export function PublicFooter() {
   }
 
   return (
-    <footer className="border-t border-gold/20 bg-navy text-white">
+    <footer className="border-t border-gold/25 bg-navy text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid gap-8 md:grid-cols-3">
           <div>

@@ -3,6 +3,7 @@ import { getFeaturedPublicProjects } from "@/lib/data/public-projects";
 import { Button } from "@/components/ui/button";
 import { PublicProjectCard } from "@/components/projects/PublicProjectCard";
 import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaimer";
+import { HomeHeroSlideshow } from "@/components/home/HomeHeroSlideshow";
 import {
   Card,
   CardContent,
@@ -87,21 +88,20 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="flex min-h-[calc(100dvh-72px)] items-center bg-navy text-white">
-        <div className="container mx-auto max-w-5xl px-4 py-12 text-center md:py-16">
+      <HomeHeroSlideshow>
+        <div className="container mx-auto max-w-6xl px-4 py-12 md:py-16">
           <p className="inline-block border-b border-gold/40 pb-2 text-sm font-medium text-gold">
             پلتفرم مشارکت پروژه‌ای — نه صندوق، نه نگهداری وجه
           </p>
-          <h1 className="mt-6 text-balance text-4xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl">
+          <h1 className="mt-6 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl">
             با آوید، به سرمایه‌گذاری واقعی فکر کن
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/90 md:text-lg">
             پروژه‌ها را جداگانه بررسی کنید، ریسک‌ها را ببینید و بازده
             پیش‌بینی‌شده را در کنار واقعیت اجرا ارزیابی کنید — بدون وعده بازده
             پیش‌بینی‌شده به‌عنوان نتیجه واقعی پروژه.
           </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-10 flex flex-wrap items-center gap-3">
             <Button
               size="lg"
               asChild
@@ -113,13 +113,13 @@ export default function HomePage() {
               size="lg"
               variant="outline"
               asChild
-              className="rounded-full border-gold/60 bg-transparent text-white hover:bg-white/10 hover:text-gold"
+              className="rounded-full border-gold/70 bg-transparent text-white hover:bg-white/10 hover:text-gold"
             >
               <Link href="/risk-disclosure">افشای ریسک و هشدارها</Link>
             </Button>
           </div>
         </div>
-      </section>
+      </HomeHeroSlideshow>
 
       {/* Value proposition */}
       <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">

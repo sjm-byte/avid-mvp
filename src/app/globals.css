@@ -10,7 +10,9 @@
     --foreground: 221 55% 14%;
     --card: 0 0% 100%;
     --card-foreground: 221 55% 14%;
-    --primary: 221 66% 15%;
+    --primary: 221 48% 28%;
+    --navy: 221 46% 32%;
+    --navy-light: 221 42% 40%;
     --primary-foreground: 40 33% 96%;
     --secondary: 36 16% 92%;
     --secondary-foreground: 221 55% 16%;
@@ -25,7 +27,6 @@
     --ring: 43 54% 54%;
     --gold: 43 54% 54%;
     --gold-light: 43 62% 64%;
-    --navy: 221 66% 15%;
     --radius: 0.75rem;
     --sidebar-background: 221 66% 15%;
     --sidebar-foreground: 210 15% 92%;

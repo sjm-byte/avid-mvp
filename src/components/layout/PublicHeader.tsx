@@ -11,7 +11,7 @@ const navLinks = [
 
 export function PublicHeader() {
   return (
-    <header className="sticky top-0 z-50 max-w-full overflow-hidden border-b border-gold/25 bg-navy/95 backdrop-blur supports-[backdrop-filter]:bg-navy/90">
+    <header className="sticky top-0 z-50 max-w-full overflow-hidden border-b border-gold/30 bg-navy-light/95 backdrop-blur supports-[backdrop-filter]:bg-navy-light/90">
       <div className="container mx-auto flex h-[72px] min-w-0 max-w-full items-center justify-between px-4">
         <div className="flex min-w-0 items-center gap-8">
           <AvidLogo href="/" imageClassName="h-12 w-auto" />

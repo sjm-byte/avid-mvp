@@ -52,7 +52,10 @@ const config: Config = {
           DEFAULT: "hsl(var(--gold))",
           light: "hsl(var(--gold-light))",
         },
-        navy: "hsl(var(--navy))",
+        navy: {
+          DEFAULT: "hsl(var(--navy))",
+          light: "hsl(var(--navy-light))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
