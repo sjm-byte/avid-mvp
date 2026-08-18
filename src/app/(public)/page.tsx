@@ -88,28 +88,34 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="border-b bg-gradient-to-b from-muted/60 via-muted/20 to-background">
-        <div className="container mx-auto max-w-5xl px-4 py-16 text-center md:py-24">
-          <p className="text-sm font-medium text-primary">
+      <section className="bg-navy text-white">
+        <div className="container mx-auto max-w-5xl px-4 py-20 text-center md:py-28">
+          <p className="inline-block border-b border-gold/40 pb-2 text-sm font-medium text-gold">
             پلتفرم مشارکت پروژه‌ای — نه صندوق، نه نگهداری وجه
           </p>
-          <h1 className="mt-4 text-balance text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
-            آوید؛ مشارکت شفاف در پروژه‌های واقعی
+          <h1 className="mt-6 text-balance text-4xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl">
+            با آوید، به سرمایه‌گذاری واقعی فکر کن
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
             پروژه‌ها را جداگانه بررسی کنید، ریسک‌ها را ببینید و بازده
             پیش‌بینی‌شده را در کنار واقعیت اجرا ارزیابی کنید — بدون وعده بازده
             پیش‌بینی‌شده به‌عنوان نتیجه واقعی پروژه.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <Button size="lg" asChild>
+            <Button
+              size="lg"
+              asChild
+              className="rounded-full bg-gold text-navy hover:bg-gold-light"
+            >
               <Link href="/projects">مشاهده پروژه‌های باز</Link>
             </Button>
-            <Button size="lg" variant="outline" asChild>
+            <Button
+              size="lg"
+              variant="outline"
+              asChild
+              className="rounded-full border-gold/60 bg-transparent text-white hover:bg-white/10 hover:text-gold"
+            >
               <Link href="/risk-disclosure">افشای ریسک و هشدارها</Link>
-            </Button>
-            <Button size="lg" variant="secondary" asChild>
-              <Link href="/login">ورود آزمایشی</Link>
             </Button>
           </div>
         </div>

@@ -12,6 +12,13 @@ export const metadata: Metadata = {
   title: "آوید — مشارکت شفاف در پروژه‌های واقعی",
   description:
     "پلتفرم مدیریت مشارکت پروژه‌ای. پروژه‌ها را جداگانه بررسی کنید، ریسک‌ها را ببینید و وضعیت سرمایه خود را مرحله‌به‌مرحله دنبال کنید.",
+  icons: {
+    icon: [
+      { url: "/assets/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/assets/brand/favicon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/assets/brand/favicon-192.png",
+  },
 };
 
 export default function RootLayout({

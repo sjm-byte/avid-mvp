@@ -48,6 +48,11 @@ const config: Config = {
           border: "hsl(var(--sidebar-border))",
           accent: "hsl(var(--sidebar-accent))",
         },
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          light: "hsl(var(--gold-light))",
+        },
+        navy: "hsl(var(--navy))",
       },
       borderRadius: {
         lg: "var(--radius)",

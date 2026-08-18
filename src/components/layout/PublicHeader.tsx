@@ -11,16 +11,16 @@ const navLinks = [
 
 export function PublicHeader() {
   return (
-    <header className="sticky top-0 z-50 max-w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="container mx-auto flex h-16 min-w-0 max-w-full items-center justify-between px-4">
-        <div className="flex items-center gap-8">
-          <AvidLogo href="/" />
+    <header className="sticky top-0 z-50 max-w-full overflow-hidden border-b border-gold/25 bg-navy/95 backdrop-blur supports-[backdrop-filter]:bg-navy/90">
+      <div className="container mx-auto flex h-[72px] min-w-0 max-w-full items-center justify-between px-4">
+        <div className="flex min-w-0 items-center gap-8">
+          <AvidLogo href="/" imageClassName="h-12 w-auto" />
           <nav className="hidden items-center gap-6 md:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                className="text-sm font-medium text-white/85 transition-colors hover:text-gold"
               >
                 {link.label}
               </Link>
@@ -28,10 +28,17 @@ export function PublicHeader() {
           </nav>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="ghost" asChild>
+          <Button
+            variant="ghost"
+            asChild
+            className="text-white/85 hover:bg-white/10 hover:text-gold"
+          >
             <Link href="/login">ورود</Link>
           </Button>
-          <Button asChild>
+          <Button
+            asChild
+            className="rounded-full bg-gold text-navy hover:bg-gold-light"
+          >
             <Link href="/signup">ثبت‌نام</Link>
           </Button>
         </div>

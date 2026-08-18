@@ -13,27 +13,21 @@ interface AvidLogoProps {
 export function AvidLogo({
   href = "/",
   variant = "full",
-  tone = "default",
   className,
   imageClassName,
 }: AvidLogoProps) {
-  const src =
-    variant === "mark"
-      ? BRAND_ASSETS.logoMark
-      : tone === "light"
-        ? BRAND_ASSETS.logoLight
-        : BRAND_ASSETS.logo;
+  const src = variant === "mark" ? BRAND_ASSETS.logoMark : BRAND_ASSETS.logo;
 
   const image = (
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={src}
       alt="آوید"
-      width={variant === "mark" ? 32 : 120}
-      height={32}
+      width={variant === "mark" ? 40 : 160}
+      height={40}
       className={cn(
-        "h-8 w-auto shrink-0",
-        variant === "mark" && "h-8 w-8",
+        "h-10 w-auto shrink-0 object-contain",
+        variant === "mark" && "h-9 w-9",
         imageClassName
       )}
     />
@@ -46,7 +40,10 @@ export function AvidLogo({
   return (
     <Link
       href={href}
-      className={cn("inline-flex items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring", className)}
+      className={cn(
+        "inline-flex items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        className
+      )}
     >
       {image}
     </Link>
