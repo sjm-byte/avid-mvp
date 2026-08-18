@@ -41,7 +41,7 @@ export function TransparencySettlementTable({
   return (
     <div className="overflow-hidden rounded-xl border bg-card shadow-sm">
       <div className="max-h-[min(70vh,40rem)] overflow-y-auto overflow-x-hidden">
-        <table className="w-full table-fixed border-collapse text-sm">
+        <table className="w-full table-fixed border-separate border-spacing-0 text-sm">
           <colgroup>
             <col className="w-[4%]" />
             <col className="w-[16%]" />
@@ -54,7 +54,7 @@ export function TransparencySettlementTable({
             <col className="w-[10%]" />
             <col className="w-[9%]" />
           </colgroup>
-          <thead className="sticky top-0 z-20">
+          <thead className="sticky top-0 z-20 bg-muted shadow-[0_1px_0_0_hsl(var(--border))]">
             <tr className="bg-muted text-right">
               <th
                 rowSpan={2}
@@ -88,7 +88,7 @@ export function TransparencySettlementTable({
               </th>
               <th
                 colSpan={SETTLEMENT_OUTCOME_COLUMNS.length}
-                className="border-b border-navy/10 bg-navy/15 px-1 py-2 text-center align-middle text-[11px] font-semibold text-navy"
+                className="border-b border-navy/10 bg-[hsl(221_30%_90%)] px-1 py-2 text-center align-middle text-[11px] font-semibold text-navy"
               >
                 وضعیت تسویه پروژه
               </th>
@@ -99,12 +99,12 @@ export function TransparencySettlementTable({
                 توضیحات
               </th>
             </tr>
-            <tr className="border-b text-right">
+            <tr className="border-b bg-muted text-right">
               {SETTLEMENT_OUTCOME_COLUMNS.map((col) => (
                 <th
                   key={col.key}
                   title={col.hint}
-                  className="bg-navy/10 px-1 py-1.5 text-center text-[10px] font-medium leading-4 text-navy/80"
+                  className="border-b bg-[hsl(221_25%_93%)] px-1 py-1.5 text-center text-[10px] font-medium leading-4 text-navy/80"
                 >
                   {col.label}
                 </th>
