@@ -7,9 +7,9 @@ const SLIDES = Array.from({ length: 12 }, (_, index) => {
   return `/assets/hero/slide-${index + 1}.png`;
 });
 
-/** Matches the original Avid template: strong navy scrim on the text side (RTL). */
+/** Light scrim on the text side only; keeps full slide artwork visible. */
 const HERO_OVERLAY =
-  "linear-gradient(to left, rgba(13, 27, 62, 0.88) 0%, rgba(13, 27, 62, 0.72) 45%, rgba(13, 27, 62, 0.45) 100%), linear-gradient(to top, rgba(13, 27, 62, 0.6) 0%, transparent 40%)";
+  "linear-gradient(to left, rgba(13, 27, 62, 0.52) 0%, rgba(13, 27, 62, 0.22) 34%, transparent 62%)";
 
 export function HomeHeroSlideshow({
   children,
@@ -26,7 +26,7 @@ export function HomeHeroSlideshow({
   }, []);
 
   return (
-    <section className="relative min-h-[calc(100dvh-72px)] overflow-hidden text-white">
+    <section className="relative min-h-[calc(100dvh-72px)] overflow-hidden bg-[#0d1b3e] text-white">
       <div className="absolute inset-0" aria-hidden>
         {SLIDES.map((src, index) => (
           // eslint-disable-next-line @next/next/no-img-element
@@ -35,7 +35,7 @@ export function HomeHeroSlideshow({
             src={src}
             alt=""
             className={cn(
-              "absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000",
+              "absolute inset-0 h-full w-full object-contain object-center transition-opacity duration-1000",
               index === current ? "opacity-100" : "opacity-0",
             )}
           />
