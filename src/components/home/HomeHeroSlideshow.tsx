@@ -37,12 +37,15 @@ export function HomeHeroSlideshow({
           />
         ))}
       </div>
+      <div className="absolute inset-0 bg-black/50" aria-hidden />
       <div
-        className="absolute inset-0 bg-gradient-to-l from-[#3a5f99]/68 via-[#3a5f99]/42 to-[#3a5f99]/18"
+        className="absolute inset-0 bg-gradient-to-l from-[#1a2f52]/92 via-[#243f6b]/78 to-[#243f6b]/35"
         aria-hidden
       />
       <div className="relative z-10 flex min-h-[calc(100dvh-72px)] flex-col justify-center">
-        {children}
+        <div className="[&_h1]:drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] [&_p]:drop-shadow-[0_1px_6px_rgba(0,0,0,0.45)]">
+          {children}
+        </div>
         <div className="container mx-auto max-w-6xl px-4 pb-10">
           <div className="flex gap-2" aria-label="انتخاب تصویر پس‌زمینه">
             {SLIDES.map((src, index) => (

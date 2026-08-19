@@ -9,6 +9,83 @@ import {
 import { formatJalaliDateDisplay, toPersianDigits } from "@/lib/utils";
 import type { PublicProject } from "@/lib/data/public-projects";
 
+const TABLE_COLGROUP = (
+  <colgroup>
+    <col className="w-[4%]" />
+    <col className="w-[16%]" />
+    <col className="w-[18%]" />
+    <col className="w-[9%]" />
+    <col className="w-[9%]" />
+    <col className="w-[7%]" />
+    <col className="w-[8%]" />
+    <col className="w-[10%]" />
+    <col className="w-[10%]" />
+    <col className="w-[9%]" />
+  </colgroup>
+);
+
+function SettlementTableHead() {
+  return (
+    <thead>
+      <tr className="bg-muted text-right">
+        <th
+          rowSpan={2}
+          className="border-b bg-muted px-1 py-2 text-center align-middle text-[11px] font-semibold text-muted-foreground"
+        >
+          ردیف
+        </th>
+        <th
+          rowSpan={2}
+          className="border-b bg-muted px-2 py-2 align-middle text-[11px] font-semibold"
+        >
+          پروژه
+        </th>
+        <th
+          rowSpan={2}
+          className="border-b bg-muted px-2 py-2 align-middle text-[11px] font-semibold"
+        >
+          موضوع فعالیت
+        </th>
+        <th
+          rowSpan={2}
+          className="border-b bg-muted px-1 py-2 text-center align-middle text-[11px] font-semibold"
+        >
+          تاریخ شروع
+        </th>
+        <th
+          rowSpan={2}
+          className="border-b bg-muted px-1 py-2 text-center align-middle text-[11px] font-semibold"
+        >
+          تاریخ پایان
+        </th>
+        <th
+          colSpan={SETTLEMENT_OUTCOME_COLUMNS.length}
+          className="border-b border-navy/10 bg-[hsl(221_30%_90%)] px-1 py-2 text-center align-middle text-[11px] font-semibold text-navy"
+        >
+          وضعیت تسویه پروژه
+        </th>
+        <th
+          rowSpan={2}
+          className="border-b bg-muted px-2 py-2 align-middle text-[11px] font-semibold"
+        >
+          توضیحات
+        </th>
+      </tr>
+      <tr className="border-b bg-muted text-right">
+        {SETTLEMENT_OUTCOME_COLUMNS.map((col) => (
+          <th
+            key={col.key}
+            title={col.hint}
+            className="border-b bg-[hsl(221_25%_93%)] px-1 py-1.5 text-center text-[10px] font-medium leading-4 text-navy/80"
+          >
+            {col.label}
+          </th>
+        ))}
+      </tr>
+    </thead>
+  );
+}
+
 function TickCell({
   checked,
   label,
@@ -40,77 +117,18 @@ export function TransparencySettlementTable({
 }) {
   return (
     <div className="overflow-hidden rounded-xl border bg-card shadow-sm">
-      <div className="max-h-[min(70vh,40rem)] overflow-y-auto overflow-x-hidden">
+      <div className="overflow-x-hidden border-b bg-muted">
         <table className="w-full table-fixed border-separate border-spacing-0 text-sm">
-          <colgroup>
-            <col className="w-[4%]" />
-            <col className="w-[16%]" />
-            <col className="w-[18%]" />
-            <col className="w-[9%]" />
-            <col className="w-[9%]" />
-            <col className="w-[7%]" />
-            <col className="w-[8%]" />
-            <col className="w-[10%]" />
-            <col className="w-[10%]" />
-            <col className="w-[9%]" />
-          </colgroup>
-          <thead className="sticky top-0 z-20 bg-muted shadow-[0_1px_0_0_hsl(var(--border))]">
-            <tr className="bg-muted text-right">
-              <th
-                rowSpan={2}
-                className="border-b bg-muted px-1 py-2 text-center align-middle text-[11px] font-semibold text-muted-foreground"
-              >
-                ردیف
-              </th>
-              <th
-                rowSpan={2}
-                className="border-b bg-muted px-2 py-2 align-middle text-[11px] font-semibold"
-              >
-                پروژه
-              </th>
-              <th
-                rowSpan={2}
-                className="border-b bg-muted px-2 py-2 align-middle text-[11px] font-semibold"
-              >
-                موضوع فعالیت
-              </th>
-              <th
-                rowSpan={2}
-                className="border-b bg-muted px-1 py-2 text-center align-middle text-[11px] font-semibold"
-              >
-                تاریخ شروع
-              </th>
-              <th
-                rowSpan={2}
-                className="border-b bg-muted px-1 py-2 text-center align-middle text-[11px] font-semibold"
-              >
-                تاریخ پایان
-              </th>
-              <th
-                colSpan={SETTLEMENT_OUTCOME_COLUMNS.length}
-                className="border-b border-navy/10 bg-[hsl(221_30%_90%)] px-1 py-2 text-center align-middle text-[11px] font-semibold text-navy"
-              >
-                وضعیت تسویه پروژه
-              </th>
-              <th
-                rowSpan={2}
-                className="border-b bg-muted px-2 py-2 align-middle text-[11px] font-semibold"
-              >
-                توضیحات
-              </th>
-            </tr>
-            <tr className="border-b bg-muted text-right">
-              {SETTLEMENT_OUTCOME_COLUMNS.map((col) => (
-                <th
-                  key={col.key}
-                  title={col.hint}
-                  className="border-b bg-[hsl(221_25%_93%)] px-1 py-1.5 text-center text-[10px] font-medium leading-4 text-navy/80"
-                >
-                  {col.label}
-                </th>
-              ))}
-            </tr>
-          </thead>
+          {TABLE_COLGROUP}
+          <SettlementTableHead />
+        </table>
+      </div>
+      <div
+        className="max-h-[min(55vh,28rem)] overflow-y-auto overflow-x-hidden overscroll-contain"
+        aria-label="ردیف‌های جدول وضعیت تسویه"
+      >
+        <table className="w-full table-fixed border-separate border-spacing-0 text-sm">
+          {TABLE_COLGROUP}
           <tbody>
             {rows.map((project, index) => {
               const outcome = getSettlementOutcome(project.id);
