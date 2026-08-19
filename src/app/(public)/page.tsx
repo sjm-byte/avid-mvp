@@ -164,6 +164,26 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Investment plans */}
+      <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 className="text-2xl font-bold md:text-3xl">طرح‌های سرمایه‌گذاری</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              هر کارت را باز کنید تا جزئیات، ریسک و بازده پیش‌بینی‌شده را ببینید.
+            </p>
+          </div>
+          <Button variant="outline" asChild>
+            <Link href="/projects">همه پروژه‌ها</Link>
+          </Button>
+        </div>
+        <div className="mt-8 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+          {featuredProjects.map((project) => (
+            <PublicProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      </section>
+
       {/* Value proposition */}
       <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
         <div className="mx-auto max-w-2xl text-center">
@@ -217,26 +237,6 @@ export default function HomePage() {
               </Card>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Featured projects */}
-      <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h2 className="text-2xl font-bold md:text-3xl">پروژه‌های فعال</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              هر کارت را باز کنید تا جزئیات، ریسک و بازده پیش‌بینی‌شده را ببینید.
-            </p>
-          </div>
-          <Button variant="outline" asChild>
-            <Link href="/projects">همه پروژه‌ها</Link>
-          </Button>
-        </div>
-        <div className="mt-8 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {featuredProjects.map((project) => (
-            <PublicProjectCard key={project.id} project={project} />
-          ))}
         </div>
       </section>
 
