@@ -90,36 +90,79 @@ export default function HomePage() {
     <>
       <HomeHeroSlideshow>
         <div className="container mx-auto max-w-6xl px-4 py-12 md:py-16">
-          <p className="inline-block border-b border-gold/40 pb-2 text-sm font-medium text-gold">
-            پلتفرم مشارکت پروژه‌ای — نه صندوق، نه نگهداری وجه
-          </p>
-          <h1 className="mt-6 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.35)] md:text-5xl lg:text-6xl">
-            با آوید، به سرمایه‌گذاری واقعی فکر کن
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/90 md:text-lg">
-            پروژه‌ها را جداگانه بررسی کنید، ریسک‌ها را ببینید و بازده
-            پیش‌بینی‌شده را در کنار واقعیت اجرا ارزیابی کنید — بدون وعده بازده
-            پیش‌بینی‌شده به‌عنوان نتیجه واقعی پروژه.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center gap-3">
-            <Button
-              size="lg"
-              asChild
-              className="rounded-full bg-gold text-navy hover:bg-gold-light"
-            >
-              <Link href="/projects">مشاهده پروژه‌های باز</Link>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-              className="rounded-full border-gold/70 bg-transparent text-white hover:bg-white/10 hover:text-gold"
-            >
-              <Link href="/risk-disclosure">افشای ریسک و هشدارها</Link>
-            </Button>
+          <div className="max-w-3xl bg-gradient-to-l from-navy/50 via-navy/15 to-transparent">
+            <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.45)] md:text-5xl lg:text-6xl">
+              با آوید، به سرمایه‌گذاری واقعی فکر کن
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/95 [text-shadow:0_1px_8px_rgba(0,0,0,0.4)] md:text-lg">
+              پروژه‌ها را جداگانه بررسی کنید، ریسک‌ها را ببینید و بازده
+              پیش‌بینی‌شده را در کنار واقعیت اجرا ارزیابی کنید.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              <Button
+                size="lg"
+                asChild
+                className="rounded-full bg-gold text-navy hover:bg-gold-light"
+              >
+                <Link href="/projects">مشاهده پروژه‌های باز</Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="rounded-full border-gold/70 bg-transparent text-white hover:bg-white/10 hover:text-gold"
+              >
+                <Link href="/risk-disclosure">افشای ریسک و هشدارها</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </HomeHeroSlideshow>
+
+      {/* Trust & transparency */}
+      <section className="border-y bg-muted/30">
+        <div className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-2xl font-bold md:text-3xl">شفافیت و اعتماد</h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+              آوید نتایج خاتمه‌یافته را منتشر می‌کند تا بتوانید بین پیش‌بینی و
+              واقعیت مقایسه کنید.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            <Card>
+              <CardContent className="space-y-1 p-6 text-center">
+                <p className="text-3xl font-bold">+15</p>
+                <p className="text-sm text-muted-foreground">پروژه خاتمه‌یافته</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="space-y-1 p-6 text-center">
+                <p className="text-3xl font-bold">+50 میلیارد تومن</p>
+                <p className="text-sm text-muted-foreground">
+                  حجم مشارکت ثبت‌شده
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="space-y-1 p-6 text-center">
+                <p className="text-3xl font-bold">+15</p>
+                <p className="text-sm text-muted-foreground">
+                  پروژه‌های در جریان
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Button asChild>
+              <Link href="/transparency">صفحه شفافیت آوید</Link>
+            </Button>
+            <Button variant="outline" asChild>
+              <Link href="/risk-disclosure">مطالعه افشای ریسک</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
 
       {/* Value proposition */}
       <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
@@ -194,51 +237,6 @@ export default function HomePage() {
           {featuredProjects.map((project) => (
             <PublicProjectCard key={project.id} project={project} />
           ))}
-        </div>
-      </section>
-
-      {/* Trust & transparency */}
-      <section className="border-y bg-muted/30">
-        <div className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-bold md:text-3xl">شفافیت و اعتماد</h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
-              آوید نتایج خاتمه‌یافته را منتشر می‌کند تا بتوانید بین پیش‌بینی و
-              واقعیت مقایسه کنید.
-            </p>
-          </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            <Card>
-              <CardContent className="space-y-1 p-6 text-center">
-                <p className="text-3xl font-bold">+15</p>
-                <p className="text-sm text-muted-foreground">پروژه خاتمه‌یافته</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="space-y-1 p-6 text-center">
-                <p className="text-3xl font-bold">+50 میلیارد تومن</p>
-                <p className="text-sm text-muted-foreground">
-                  حجم مشارکت ثبت‌شده
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="space-y-1 p-6 text-center">
-                <p className="text-3xl font-bold">+15</p>
-                <p className="text-sm text-muted-foreground">
-                  پروژه‌های در جریان
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Button asChild>
-              <Link href="/transparency">صفحه شفافیت آوید</Link>
-            </Button>
-            <Button variant="outline" asChild>
-              <Link href="/risk-disclosure">مطالعه افشای ریسک</Link>
-            </Button>
-          </div>
         </div>
       </section>
 
