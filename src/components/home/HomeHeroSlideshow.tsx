@@ -7,6 +7,10 @@ const SLIDES = Array.from({ length: 12 }, (_, index) => {
   return `/assets/hero/slide-${index + 1}.png`;
 });
 
+/** Matches the original Avid template: strong navy scrim on the text side (RTL). */
+const HERO_OVERLAY =
+  "linear-gradient(to left, rgba(13, 27, 62, 0.88) 0%, rgba(13, 27, 62, 0.72) 45%, rgba(13, 27, 62, 0.45) 100%), linear-gradient(to top, rgba(13, 27, 62, 0.6) 0%, transparent 40%)";
+
 export function HomeHeroSlideshow({
   children,
 }: {
@@ -37,15 +41,13 @@ export function HomeHeroSlideshow({
           />
         ))}
       </div>
-      <div className="absolute inset-0 bg-black/50" aria-hidden />
       <div
-        className="absolute inset-0 bg-gradient-to-l from-[#1a2f52]/92 via-[#243f6b]/78 to-[#243f6b]/35"
+        className="absolute inset-0"
+        style={{ background: HERO_OVERLAY }}
         aria-hidden
       />
       <div className="relative z-10 flex min-h-[calc(100dvh-72px)] flex-col justify-center">
-        <div className="[&_h1]:drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] [&_p]:drop-shadow-[0_1px_6px_rgba(0,0,0,0.45)]">
-          {children}
-        </div>
+        {children}
         <div className="container mx-auto max-w-6xl px-4 pb-10">
           <div className="flex gap-2" aria-label="انتخاب تصویر پس‌زمینه">
             {SLIDES.map((src, index) => (

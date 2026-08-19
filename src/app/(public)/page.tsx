@@ -90,19 +90,18 @@ export default function HomePage() {
     <>
       <HomeHeroSlideshow>
         <div className="container mx-auto max-w-6xl px-4 py-12 md:py-16">
-          <div className="max-w-3xl rounded-2xl bg-[#1a2f52]/72 p-6 ring-1 ring-white/15 backdrop-blur-md md:p-10">
-            <p className="inline-block border-b border-gold/50 pb-2 text-sm font-medium text-gold">
-              پلتفرم مشارکت پروژه‌ای — نه صندوق، نه نگهداری وجه
-            </p>
-            <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
-              با آوید، به سرمایه‌گذاری واقعی فکر کن
-            </h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/95 md:text-lg">
-              پروژه‌ها را جداگانه بررسی کنید، ریسک‌ها را ببینید و بازده
-              پیش‌بینی‌شده را در کنار واقعیت اجرا ارزیابی کنید — بدون وعده بازده
-              پیش‌بینی‌شده به‌عنوان نتیجه واقعی پروژه.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-3">
+          <p className="inline-block border-b border-gold/40 pb-2 text-sm font-medium text-gold">
+            پلتفرم مشارکت پروژه‌ای — نه صندوق، نه نگهداری وجه
+          </p>
+          <h1 className="mt-6 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.35)] md:text-5xl lg:text-6xl">
+            با آوید، به سرمایه‌گذاری واقعی فکر کن
+          </h1>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/90 md:text-lg">
+            پروژه‌ها را جداگانه بررسی کنید، ریسک‌ها را ببینید و بازده
+            پیش‌بینی‌شده را در کنار واقعیت اجرا ارزیابی کنید — بدون وعده بازده
+            پیش‌بینی‌شده به‌عنوان نتیجه واقعی پروژه.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center gap-3">
             <Button
               size="lg"
               asChild
@@ -118,7 +117,6 @@ export default function HomePage() {
             >
               <Link href="/risk-disclosure">افشای ریسک و هشدارها</Link>
             </Button>
-            </div>
           </div>
         </div>
       </HomeHeroSlideshow>
