@@ -7,9 +7,9 @@ const SLIDES = Array.from({ length: 12 }, (_, index) => {
   return `/assets/hero/slide-${index + 1}.png`;
 });
 
-/** Light scrim on the text side only; keeps full slide artwork visible. */
+/** Navy scrim on the text side (RTL); full-bleed cover image underneath. */
 const HERO_OVERLAY =
-  "linear-gradient(to left, rgba(13, 27, 62, 0.52) 0%, rgba(13, 27, 62, 0.22) 34%, transparent 62%)";
+  "linear-gradient(to left, rgba(13, 27, 62, 0.58) 0%, rgba(13, 27, 62, 0.34) 40%, rgba(13, 27, 62, 0.1) 78%, transparent 100%), linear-gradient(to top, rgba(13, 27, 62, 0.25) 0%, transparent 36%)";
 
 export function HomeHeroSlideshow({
   children,
@@ -26,7 +26,7 @@ export function HomeHeroSlideshow({
   }, []);
 
   return (
-    <section className="relative min-h-[calc(100dvh-72px)] overflow-hidden bg-[#0d1b3e] text-white">
+    <section className="relative min-h-[calc(100dvh-72px)] overflow-hidden text-white">
       <div className="absolute inset-0" aria-hidden>
         {SLIDES.map((src, index) => (
           // eslint-disable-next-line @next/next/no-img-element
@@ -35,7 +35,7 @@ export function HomeHeroSlideshow({
             src={src}
             alt=""
             className={cn(
-              "absolute inset-0 h-full w-full object-contain object-center transition-opacity duration-1000",
+              "absolute inset-0 h-full w-full object-cover object-top transition-opacity duration-1000",
               index === current ? "opacity-100" : "opacity-0",
             )}
           />
