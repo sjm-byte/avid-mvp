@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { getTransparencyStats } from "@/lib/data/projects";
 import { getFeaturedPublicProjects } from "@/lib/data/public-projects";
-import { formatToman, formatPersianNumber } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { PublicProjectCard } from "@/components/projects/PublicProjectCard";
 import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaimer";
@@ -85,17 +83,15 @@ const faqItems = [
   },
 ];
 
-export default async function HomePage() {
+export default function HomePage() {
   const featuredProjects = getFeaturedPublicProjects(3);
-  const stats = await getTransparencyStats();
 
   return (
     <>
-      {/* Hero — full-bleed slideshow */}
       <HomeHeroSlideshow>
-        <div className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
-          <div className="max-w-xl text-right">
-            <h1 className="text-balance text-4xl font-bold leading-tight tracking-tight [text-shadow:0_2px_16px_rgba(0,0,0,0.45)] md:text-5xl lg:text-6xl">
+        <div className="container mx-auto max-w-6xl px-4 py-12 md:py-16">
+          <div className="max-w-3xl bg-gradient-to-l from-navy/50 via-navy/15 to-transparent">
+            <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.45)] md:text-5xl lg:text-6xl">
               با آوید، به سرمایه‌گذاری واقعی فکر کن
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/95 [text-shadow:0_1px_8px_rgba(0,0,0,0.4)] md:text-lg">
@@ -112,8 +108,8 @@ export default async function HomePage() {
               </Button>
               <Button
                 size="lg"
-                asChild
                 variant="outline"
+                asChild
                 className="rounded-full border-gold/70 bg-transparent text-white hover:bg-white/10 hover:text-gold"
               >
                 <Link href="/risk-disclosure">افشای ریسک و هشدارها</Link>
@@ -122,6 +118,71 @@ export default async function HomePage() {
           </div>
         </div>
       </HomeHeroSlideshow>
+
+      {/* Trust & transparency */}
+      <section className="border-y bg-muted/30">
+        <div className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-2xl font-bold md:text-3xl">شفافیت و اعتماد</h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+              آوید نتایج خاتمه‌یافته را منتشر می‌کند تا بتوانید بین پیش‌بینی و
+              واقعیت مقایسه کنید.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            <Card>
+              <CardContent className="space-y-1 p-6 text-center">
+                <p className="text-3xl font-bold">+15</p>
+                <p className="text-sm text-muted-foreground">پروژه خاتمه‌یافته</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="space-y-1 p-6 text-center">
+                <p className="text-3xl font-bold">+50 میلیارد تومن</p>
+                <p className="text-sm text-muted-foreground">
+                  حجم مشارکت ثبت‌شده
+                </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="space-y-1 p-6 text-center">
+                <p className="text-3xl font-bold">+15</p>
+                <p className="text-sm text-muted-foreground">
+                  پروژه‌های در جریان
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Button asChild>
+              <Link href="/transparency">صفحه شفافیت آوید</Link>
+            </Button>
+            <Button variant="outline" asChild>
+              <Link href="/risk-disclosure">مطالعه افشای ریسک</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Investment plans */}
+      <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 className="text-2xl font-bold md:text-3xl">طرح‌های سرمایه‌گذاری</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              هر کارت را باز کنید تا جزئیات، ریسک و بازده پیش‌بینی‌شده را ببینید.
+            </p>
+          </div>
+          <Button variant="outline" asChild>
+            <Link href="/projects">همه پروژه‌ها</Link>
+          </Button>
+        </div>
+        <div className="mt-8 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+          {featuredProjects.map((project) => (
+            <PublicProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      </section>
 
       {/* Value proposition */}
       <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
@@ -175,77 +236,6 @@ export default async function HomePage() {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured projects */}
-      <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h2 className="text-2xl font-bold md:text-3xl">پروژه‌های فعال</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              هر کارت را باز کنید تا جزئیات، ریسک و بازده پیش‌بینی‌شده را ببینید.
-            </p>
-          </div>
-          <Button variant="outline" asChild>
-            <Link href="/projects">همه پروژه‌ها</Link>
-          </Button>
-        </div>
-        <div className="mt-8 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {featuredProjects.map((project) => (
-            <PublicProjectCard key={project.id} project={project} />
-          ))}
-        </div>
-      </section>
-
-      {/* Trust & transparency */}
-      <section className="border-y bg-muted/30">
-        <div className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-bold md:text-3xl">شفافیت و اعتماد</h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
-              آوید نتایج خاتمه‌یافته را منتشر می‌کند تا بتوانید بین پیش‌بینی و
-              واقعیت مقایسه کنید.
-            </p>
-          </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            <Card>
-              <CardContent className="space-y-1 p-6 text-center">
-                <p className="text-3xl font-bold">
-                  {formatPersianNumber(stats.closedProjectsCount)}
-                </p>
-                <p className="text-sm text-muted-foreground">پروژه خاتمه‌یافته</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="space-y-1 p-6 text-center">
-                <p className="text-3xl font-bold">
-                  {formatToman(stats.totalManagedCapital)}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  حجم مشارکت ثبت‌شده
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="space-y-1 p-6 text-center">
-                <p className="text-3xl font-bold">
-                  {formatPersianNumber(stats.profitableCount)}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  پروژه با نتیجه مثبت در تسویه
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Button asChild>
-              <Link href="/transparency">صفحه شفافیت آوید</Link>
-            </Button>
-            <Button variant="outline" asChild>
-              <Link href="/risk-disclosure">مطالعه افشای ریسک</Link>
-            </Button>
           </div>
         </div>
       </section>

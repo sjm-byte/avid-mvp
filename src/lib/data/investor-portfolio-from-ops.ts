@@ -1,8 +1,13 @@
 import { getAllProjectOps } from "@/lib/data/mock/project-ops-store";
-import { getSeedMovementsForInvestor } from "@/lib/data/mock/capital-movements-mock";
+import {
+  CapitalMovementKind,
+  getSeedMovementsForInvestor,
+} from "@/lib/data/mock/capital-movements-mock";
 import { MOCK_INVESTOR } from "@/lib/auth/mock";
 import {
   CapitalMovementDetail,
+  CashFlowEvent,
+  CashFlowKind,
   InvestorPortfolioSummary,
   InvestorProjectLifecycle,
   InvestorProjectRow,
@@ -33,6 +38,17 @@ function statusLabel(
     return SETTLEMENT_TIMING_LABELS.settled_late;
   }
   return "تسویه‌شده";
+}
+
+function toCashFlowKind(kind: CapitalMovementKind): CashFlowKind {
+  switch (kind) {
+    case "deposit":
+      return "deposit";
+    case "profit_in":
+      return "profit";
+    case "settlement_out":
+      return "withdrawal";
+  }
 }
 
 /** Build investor portfolio summary from shared project-ops + capital movements. */
@@ -104,6 +120,24 @@ export async function getInvestorPortfolioFromOps(): Promise<InvestorPortfolioSu
   const depositDetails = deposits.map(toDetail);
   const settlementDetails = settlements.map(toDetail);
 
+  let runningBalance = 0;
+  const cashFlowEvents: CashFlowEvent[] = movements.map((m) => {
+    if (m.kind === "settlement_out") {
+      runningBalance -= m.amount;
+    } else {
+      runningBalance += m.amount;
+    }
+    return {
+      id: m.id,
+      kind: toCashFlowKind(m.kind),
+      date: m.date,
+      amount: m.amount,
+      balanceAfter: runningBalance,
+      projectTitle: m.projectTitle,
+      note: m.note,
+    };
+  });
+
   const totalDeposited = deposits.reduce((s, m) => s + m.amount, 0);
   const settledBalanceToDate = settlements.reduce((s, m) => s + m.amount, 0);
 
@@ -129,6 +163,7 @@ export async function getInvestorPortfolioFromOps(): Promise<InvestorPortfolioSu
     settlementsPending: rialHeldRows.length,
     depositDetails,
     settlementDetails,
+    cashFlowEvents,
     timelineStartDate: "2025-11-01",
     timelineStartLabel: "شروع همکاری",
     projects: [...rows].sort(
