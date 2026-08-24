@@ -5,6 +5,7 @@ import { formatToman, formatPersianNumber } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { PublicProjectCard } from "@/components/projects/PublicProjectCard";
 import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaimer";
+import { HomeHeroSlideshow } from "@/components/home/HomeHeroSlideshow";
 import {
   Card,
   CardContent,
@@ -90,33 +91,37 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="border-b bg-gradient-to-b from-muted/60 via-muted/20 to-background">
-        <div className="container mx-auto max-w-5xl px-4 py-16 text-center md:py-24">
-          <p className="text-sm font-medium text-primary">
-            پلتفرم مشارکت پروژه‌ای — نه صندوق، نه نگهداری وجه
-          </p>
-          <h1 className="mt-4 text-balance text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
-            آوید؛ مشارکت شفاف در پروژه‌های واقعی
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            پروژه‌ها را جداگانه بررسی کنید، ریسک‌ها را ببینید و بازده
-            پیش‌بینی‌شده را در کنار واقعیت اجرا ارزیابی کنید — بدون وعده بازده
-            پیش‌بینی‌شده به‌عنوان نتیجه واقعی پروژه.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <Button size="lg" asChild>
-              <Link href="/projects">مشاهده پروژه‌های باز</Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <Link href="/risk-disclosure">افشای ریسک و هشدارها</Link>
-            </Button>
-            <Button size="lg" variant="secondary" asChild>
-              <Link href="/login">ورود آزمایشی</Link>
-            </Button>
+      {/* Hero — full-bleed slideshow */}
+      <HomeHeroSlideshow>
+        <div className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
+          <div className="max-w-xl text-right">
+            <h1 className="text-balance text-4xl font-bold leading-tight tracking-tight [text-shadow:0_2px_16px_rgba(0,0,0,0.45)] md:text-5xl lg:text-6xl">
+              با آوید، به سرمایه‌گذاری واقعی فکر کن
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/95 [text-shadow:0_1px_8px_rgba(0,0,0,0.4)] md:text-lg">
+              پروژه‌ها را جداگانه بررسی کنید، ریسک‌ها را ببینید و بازده
+              پیش‌بینی‌شده را در کنار واقعیت اجرا ارزیابی کنید.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              <Button
+                size="lg"
+                asChild
+                className="rounded-full bg-gold text-navy hover:bg-gold-light"
+              >
+                <Link href="/projects">مشاهده پروژه‌های باز</Link>
+              </Button>
+              <Button
+                size="lg"
+                asChild
+                variant="outline"
+                className="rounded-full border-gold/70 bg-transparent text-white hover:bg-white/10 hover:text-gold"
+              >
+                <Link href="/risk-disclosure">افشای ریسک و هشدارها</Link>
+              </Button>
+            </div>
           </div>
         </div>
-      </section>
+      </HomeHeroSlideshow>
 
       {/* Value proposition */}
       <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
