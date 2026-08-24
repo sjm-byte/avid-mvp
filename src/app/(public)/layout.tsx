@@ -9,7 +9,7 @@ export default function PublicLayout({
   return (
     <div className="flex min-h-screen min-w-0 max-w-full flex-col overflow-x-hidden">
       <PublicHeader />
-      <main className="min-w-0 max-w-full flex-1">{children}</main>
+      <main className="min-w-0 max-w-full flex-1 pt-[72px]">{children}</main>
       <PublicFooter />
     </div>
   );

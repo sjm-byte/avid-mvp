@@ -26,7 +26,7 @@ export function HomeHeroSlideshow({
   }, []);
 
   return (
-    <section className="relative min-h-[calc(100dvh-72px)] overflow-hidden bg-[#0d1b3e] text-white">
+    <section className="relative min-h-dvh overflow-hidden bg-[#0d1b3e] text-white">
       <div className="absolute inset-0" aria-hidden>
         {SLIDES.map((src, index) => (
           // eslint-disable-next-line @next/next/no-img-element
@@ -46,7 +46,7 @@ export function HomeHeroSlideshow({
         style={{ background: HERO_OVERLAY }}
         aria-hidden
       />
-      <div className="relative z-10 flex min-h-[calc(100dvh-72px)] flex-col justify-center">
+      <div className="relative z-10 flex min-h-dvh flex-col justify-center pt-[72px]">
         {children}
         <div className="container mx-auto max-w-6xl px-4 pb-10">
           <div className="flex gap-2" aria-label="انتخاب تصویر پس‌زمینه">
