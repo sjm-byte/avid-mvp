@@ -3,9 +3,24 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-const SLIDES = Array.from({ length: 12 }, (_, index) => {
-  return `/assets/hero/slide-${index + 1}.png`;
-});
+/**
+ * ترتیب نمایش اسلایدر هیرو.
+ * برای تغییر ترتیب، فقط همین لیست را جابه‌جا کنید — اولین آیتم، اول نشان داده می‌شود.
+ */
+const SLIDES = [
+  "/assets/hero/slide-6.png",
+  "/assets/hero/slide-1.png",
+  "/assets/hero/slide-2.png",
+  "/assets/hero/slide-3.png",
+  "/assets/hero/slide-4.png",
+  "/assets/hero/slide-5.png",
+  "/assets/hero/slide-7.png",
+  "/assets/hero/slide-8.png",
+  "/assets/hero/slide-9.png",
+  "/assets/hero/slide-10.png",
+  "/assets/hero/slide-11.png",
+  "/assets/hero/slide-12.png",
+];
 
 /** Light scrim on the text side only; keeps full slide artwork visible. */
 const HERO_OVERLAY =
