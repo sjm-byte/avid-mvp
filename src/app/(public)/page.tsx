@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { PublicProjectCard } from "@/components/projects/PublicProjectCard";
 import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaimer";
 import { HomeHeroSlideshow } from "@/components/home/HomeHeroSlideshow";
+import { LaunchNotifySignupCard } from "@/components/home/LaunchNotifySignupCard";
 import {
   Card,
   CardContent,
@@ -236,6 +237,7 @@ export default function HomePage() {
                 </CardContent>
               </Card>
             ))}
+            <LaunchNotifySignupCard />
           </div>
         </div>
       </section>
