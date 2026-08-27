@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * ترتیب نمایش اسلایدر هیرو.
- * برای تغییر ترتیب، فقط همین لیست را جابه‌جا کنید — اولین آیتم، اول نشان داده می‌شود.
+ * Hero slideshow display order (index 0 = first shown on load).
+ * Playground / indoor play area (slide-6) must lead; then 1–5, 7–12.
+ * Do not use Array.from or sequential slide-(n+1) generation — order is this list only.
  */
 const SLIDES = [
-  "/assets/hero/slide-6.png",
+  "/assets/hero/slide-6.png", // first shown
   "/assets/hero/slide-1.png",
   "/assets/hero/slide-2.png",
   "/assets/hero/slide-3.png",
@@ -20,7 +21,7 @@ const SLIDES = [
   "/assets/hero/slide-10.png",
   "/assets/hero/slide-11.png",
   "/assets/hero/slide-12.png",
-];
+] as const;
 
 /** Light scrim on the text side only; keeps full slide artwork visible. */
 const HERO_OVERLAY =
