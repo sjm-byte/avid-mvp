@@ -34,12 +34,17 @@ export function PublicFooter() {
               </li>
               <li>
                 <Link href="/transparency" className="hover:text-gold">
-                  شفافیت و عملکرد
+                  سابقه عملکرد و نتایج
                 </Link>
               </li>
               <li>
                 <Link href="/risk-disclosure" className="hover:text-gold">
-                  هشدار ریسک
+                  روش کار و تحلیل ریسک
+                </Link>
+              </li>
+              <li>
+                <Link href="/contracts" className="hover:text-gold">
+                  قراردادها و مدل‌های اجرایی
                 </Link>
               </li>
               <li>

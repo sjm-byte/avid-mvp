@@ -6,6 +6,7 @@ import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaim
 import { HomeHeroSlideshow } from "@/components/home/HomeHeroSlideshow";
 import { LaunchNotifySignupCard } from "@/components/home/LaunchNotifySignupCard";
 import { TransparencyStatsCards } from "@/components/transparency/TransparencyStatsCards";
+import { transparencyPillars } from "@/components/transparency/transparency-pillars";
 import {
   Card,
   CardContent,
@@ -127,20 +128,35 @@ export default function HomePage() {
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold md:text-3xl">شفافیت و اعتماد</h2>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
-              آوید نتایج خاتمه‌یافته را منتشر می‌کند تا بتوانید بین پیش‌بینی و
-              واقعیت مقایسه کنید.
+              شفافیت در آوید سه بخش دارد: سابقه عملکرد، روش کار و تحلیل ریسک، و
+              قراردادها و مدل‌های اجرایی. هر سه را با هم ببینید تا تصویر
+              کامل‌تری داشته باشید.
             </p>
           </div>
           <div className="mt-10">
             <TransparencyStatsCards />
           </div>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Button asChild>
-              <Link href="/transparency">سابقه عملکرد و نتایج پروژه‌ها</Link>
-            </Button>
-            <Button variant="outline" asChild>
-              <Link href="/risk-disclosure">روش کار، قراردادها و ریسک‌ها</Link>
-            </Button>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {transparencyPillars.map((pillar) => (
+              <Link
+                key={pillar.id}
+                href={pillar.href}
+                className="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                <Card className="h-full border-muted/80 transition-colors hover:border-primary/25 hover:bg-background">
+                  <CardHeader className="space-y-2 pb-2">
+                    <CardTitle className="text-base font-semibold">
+                      {pillar.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-sm leading-relaxed">
+                      {pillar.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

@@ -1,12 +1,20 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaimer";
-import { Button } from "@/components/ui/button";
+import { TransparencyHubNav } from "@/components/transparency/TransparencyHubNav";
+import { TransparencyNextSteps } from "@/components/transparency/TransparencyNextSteps";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
+export const metadata: Metadata = {
+  title: "روش کار و تحلیل ریسک — آوید",
+  description:
+    "اصول سرمایه‌گذاری در آوید، تفکیک ریسک اعتباری و اقتصادی، و تفاوت مدل کاری با سایر بسترها.",
+};
 
 const collateralCases = [
   {
@@ -24,12 +32,27 @@ export default function RiskDisclosurePage() {
     <div className="container mx-auto max-w-4xl px-4 py-12 md:py-16">
       <header className="space-y-4">
         <p className="text-sm text-muted-foreground">
-          اگر می‌خواهید با روش کار آوید آشنا شوید، این بخش را مطالعه کنید.
+          بخش دوم شفافیت — روش کار و تحلیل ریسک
         </p>
         <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
-          مدل‌های کاری، قراردادها و تحلیل ریسک در سرمایه‌گذاری
+          روش کار و تحلیل ریسک در سرمایه‌گذاری
         </h1>
+        <p className="text-sm leading-relaxed text-muted-foreground">
+          این صفحه اصول بنیادین و تفکیک ریسک را توضیح می‌دهد. برای جزئیات
+          ساختار هر قرارداد — مرابحه، سلف و مشارکت —{" "}
+          <Link
+            href="/contracts"
+            className="font-medium text-primary underline-offset-4 hover:underline"
+          >
+            صفحه قراردادها و مدل‌های اجرایی
+          </Link>{" "}
+          را ببینید.
+        </p>
       </header>
+
+      <div className="mt-8 max-w-5xl">
+        <TransparencyHubNav current="/risk-disclosure" />
+      </div>
 
       <div className="mt-8">
         <ProjectRiskDisclaimer />
@@ -178,31 +201,20 @@ export default function RiskDisclosurePage() {
               در آوید ترجیح می‌دهیم به‌جای وعده «سرمایه‌گذاری بدون ریسک»،
               ریسک واقعی را شفاف کرده و با انتخاب قراردادهای مناسب، آن را تا
               حد امکان محدود کنیم. شما می‌توانید انواع مدل‌های قراردادی و
-              ریسک هر کدام را در صفحه مربوط مطالعه و بررسی نمایید.
+              ریسک هر کدام را در{" "}
+              <Link
+                href="/contracts"
+                className="font-medium text-primary underline-offset-4 hover:underline"
+              >
+                صفحه قراردادها و مدل‌های اجرایی
+              </Link>{" "}
+              مطالعه و بررسی نمایید.
             </p>
           </CardContent>
         </Card>
       </div>
 
-      <Card className="mt-10 border-primary/20 bg-muted/30">
-        <CardHeader>
-          <CardTitle className="text-base">گام بعدی</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            پس از مطالعه این صفحه، سابقه عملکرد پروژه‌های گذشته را در صفحه
-            شفافیت ببینید و هر پروژه باز را جداگانه بررسی کنید.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Button asChild>
-              <Link href="/transparency">سابقه عملکرد و نتایج پروژه‌ها</Link>
-            </Button>
-            <Button variant="outline" asChild>
-              <Link href="/projects">مشاهده پروژه‌ها</Link>
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+      <TransparencyNextSteps current="risk-disclosure" />
     </div>
   );
 }
