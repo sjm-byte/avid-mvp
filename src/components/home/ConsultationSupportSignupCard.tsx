@@ -5,8 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-const STORAGE_KEY = "avid-launch-notify-phones";
-
 /** Iranian mobile: 09 followed by 9 digits (Persian/Arabic digits normalized). */
 function normalizeIranPhone(raw: string): string {
   return raw
@@ -20,33 +18,17 @@ function isValidIranMobile(phone: string): boolean {
   return /^09\d{9}$/.test(phone);
 }
 
-function savePhoneLocally(phone: string): void {
-  try {
-    const existing = JSON.parse(
-      localStorage.getItem(STORAGE_KEY) ?? "[]"
-    ) as string[];
-    const list = Array.isArray(existing) ? existing : [];
-    if (!list.includes(phone)) {
-      list.push(phone);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-    }
-  } catch {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify([phone]));
-  }
-  console.info("[Avid] launch-notify signup:", phone);
-}
-
 type Feedback =
   | { type: "success"; message: string }
   | { type: "error"; message: string }
   | null;
 
-export function LaunchNotifySignupCard() {
+export function ConsultationSupportSignupCard() {
   const [phone, setPhone] = useState("");
   const [feedback, setFeedback] = useState<Feedback>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setFeedback(null);
 
@@ -61,16 +43,29 @@ export function LaunchNotifySignupCard() {
 
     setSubmitting(true);
     try {
-      savePhoneLocally(normalized);
+      const response = await fetch("/api/consultation-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone: normalized }),
+      });
+
+      if (!response.ok) {
+        const data = (await response.json()) as { error?: string };
+        throw new Error(data.error ?? "خطا در ثبت");
+      }
+
       setFeedback({
         type: "success",
-        message: "ثبت شد. در صورت راه‌اندازی پروژه جدید با شما تماس می‌گیریم.",
+        message: "درخواست شما ثبت شد. تیم آوید در اسرع وقت با شما تماس می‌گیرد.",
       });
       setPhone("");
-    } catch {
+    } catch (error) {
       setFeedback({
         type: "error",
-        message: "ثبت موقت ممکن نشد. لطفاً دوباره تلاش کنید.",
+        message:
+          error instanceof Error
+            ? error.message
+            : "ثبت ممکن نشد. لطفاً دوباره تلاش کنید.",
       });
     } finally {
       setSubmitting(false);
@@ -87,20 +82,20 @@ export function LaunchNotifySignupCard() {
         ۶
       </div>
       <h3 className="text-lg font-semibold text-white">
-        اطلاع از راه‌اندازی پروژه
+        درخواست مشاوره و پشتیبانی
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-white/75">
-        اگر می‌خواهید هنگام گشایش پروژه جدید مطلع شوید، شماره موبایل خود را ثبت
-        کنید تا تیم آوید پیگیری کند.
+        اگر سؤالی دارید یا می‌خواهید قبل از مشارکت راهنمایی بگیرید، شماره
+        موبایل خود را وارد کنید.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-5 flex flex-1 flex-col gap-3">
         <div className="space-y-2">
-          <Label htmlFor="launch-notify-phone" className="text-white/90">
+          <Label htmlFor="consultation-phone" className="text-white/90">
             شماره موبایل
           </Label>
           <Input
-            id="launch-notify-phone"
+            id="consultation-phone"
             type="tel"
             inputMode="numeric"
             autoComplete="tel"
@@ -113,9 +108,7 @@ export function LaunchNotifySignupCard() {
             }}
             className="border-white/20 bg-white/10 text-left text-white placeholder:text-white/40 focus-visible:ring-gold"
             aria-invalid={feedback?.type === "error"}
-            aria-describedby={
-              feedback ? "launch-notify-feedback" : undefined
-            }
+            aria-describedby={feedback ? "consultation-feedback" : undefined}
           />
         </div>
         <Button
@@ -123,11 +116,11 @@ export function LaunchNotifySignupCard() {
           disabled={submitting}
           className="mt-auto w-full rounded-full bg-gold font-semibold text-navy hover:bg-gold-light"
         >
-          {submitting ? "در حال ثبت…" : "ثبت شماره برای اطلاع‌رسانی"}
+          {submitting ? "در حال ثبت…" : "ثبت درخواست مشاوره"}
         </Button>
         {feedback ? (
           <p
-            id="launch-notify-feedback"
+            id="consultation-feedback"
             role="status"
             className={
               feedback.type === "success"
@@ -139,7 +132,7 @@ export function LaunchNotifySignupCard() {
           </p>
         ) : (
           <p className="text-xs leading-relaxed text-white/50">
-            ارسال پیامک خودکار انجام نمی‌شود؛ ثبت فقط برای پیگیری تیم است.
+            اطلاعات شما فقط برای تماس تیم آوید استفاده می‌شود.
           </p>
         )}
       </form>

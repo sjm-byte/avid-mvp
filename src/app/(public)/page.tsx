@@ -2,11 +2,9 @@ import Link from "next/link";
 import { getFeaturedPublicProjects } from "@/lib/data/public-projects";
 import { Button } from "@/components/ui/button";
 import { PublicProjectCard } from "@/components/projects/PublicProjectCard";
-import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaimer";
 import { HomeHeroSlideshow } from "@/components/home/HomeHeroSlideshow";
-import { LaunchNotifySignupCard } from "@/components/home/LaunchNotifySignupCard";
+import { ConsultationSupportSignupCard } from "@/components/home/ConsultationSupportSignupCard";
 import { TransparencyStatsCards } from "@/components/transparency/TransparencyStatsCards";
-import { transparencyPillars } from "@/components/transparency/transparency-pillars";
 import {
   Card,
   CardContent,
@@ -15,59 +13,36 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-const valuePropositions = [
-  {
-    title: "هر پروژه، مستقل",
-    description:
-      "هر فرصت مشارکت جداگانه بررسی می‌شود. شرایط، ریسک و بازده پیش‌بینی‌شده برای هر پروژه به‌صورت مجزا اعلام می‌شود.",
-  },
-  {
-    title: "شفافیت مرحله‌ای",
-    description:
-      "گزارش پیشرفت، اسناد عمومی و نتایج تسویه در دسترس شماست تا وضعیت را مرحله‌به‌مرحله دنبال کنید.",
-  },
-  {
-    title: "بدون نگهداری وجه در آوید",
-    description:
-      "پول از طریق سامانه آوید عبور نمی‌کند. پس از تأیید درخواست، واریز مستقیماً به حساب معرفی‌شده همان پروژه انجام می‌شود.",
-  },
-  {
-    title: "بازده پیش‌بینی‌شده",
-    description:
-      "اعداد بازده سناریو هستند، نه وعده سود. نتیجه نهایی پس از پایان پروژه و بر اساس حساب‌وکتاب واقعی محاسبه می‌شود.",
-  },
-];
-
 const howItWorks = [
   {
     step: "۱",
-    title: "بررسی پروژه‌ها",
+    title: "مراجعه به صفحه شفافیت آوید و مطالعه",
+    description:
+      "سابقه عملکرد، منطق و قواعد کاری، و انواع قراردادها را در صفحه شفافیت ببینید.",
+  },
+  {
+    step: "۲",
+    title: "بررسی و انتخاب پروژه مورد نظر",
     description:
       "پروژه‌های باز را مطالعه کنید: معرفی، ریسک‌ها، بازده پیش‌بینی‌شده و اسناد عمومی.",
   },
   {
-    step: "۲",
+    step: "۳",
     title: "هماهنگی خارج از سامانه",
     description:
-      "اعلام علاقه، قرارداد و واریز به حساب پروژه خارج از آوید انجام می‌شود. پلتفرم درگاه پرداخت نیست.",
-  },
-  {
-    step: "۳",
-    title: "ثبت پس از قرارداد توسط مدیر",
-    description:
-      "پس از تأیید قرارداد و واریز، مدیر مشارکت هر سرمایه‌گذار را در پنل ثبت می‌کند.",
+      "اعلام علاقه، قرارداد و واریز به حساب پروژه خارج از آوید انجام می‌شود. پلتفرم درگاه پرداخت ندارد.",
   },
   {
     step: "۴",
-    title: "پیگیری در پنل سرمایه‌گذار",
+    title: "پیگیری و رصد در پنل سرمایه‌گذار",
     description:
-      "سرمایه‌گذار فقط مشاهده می‌کند: پروژه‌ها، مبلغ هر پروژه و جمع کل — بدون درخواست یا رسید روی سایت.",
+      "پس از ثبت مشارکت توسط مدیر، وضعیت پروژه‌ها و مبالغ را در پنل خود دنبال کنید.",
   },
   {
     step: "۵",
-    title: "تسویه بر اساس نتیجه واقعی پروژه",
+    title: "تسویه بر اساس نتیجه واقعی",
     description:
-      "پس از پایان پروژه، نتیجه واقعی محاسبه و خارج از سامانه تسویه می‌شود؛ ثبت حسابداری در آوید باقی می‌ماند.",
+      "پس از پایان پروژه، تسویه خارج از سامانه و بر اساس نتیجه واقعی انجام می‌شود؛ ثبت حسابداری در آوید باقی می‌ماند.",
   },
 ];
 
@@ -115,48 +90,38 @@ export default function HomePage() {
                 asChild
                 className="w-full rounded-full border-gold/70 bg-transparent text-white hover:bg-white/10 hover:text-gold sm:w-auto"
               >
-                <Link href="/risk-disclosure">افشای ریسک و هشدارها</Link>
+                <Link href="/transparency?section=methodology">
+                  افشای ریسک و هشدارها
+                </Link>
               </Button>
             </div>
           </div>
         </div>
       </HomeHeroSlideshow>
 
-      {/* Trust & transparency */}
+      {/* Performance snapshot */}
       <section className="border-y bg-muted/30">
         <div className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-bold md:text-3xl">شفافیت و اعتماد</h2>
+            <h2 className="text-2xl font-bold md:text-3xl">
+              خلاصه عملکرد آوید در یک نگاه
+            </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
-              شفافیت در آوید سه بخش دارد: سابقه عملکرد، روش کار و تحلیل ریسک، و
-              قراردادها و مدل‌های اجرایی. هر سه را با هم ببینید تا تصویر
-              کامل‌تری داشته باشید.
+              آوید نتایج خاتمه‌یافته را منتشر می‌کند تا بتوانید بین پیش‌بینی و
+              واقعیت مقایسه کنید.
             </p>
           </div>
           <div className="mt-10">
             <TransparencyStatsCards />
           </div>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {transparencyPillars.map((pillar) => (
-              <Link
-                key={pillar.id}
-                href={pillar.href}
-                className="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              >
-                <Card className="h-full border-muted/80 transition-colors hover:border-primary/25 hover:bg-background">
-                  <CardHeader className="space-y-2 pb-2">
-                    <CardTitle className="text-base font-semibold">
-                      {pillar.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-sm leading-relaxed">
-                      {pillar.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+          <div className="mt-10 flex justify-center">
+            <Button
+              size="lg"
+              asChild
+              className="min-w-[min(100%,18rem)] rounded-full px-8 py-6 text-base shadow-md"
+            >
+              <Link href="/transparency">صفحه شفافیت آوید</Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -177,33 +142,6 @@ export default function HomePage() {
         <div className="mt-8 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {featuredProjects.map((project) => (
             <PublicProjectCard key={project.id} project={project} />
-          ))}
-        </div>
-      </section>
-
-      {/* Value proposition */}
-      <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-2xl font-bold md:text-3xl">چرا آوید متفاوت است؟</h2>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
-            مدل آوید بر شفافیت پروژه‌محور و ثبت حسابداری شفاف بنا شده است، نه
-            بر بازده پیش‌بینی‌شده بدون شفافیت.
-          </p>
-        </div>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {valuePropositions.map((item) => (
-            <Card key={item.title} className="border-muted/80">
-              <CardHeader className="space-y-2 pb-2">
-                <CardTitle className="text-base font-semibold">
-                  {item.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {item.description}
-                </p>
-              </CardContent>
-            </Card>
           ))}
         </div>
       </section>
@@ -233,14 +171,9 @@ export default function HomePage() {
                 </CardContent>
               </Card>
             ))}
-            <LaunchNotifySignupCard />
+            <ConsultationSupportSignupCard />
           </div>
         </div>
-      </section>
-
-      {/* Risk disclaimer */}
-      <section className="container mx-auto max-w-4xl px-4 py-12">
-        <ProjectRiskDisclaimer />
       </section>
 
       {/* FAQ */}

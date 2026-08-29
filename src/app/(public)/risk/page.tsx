@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function RiskPage() {
-  redirect("/risk-disclosure");
+  redirect("/transparency?section=methodology");
 }

@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
+  { href: "/", label: "صفحه اصلی" },
   { href: "/projects", label: "پروژه‌ها" },
   { href: "/transparency", label: "شفافیت" },
   { href: "/about", label: "درباره آوید" },

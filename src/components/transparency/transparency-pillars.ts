@@ -1,6 +1,6 @@
 export type TransparencyPillarId =
-  | "transparency"
-  | "risk-disclosure"
+  | "history"
+  | "methodology"
   | "contracts";
 
 export interface TransparencyPillar {
@@ -12,30 +12,24 @@ export interface TransparencyPillar {
 
 export const transparencyPillars: TransparencyPillar[] = [
   {
-    id: "transparency",
+    id: "history",
     href: "/transparency",
-    title: "سابقه عملکرد و نتایج",
+    title: "سابقه",
     description:
       "جدول پروژه‌های خاتمه‌یافته، وضعیت تسویه و مقایسه پیش‌بینی با واقعیت.",
   },
   {
-    id: "risk-disclosure",
-    href: "/risk-disclosure",
-    title: "روش کار و تحلیل ریسک",
+    id: "methodology",
+    href: "/transparency?section=methodology",
+    title: "منطق و قواعد کاری",
     description:
       "اصول بنیادین، تفکیک ریسک اعتباری و اقتصادی، و تفاوت مدل کاری آوید.",
   },
   {
     id: "contracts",
-    href: "/contracts",
-    title: "قراردادها و مدل‌های اجرایی",
+    href: "/transparency?section=contracts",
+    title: "متن قراردادها",
     description:
       "ساختار مرابحه، سلف و مشارکت؛ ریسک‌ها و الگوهای تجربه‌شده هر مدل.",
   },
 ];
-
-export const transparencyPillarPaths = transparencyPillars.map(
-  (pillar) => pillar.href,
-);
-
-export type TransparencyPillarPath = (typeof transparencyPillarPaths)[number];
