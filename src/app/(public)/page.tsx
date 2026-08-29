@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Eye } from "lucide-react";
 import { getFeaturedPublicProjects } from "@/lib/data/public-projects";
 import { Button } from "@/components/ui/button";
 import { PublicProjectCard } from "@/components/projects/PublicProjectCard";
@@ -115,13 +116,17 @@ export default function HomePage() {
             <TransparencyStatsCards />
           </div>
           <div className="mt-8 flex justify-center">
-            <Button
-              size="default"
-              asChild
-              className="rounded-full border border-gold/40 bg-navy px-7 py-2.5 text-sm font-semibold text-gold shadow-[0_4px_20px_-6px_rgba(13,27,62,0.45)] transition-colors hover:border-gold/60 hover:bg-navy-light hover:text-gold-light"
+            <Link
+              href="/transparency"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-gold/70 bg-navy px-4 py-2.5 text-sm font-medium text-white shadow-[0_4px_18px_-4px_rgba(13,27,62,0.45)] transition-all duration-300 transparency-cta-shimmer hover:border-gold hover:shadow-[0_6px_22px_-4px_rgba(13,27,62,0.52)]"
             >
-              <Link href="/transparency">صفحه شفافیت آوید</Link>
-            </Button>
+              <span className="relative z-[1] flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold text-navy">
+                <Eye className="size-3.5" aria-hidden />
+              </span>
+              <span className="relative z-[1] whitespace-nowrap">
+                صفحه شفافیت آوید
+              </span>
+            </Link>
           </div>
         </div>
       </section>
