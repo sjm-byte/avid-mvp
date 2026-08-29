@@ -42,7 +42,7 @@ export function HomeHeroSlideshow({
   }, []);
 
   return (
-    <section className="relative min-h-dvh overflow-hidden bg-[#0d1b3e] text-white">
+    <section className="relative min-h-[85dvh] overflow-hidden bg-[#0d1b3e] text-white sm:min-h-dvh">
       <div className="absolute inset-0" aria-hidden>
         {SLIDES.map((src, index) => (
           // eslint-disable-next-line @next/next/no-img-element
@@ -62,10 +62,13 @@ export function HomeHeroSlideshow({
         style={{ background: HERO_OVERLAY }}
         aria-hidden
       />
-      <div className="relative z-10 flex min-h-dvh flex-col justify-center pt-10 md:pt-14">
+      <div className="relative z-10 flex min-h-[85dvh] flex-col justify-center pt-14 sm:min-h-dvh sm:pt-16 md:pt-14">
         {children}
-        <div className="container mx-auto max-w-6xl px-4 pb-10">
-          <div className="flex gap-2" aria-label="انتخاب تصویر پس‌زمینه">
+        <div className="container mx-auto max-w-6xl px-4 pb-8 sm:pb-10">
+          <div
+            className="flex flex-wrap gap-1.5 sm:gap-2"
+            aria-label="انتخاب تصویر پس‌زمینه"
+          >
             {SLIDES.map((src, index) => (
               <button
                 key={src}
@@ -73,7 +76,7 @@ export function HomeHeroSlideshow({
                 aria-label={`تصویر ${index + 1}`}
                 onClick={() => setCurrent(index)}
                 className={cn(
-                  "h-2.5 w-2.5 rounded-full border-2 border-gold/70 transition",
+                  "h-2 w-2 shrink-0 rounded-full border-2 border-gold/70 transition sm:h-2.5 sm:w-2.5",
                   index === current ? "scale-110 bg-gold" : "bg-transparent",
                 )}
               />

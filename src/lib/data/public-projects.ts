@@ -132,7 +132,7 @@ export const PUBLIC_PROJECTS: PublicProject[] = [
   },
   {
     id: "p009",
-    title: "غرفه خانبار در خانبار",
+    title: "غرفه خانبار در باسلام",
     activity: "فروشنده خشکبار در باسلام",
     amount: 700_000_000,
     startDate: "1404/09/15",

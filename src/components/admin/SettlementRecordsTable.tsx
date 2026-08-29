@@ -47,7 +47,8 @@ export function SettlementRecordsTable({
 
   return (
     <>
-      <table className="w-full min-w-[1200px] text-sm">
+      <div className="hidden md:block">
+        <table className="w-full min-w-[1200px] text-sm">
         <thead>
           <tr className="border-b bg-muted/50 text-right">
             <th className="px-4 py-3 font-medium">پروژه</th>
@@ -106,6 +107,58 @@ export function SettlementRecordsTable({
           ))}
         </tbody>
       </table>
+      </div>
+
+      <div className="space-y-3 md:hidden">
+        {settlements.map((s) => (
+          <article key={s.id} className="rounded-lg border bg-background p-4 text-sm">
+            <h3 className="font-semibold">{s.projectTitle ?? "پروژه"}</h3>
+            <dl className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 text-xs">
+              <div>
+                <dt className="text-muted-foreground">وضعیت</dt>
+                <dd>{SETTLEMENT_STATUS_LABELS[s.status]}</dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">تاریخ</dt>
+                <dd>
+                  {new Date(s.settlementDate).toLocaleDateString("fa-IR")}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">سرمایه</dt>
+                <dd>{formatToman(s.totalVerifiedCapital)}</dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">نتیجه خالص</dt>
+                <dd>{formatToman(s.netResult)}</dd>
+              </div>
+              <div className="col-span-2">
+                <dt className="text-muted-foreground">قابل توزیع</dt>
+                <dd className="font-medium">
+                  {formatToman(s.distributableAmount)}
+                </dd>
+              </div>
+            </dl>
+            <div className="mt-3 flex flex-col gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="w-full"
+                onClick={() => setOpenSettlementId(s.id)}
+              >
+                مشاهده محاسبه سهم سرمایه‌گذاران
+              </Button>
+              {s.status === "draft" && (
+                <FinalizeSettlementButton
+                  settlementId={s.id}
+                  projectTitle={s.projectTitle}
+                />
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
 
       {openSettlementId && activeSettlement && (
         <div

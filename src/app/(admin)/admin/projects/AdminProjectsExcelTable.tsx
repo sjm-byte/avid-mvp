@@ -100,7 +100,10 @@ export function AdminProjectsExcelTable({ rows }: AdminProjectsExcelTableProps) 
 
   return (
     <div className="space-y-3">
-      <div className="w-full max-w-full min-w-0 overflow-x-auto rounded-sm border border-border shadow-sm">
+      <div className="w-full max-w-full min-w-0 overflow-x-auto overscroll-x-contain rounded-sm border border-border shadow-sm">
+        <p className="px-3 py-2 text-xs text-muted-foreground md:hidden">
+          برای مشاهده همه ستون‌ها، جدول را به چپ و راست بکشید.
+        </p>
         <table className="w-full min-w-[1100px] border-collapse text-xs">
           <thead>
             <tr className="bg-muted/70">

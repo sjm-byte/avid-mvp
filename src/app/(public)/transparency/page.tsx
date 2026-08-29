@@ -1,8 +1,8 @@
 import {
   getTransparencySettlementRows,
 } from "@/lib/data/transparency-settlement-table";
-import { Card, CardContent } from "@/components/ui/card";
 import { TransparencySettlementTable } from "@/components/transparency/TransparencySettlementTable";
+import { TransparencyStatsCards } from "@/components/transparency/TransparencyStatsCards";
 
 export default function TransparencyPage() {
   const rows = getTransparencySettlementRows();
@@ -25,29 +25,8 @@ export default function TransparencyPage() {
         </p>
       </header>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-3">
-        <Card>
-          <CardContent className="space-y-1 p-6 text-center">
-            <p className="text-3xl font-bold">+15</p>
-            <p className="text-sm text-muted-foreground">پروژه خاتمه‌یافته</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="space-y-1 p-6 text-center">
-            <p className="text-3xl font-bold">+50 میلیارد تومن</p>
-            <p className="text-sm text-muted-foreground">
-              حجم مشارکت ثبت‌شده
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="space-y-1 p-6 text-center">
-            <p className="text-3xl font-bold">+15</p>
-            <p className="text-sm text-muted-foreground">
-              پروژه‌های در جریان
-            </p>
-          </CardContent>
-        </Card>
+      <div className="mt-10">
+        <TransparencyStatsCards />
       </div>
 
       <section className="mt-12 space-y-4">

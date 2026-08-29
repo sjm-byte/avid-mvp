@@ -5,6 +5,7 @@ import { PublicProjectCard } from "@/components/projects/PublicProjectCard";
 import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaimer";
 import { HomeHeroSlideshow } from "@/components/home/HomeHeroSlideshow";
 import { LaunchNotifySignupCard } from "@/components/home/LaunchNotifySignupCard";
+import { TransparencyStatsCards } from "@/components/transparency/TransparencyStatsCards";
 import {
   Card,
   CardContent,
@@ -90,20 +91,20 @@ export default function HomePage() {
   return (
     <>
       <HomeHeroSlideshow>
-        <div className="container mx-auto max-w-6xl px-4 py-12 md:py-16">
+        <div className="container mx-auto max-w-6xl px-4 py-10 sm:py-12 md:py-16">
           <div className="max-w-3xl bg-gradient-to-l from-navy/50 via-navy/15 to-transparent">
-            <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.45)] md:text-5xl lg:text-6xl">
+            <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl">
               با آوید، به سرمایه‌گذاری واقعی فکر کن
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/95 [text-shadow:0_1px_8px_rgba(0,0,0,0.4)] md:text-lg">
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/95 [text-shadow:0_1px_8px_rgba(0,0,0,0.4)] sm:mt-6 sm:text-base md:text-lg">
               پروژه‌ها را جداگانه بررسی کنید، ریسک‌ها را ببینید و بازده
               پیش‌بینی‌شده را در کنار واقعیت اجرا ارزیابی کنید.
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center">
               <Button
                 size="lg"
                 asChild
-                className="rounded-full bg-gold text-navy hover:bg-gold-light"
+                className="w-full rounded-full bg-gold text-navy hover:bg-gold-light sm:w-auto"
               >
                 <Link href="/projects">مشاهده پروژه‌های باز</Link>
               </Button>
@@ -111,7 +112,7 @@ export default function HomePage() {
                 size="lg"
                 variant="outline"
                 asChild
-                className="rounded-full border-gold/70 bg-transparent text-white hover:bg-white/10 hover:text-gold"
+                className="w-full rounded-full border-gold/70 bg-transparent text-white hover:bg-white/10 hover:text-gold sm:w-auto"
               >
                 <Link href="/risk-disclosure">افشای ریسک و هشدارها</Link>
               </Button>
@@ -130,36 +131,15 @@ export default function HomePage() {
               واقعیت مقایسه کنید.
             </p>
           </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            <Card>
-              <CardContent className="space-y-1 p-6 text-center">
-                <p className="text-3xl font-bold">+15</p>
-                <p className="text-sm text-muted-foreground">پروژه خاتمه‌یافته</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="space-y-1 p-6 text-center">
-                <p className="text-3xl font-bold">+50 میلیارد تومن</p>
-                <p className="text-sm text-muted-foreground">
-                  حجم مشارکت ثبت‌شده
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="space-y-1 p-6 text-center">
-                <p className="text-3xl font-bold">+15</p>
-                <p className="text-sm text-muted-foreground">
-                  پروژه‌های در جریان
-                </p>
-              </CardContent>
-            </Card>
+          <div className="mt-10">
+            <TransparencyStatsCards />
           </div>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Button asChild>
-              <Link href="/transparency">صفحه شفافیت آوید</Link>
+              <Link href="/transparency">سابقه عملکرد و نتایج پروژه‌ها</Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link href="/risk-disclosure">مطالعه افشای ریسک</Link>
+              <Link href="/risk-disclosure">روش کار، قراردادها و ریسک‌ها</Link>
             </Button>
           </div>
         </div>
