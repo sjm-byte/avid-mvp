@@ -37,7 +37,7 @@ function StatValue({
   suffix?: string;
 }) {
   return (
-    <p className="text-3xl font-bold">
+    <p className="text-2xl font-bold tracking-tight sm:text-[1.65rem]">
       <LtrPlusNumber plus={plus} number={number} />
       {suffix ? (
         <>
@@ -51,16 +51,21 @@ function StatValue({
 
 export function TransparencyStatsCards() {
   return (
-    <div className="grid gap-4 sm:grid-cols-3">
+    <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-3">
       {stats.map((stat) => (
-        <Card key={stat.label}>
-          <CardContent className="space-y-1 p-6 text-center">
+        <Card
+          key={stat.label}
+          className="border-muted/60 shadow-sm transition-shadow hover:shadow-md"
+        >
+          <CardContent className="space-y-1 px-4 py-5 text-center sm:px-5">
             <StatValue
               plus={stat.plus}
               number={stat.number}
               suffix={"suffix" in stat ? stat.suffix : undefined}
             />
-            <p className="text-sm text-muted-foreground">{stat.label}</p>
+            <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
+              {stat.label}
+            </p>
           </CardContent>
         </Card>
       ))}

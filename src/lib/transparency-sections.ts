@@ -10,14 +10,12 @@ export const transparencySections: TransparencySection[] = [
   {
     id: "history",
     label: "سابقه",
-    description:
-      "جدول پروژه‌های خاتمه‌یافته، وضعیت تسویه و مقایسه پیش‌بینی با واقعیت.",
+    description: "",
   },
   {
     id: "methodology",
-    label: "منطق و قواعد کاری",
-    description:
-      "اصول بنیادین، تفکیک ریسک اعتباری و اقتصادی، و تفاوت مدل کاری آوید.",
+    label: "اصول قراردادی",
+    description: "",
   },
   {
     id: "contracts",

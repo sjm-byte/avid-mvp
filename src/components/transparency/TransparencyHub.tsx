@@ -49,14 +49,13 @@ export function TransparencyHub({ rows }: TransparencyHubProps) {
         <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
           صفحه شفافیت آوید
         </h1>
-        <p className="text-base leading-relaxed text-muted-foreground">
-          شفافیت در آوید سه بخش دارد:{" "}
+        <p className="text-sm leading-relaxed text-justify text-muted-foreground md:text-base md:whitespace-nowrap">
+          سه بخش{" "}
           <span className="font-medium text-foreground">سابقه</span>،{" "}
-          <span className="font-medium text-foreground">منطق و قواعد کاری</span>
-          ، و{" "}
-          <span className="font-medium text-foreground">متن قراردادها</span>.
-          هر سه را با هم ببینید تا تصویر کامل‌تری از روش کار و نتایج داشته
-          باشید.
+          <span className="font-medium text-foreground">اصول قراردادی</span>{" "}
+          و{" "}
+          <span className="font-medium text-foreground">متن قراردادها</span> —
+          برای تصویر کامل، هر سه را ببینید.
         </p>
       </header>
 
@@ -82,7 +81,7 @@ export function TransparencyHub({ rows }: TransparencyHubProps) {
                   "rounded-full border px-4 py-2.5 text-sm font-medium transition-colors",
                   isActive
                     ? "border-primary bg-primary text-primary-foreground shadow-sm"
-                    : "border-muted bg-muted/30 text-muted-foreground hover:border-primary/30 hover:text-foreground",
+                    : "border-border bg-background text-foreground/85 shadow-sm hover:border-primary/40 hover:bg-primary/5 hover:text-foreground",
                 )}
               >
                 {section.label}
@@ -94,8 +93,8 @@ export function TransparencyHub({ rows }: TransparencyHubProps) {
 
       <Card className="mt-6 border-muted/80 shadow-sm">
         <CardContent className="p-6 md:p-8">
-          {activeMeta ? (
-            <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+          {activeMeta?.description ? (
+            <p className="mb-6 text-sm leading-relaxed text-justify text-muted-foreground">
               {activeMeta.description}
             </p>
           ) : null}

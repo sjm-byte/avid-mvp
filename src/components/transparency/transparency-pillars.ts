@@ -21,9 +21,8 @@ export const transparencyPillars: TransparencyPillar[] = [
   {
     id: "methodology",
     href: "/transparency?section=methodology",
-    title: "منطق و قواعد کاری",
-    description:
-      "اصول بنیادین، تفکیک ریسک اعتباری و اقتصادی، و تفاوت مدل کاری آوید.",
+    title: "اصول قراردادی",
+    description: "",
   },
   {
     id: "contracts",

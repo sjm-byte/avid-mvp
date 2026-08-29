@@ -18,7 +18,7 @@ const howItWorks = [
     step: "۱",
     title: "مراجعه به صفحه شفافیت آوید و مطالعه",
     description:
-      "سابقه عملکرد، منطق و قواعد کاری، و انواع قراردادها را در صفحه شفافیت ببینید.",
+      "سابقه عملکرد، اصول قراردادی، و انواع قراردادها را در صفحه شفافیت ببینید.",
   },
   {
     step: "۲",
@@ -101,8 +101,8 @@ export default function HomePage() {
 
       {/* Performance snapshot */}
       <section className="border-y bg-muted/30">
-        <div className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
-          <div className="mx-auto max-w-2xl text-center">
+        <div className="container mx-auto max-w-4xl px-4 py-14 md:py-16">
+          <div className="mx-auto max-w-xl text-center">
             <h2 className="text-2xl font-bold md:text-3xl">
               خلاصه عملکرد آوید در یک نگاه
             </h2>
@@ -111,14 +111,14 @@ export default function HomePage() {
               واقعیت مقایسه کنید.
             </p>
           </div>
-          <div className="mt-10">
+          <div className="mt-8">
             <TransparencyStatsCards />
           </div>
-          <div className="mt-10 flex justify-center">
+          <div className="mt-8 flex justify-center">
             <Button
-              size="lg"
+              size="default"
               asChild
-              className="min-w-[min(100%,18rem)] rounded-full px-8 py-6 text-base shadow-md"
+              className="rounded-full border border-gold/40 bg-navy px-7 py-2.5 text-sm font-semibold text-gold shadow-[0_4px_20px_-6px_rgba(13,27,62,0.45)] transition-colors hover:border-gold/60 hover:bg-navy-light hover:text-gold-light"
             >
               <Link href="/transparency">صفحه شفافیت آوید</Link>
             </Button>

@@ -1,4 +1,3 @@
-import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaimer";
 import {
   Card,
   CardContent,
@@ -21,16 +20,12 @@ export function TransparencyMethodologyPanel() {
   return (
     <div className="space-y-8">
       <div className="space-y-3">
-        <h2 className="text-xl font-semibold md:text-2xl">
-          منطق و قواعد کاری
-        </h2>
-        <p className="text-sm leading-relaxed text-muted-foreground">
+        <h2 className="text-xl font-semibold md:text-2xl">اصول قراردادی</h2>
+        <p className="text-sm leading-relaxed text-justify text-muted-foreground">
           اگر می‌خواهید با روش کار آوید آشنا شوید، این بخش را مطالعه کنید.
           مدل‌های کاری، قراردادها و تحلیل ریسک در سرمایه‌گذاری.
         </p>
       </div>
-
-      <ProjectRiskDisclaimer />
 
       <div className="space-y-6">
         <Card>
@@ -40,15 +35,15 @@ export function TransparencyMethodologyPanel() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm leading-relaxed text-justify text-muted-foreground">
               قاعده اصلی و زیرساختی ما در هرگونه تأمین مالی و سرمایه‌گذاری این
               است:
             </p>
-            <blockquote className="rounded-md border-r-4 border-primary/40 bg-muted/40 px-4 py-3 text-sm font-medium leading-relaxed">
+            <blockquote className="rounded-md border-r-4 border-primary/40 bg-muted/40 px-4 py-3 text-sm font-medium leading-relaxed text-justify">
               «هرکس که می‌خواهد از یک فعالیت اقتصادی سود ببرد، باید ولو به
               میزان اندکی، ریسک اقتصادی آن طرح را بپذیرد.»
             </blockquote>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm leading-relaxed text-justify text-muted-foreground">
               به عبارت دیگر، سرمایه‌گذار نمی‌تواند در حالی که بابت اصل سرمایه
               خود تضمین دریافت می‌کند، از سرمایه‌پذیر مطالبه سود نیز داشته
               باشد. اگر سرمایه‌پذیر اصل مال را به‌صورت مطلق تضمین کند، ماهیت
@@ -65,7 +60,7 @@ export function TransparencyMethodologyPanel() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm leading-relaxed text-justify text-muted-foreground">
               در تمام طرح‌های سرمایه‌گذاری و مالی، به‌طور کلی با دو دسته ریسک
               مواجه هستیم که ماهیت و نحوه مواجهه با آن‌ها کاملاً متفاوت است:
             </p>
@@ -73,7 +68,7 @@ export function TransparencyMethodologyPanel() {
             <div className="space-y-4">
               <div className="rounded-lg border bg-muted/20 p-4">
                 <h3 className="text-base font-semibold">الف) ریسک اعتباری (نکول)</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-2 text-sm leading-relaxed text-justify text-muted-foreground">
                   این ریسک به اعتبار شخص یا نهاد دریافت‌کننده تسهیلات مربوط
                   می‌شود؛ اینکه آیا شخص می‌تواند چک یا تعهدات خود را در
                   سررسید ایفا کند یا دچار مشکل می‌شود. این ریسک در تمام انواع
@@ -84,7 +79,7 @@ export function TransparencyMethodologyPanel() {
 
               <div className="rounded-lg border bg-muted/20 p-4">
                 <h3 className="text-base font-semibold">ب) ریسک اقتصادی (بازار)</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-2 text-sm leading-relaxed text-justify text-muted-foreground">
                   این ریسک به نوسانات اقتصادی و تغییرات قیمت کالای موضوع
                   قرارداد مربوط است. برای مثال، اگر سرمایه‌گذار کالایی را
                   پیش‌خرید کند یا منابعی را برای خرید مواد اولیه تخصیص دهد و در
@@ -98,12 +93,12 @@ export function TransparencyMethodologyPanel() {
               <h3 className="text-base font-semibold">
                 سرمایه‌پذیر چه زمانی می‌تواند از اسناد ضمانتی استفاده کند؟
               </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+              <p className="text-sm leading-relaxed text-justify text-muted-foreground">
                 همان‌طور که گفته شد، ریسکی که نباید توسط سرمایه‌پذیر تضمین
                 شود، ریسک اقتصادی است. اما برای پوشش ریسک نکول، دریافت هر
                 نوع ضمانتی اشکالی ندارد.
               </p>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+              <p className="text-sm leading-relaxed text-justify text-muted-foreground">
                 به عبارت دیگر، سرمایه‌پذیر در دو حالت می‌تواند از محل اسناد
                 ضمانتی اقدام کند:
               </p>
@@ -114,7 +109,7 @@ export function TransparencyMethodologyPanel() {
                     className="rounded-md border border-dashed px-4 py-3"
                   >
                     <p className="text-sm font-medium">{item.title}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                    <p className="mt-1 text-sm leading-relaxed text-justify text-muted-foreground">
                       {item.body}
                     </p>
                   </div>
@@ -124,7 +119,7 @@ export function TransparencyMethodologyPanel() {
 
             <div className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900">
               <p className="text-sm font-medium">نکته کلیدی</p>
-              <p className="mt-1 text-sm leading-relaxed">
+              <p className="mt-1 text-sm leading-relaxed text-justify">
                 ریسکی که نباید توسط سرمایه‌پذیر تضمین شود، ریسک اقتصادی است.
                 بنابراین، ضرری که در نتیجه عملیات اقتصادی متوجه اصل سرمایه یا
                 میزان سود شود، قابل تضمین نیست؛ یعنی سرمایه‌گذار نمی‌تواند از
@@ -141,18 +136,18 @@ export function TransparencyMethodologyPanel() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm leading-relaxed text-justify text-muted-foreground">
               در آوید، اصل سرمایه و سود تضمین نمی‌شود اما این به معنی پذیرش
               ریسک بالا نیست.
             </p>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm leading-relaxed text-justify text-muted-foreground">
               به‌طور کلی اکثر بسترهای جذب سرمایه از جمله سکوهای تأمین مالی
               جمعی (کراود فاندینگ‌ها)، با تضمین اصل و فرع، وعده سود می‌دهند.
               از سوی دیگر، عملیات اقتصادی همواره با ریسک‌های پیش‌بینی‌شده و
               نشده‌ای همراه است که می‌تواند در دوره‌هایی منجر به سود زیاد یا
               حتی ضرر شود.
             </p>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm leading-relaxed text-justify text-muted-foreground">
               آوید هرچند وعده سود نمی‌دهد و اصل و فرع را تضمین نمی‌کند، اما با
               توجه به تعلقی که به حوزه تأمین مالی دارد، تنها گام کوچکی به سمت
               عملیات اقتصادی برداشته است. یعنی سرمایه‌گذاری از طریق آوید با
@@ -163,7 +158,7 @@ export function TransparencyMethodologyPanel() {
               وجود دارد، اما جنس آن با ریسک یک کسب‌وکار یا فعالیت اقتصادی
               مستقیم بسیار متفاوت است.
             </p>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm leading-relaxed text-justify text-muted-foreground">
               برای مثال، اگر کالایی را امروز برای تحویل شش ماه بعد خریداری
               کنیم، ریسک اصلی این است که قیمت کالا در این مدت کاهش پیدا کند.
               فروشنده که در ضمن چنین قراردادی سرمایه‌پذیر محسوب می‌شود،
@@ -171,7 +166,7 @@ export function TransparencyMethodologyPanel() {
               است. ناگفته پیداست که ریسک کاهش قیمت یک کالا در شرایط تورمی،
               ریسک بسیار اندک و ناچیزی است.
             </p>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm leading-relaxed text-justify text-muted-foreground">
               در آوید ترجیح می‌دهیم به‌جای وعده «سرمایه‌گذاری بدون ریسک»،
               ریسک واقعی را شفاف کرده و با انتخاب قراردادهای مناسب، آن را تا
               حد امکان محدود کنیم. انواع مدل‌های قراردادی و ریسک هر کدام را

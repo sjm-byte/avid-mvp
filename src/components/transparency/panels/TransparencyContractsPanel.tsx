@@ -32,7 +32,7 @@ export function TransparencyContractsPanel() {
     <div className="space-y-8">
       <div className="space-y-3">
         <h2 className="text-xl font-semibold md:text-2xl">متن قراردادها</h2>
-        <p className="text-sm leading-relaxed text-muted-foreground">
+        <p className="text-sm leading-relaxed text-justify text-muted-foreground">
           قراردادها و مدل‌های اجرایی — ریسک‌ها و الگوهای تجربه‌شده. ما با
           توجه به ریسک‌های اقتصادی پروژه‌های مختلف و همچنین میزان
           ریسک‌پذیری سرمایه‌گذار، نوع قرارداد مناسب را انتخاب می‌کنیم.
@@ -49,7 +49,7 @@ export function TransparencyContractsPanel() {
           <CardContent className="space-y-6">
             <div>
               <h3 className="text-base font-semibold">ساختار</h3>
-              <div className="mt-2 space-y-3 text-sm leading-relaxed text-muted-foreground">
+              <div className="mt-2 space-y-3 text-sm leading-relaxed text-justify text-muted-foreground">
                 <p>
                   در این قرارداد، سرمایه‌گذار به‌جای پرداخت مستقیم وجه نقد،
                   دارایی یا مواد اولیه موردنیاز، مانند آهن یا ماشین‌آلات، را
@@ -85,7 +85,7 @@ export function TransparencyContractsPanel() {
                     className="rounded-md border border-dashed px-4 py-3"
                   >
                     <p className="text-sm font-medium">{risk.title}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                    <p className="mt-1 text-sm leading-relaxed text-justify text-muted-foreground">
                       {risk.body}
                     </p>
                   </div>
@@ -104,7 +104,7 @@ export function TransparencyContractsPanel() {
           <CardContent className="space-y-6">
             <div>
               <h3 className="text-base font-semibold">ساختار</h3>
-              <div className="mt-2 space-y-3 text-sm leading-relaxed text-muted-foreground">
+              <div className="mt-2 space-y-3 text-sm leading-relaxed text-justify text-muted-foreground">
                 <p>
                   در این قرارداد، سرمایه‌گذار وجه نقد را امروز پرداخت می‌کند تا
                   کالا را در آینده، مثلاً شش ماه بعد، تحویل بگیرد.
@@ -128,7 +128,7 @@ export function TransparencyContractsPanel() {
 
             <div>
               <h3 className="text-base font-semibold">مزیت و ریسک</h3>
-              <div className="mt-2 space-y-3 text-sm leading-relaxed text-muted-foreground">
+              <div className="mt-2 space-y-3 text-sm leading-relaxed text-justify text-muted-foreground">
                 <p>
                   سرمایه‌گذار مالک کالا است. اگر در سررسید قیمت کالا کاهش پیدا
                   کند، ضرر متوجه وی خواهد بود. همچنین ریسک دیگر این قرارداد،
@@ -161,7 +161,7 @@ export function TransparencyContractsPanel() {
           <CardContent className="space-y-6">
             <div>
               <h3 className="text-base font-semibold">ساختار</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-2 text-sm leading-relaxed text-justify text-muted-foreground">
                 در این قرارداد، هم سرمایه‌گذار و هم مجری آورده مالی دارند و در
                 سود و زیان شریک می‌شوند.
               </p>
@@ -176,7 +176,7 @@ export function TransparencyContractsPanel() {
                     className="rounded-lg border bg-muted/20 p-4"
                   >
                     <p className="text-sm font-medium">{type.title}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    <p className="mt-2 text-sm leading-relaxed text-justify text-muted-foreground">
                       {type.body}
                     </p>
                   </div>
@@ -186,7 +186,7 @@ export function TransparencyContractsPanel() {
 
             <div>
               <h3 className="text-base font-semibold">مثال</h3>
-              <div className="mt-2 space-y-3 text-sm leading-relaxed text-muted-foreground">
+              <div className="mt-2 space-y-3 text-sm leading-relaxed text-justify text-muted-foreground">
                 <p>
                   فرض کنیم آورده سرمایه‌گذار یک میلیارد تومان است و انتظار دارد
                   طی هفت ماه حدود ۴۰٪ سود برداشت کند؛ یعنی یک میلیارد تومان
@@ -218,7 +218,7 @@ export function TransparencyContractsPanel() {
 
             <div>
               <h3 className="text-base font-semibold">مزیت و ریسک</h3>
-              <div className="mt-2 space-y-3 text-sm leading-relaxed text-muted-foreground">
+              <div className="mt-2 space-y-3 text-sm leading-relaxed text-justify text-muted-foreground">
                 <p>
                   اصل سرمایه در این قرارداد، نسبت به مرابحه و سلف، به میزان
                   بیشتری در معرض ریسک قرار دارد. در مورد سود نیز میزان
@@ -242,7 +242,7 @@ export function TransparencyContractsPanel() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm leading-relaxed text-justify text-muted-foreground">
               به‌زودی نمونه قراردادهای مرابحه، سلف و مشارکت در این بخش برای
               مطالعه و دانلود در دسترس قرار می‌گیرد.
             </p>

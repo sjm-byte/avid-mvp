@@ -6,7 +6,7 @@ import { TransparencyHub } from "@/components/transparency/TransparencyHub";
 export const metadata: Metadata = {
   title: "صفحه شفافیت آوید",
   description:
-    "سابقه عملکرد، منطق و قواعد کاری، و متن قراردادها — سه بخش شفافیت آوید در یک صفحه.",
+    "سابقه عملکرد، اصول قراردادی، و متن قراردادها — سه بخش شفافیت آوید در یک صفحه.",
 };
 
 export default function TransparencyPage() {
