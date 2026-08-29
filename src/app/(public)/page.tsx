@@ -17,33 +17,33 @@ import {
 const howItWorks = [
   {
     step: "۱",
-    title: "مراجعه به صفحه شفافیت آوید و مطالعه",
+    title: "مطالعه صفحه شفافیت آوید",
     description:
-      "سابقه عملکرد، اصول قراردادی، و انواع قراردادها را در صفحه شفافیت ببینید.",
+      "سابقه عملکرد، اصول قراردادی و انواع قراردادها را در صفحه شفافیت ببینید.",
   },
   {
     step: "۲",
-    title: "بررسی و انتخاب پروژه مورد نظر",
+    title: "اعلام آمادگی",
     description:
-      "پروژه‌های باز را مطالعه کنید: معرفی، ریسک‌ها، بازده پیش‌بینی‌شده و اسناد عمومی.",
+      "علاقه خود را به مشارکت در پروژه مورد نظر اعلام کنید.",
   },
   {
     step: "۳",
     title: "هماهنگی خارج از سامانه",
     description:
-      "اعلام علاقه، قرارداد و واریز به حساب پروژه خارج از آوید انجام می‌شود. پلتفرم درگاه پرداخت ندارد.",
+      "جزئیات مشارکت با تیم آوید خارج از پلتفرم هماهنگ می‌شود.",
   },
   {
     step: "۴",
-    title: "پیگیری و رصد در پنل سرمایه‌گذار",
+    title: "عقد قرارداد",
     description:
-      "پس از ثبت مشارکت توسط مدیر، وضعیت پروژه‌ها و مبالغ را در پنل خود دنبال کنید.",
+      "قرارداد و واریز به حساب پروژه خارج از آوید انجام می‌شود؛ پلتفرم درگاه پرداخت ندارد.",
   },
   {
     step: "۵",
-    title: "تسویه بر اساس نتیجه واقعی",
+    title: "تسویه بر اساس نتیجه واقعی در سررسید",
     description:
-      "پس از پایان پروژه، تسویه خارج از سامانه و بر اساس نتیجه واقعی انجام می‌شود؛ ثبت حسابداری در آوید باقی می‌ماند.",
+      "پس از پایان پروژه، تسویه خارج از سامانه و بر اساس نتیجه واقعی انجام می‌شود.",
   },
 ];
 
@@ -58,7 +58,7 @@ const faqItems = [
   },
   {
     q: "پرداخت چگونه انجام می‌شود؟",
-    a: "واریز مستقیماً به حساب معرفی‌شده همان پروژه و خارج از سامانه انجام می‌شود. آوید وجهی دریافت نمی‌کند؛ پس از قرارداد، مدیر مشارکت را ثبت می‌کند.",
+    a: "واریز مستقیماً به حساب معرفی‌شده همان پروژه و خارج از سامانه انجام می‌شود. آوید وجهی دریافت نمی‌کند.",
   },
 ];
 
@@ -156,27 +156,30 @@ export default function HomePage() {
         <div className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold md:text-3xl">مسیر مشارکت در آوید</h2>
-            <p className="mt-3 text-sm text-muted-foreground md:text-base">
-              از بررسی پروژه تا تسویه نهایی — هر مرحله شفاف و قابل پیگیری است.
-            </p>
           </div>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {howItWorks.map((item) => (
               <Card key={item.step} className="bg-background">
-                <CardHeader className="space-y-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                <CardHeader className="space-y-3 p-5">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
                     {item.step}
                   </div>
-                  <CardTitle className="text-lg">{item.title}</CardTitle>
+                  <CardTitle className="text-base leading-snug">
+                    {item.title}
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0">
+                <CardContent className="px-5 pb-5 pt-0">
                   <CardDescription className="text-sm leading-relaxed">
                     {item.description}
                   </CardDescription>
                 </CardContent>
               </Card>
             ))}
-            <ConsultationSupportSignupCard />
+          </div>
+          <div className="mt-8 flex justify-center">
+            <div className="w-full max-w-md">
+              <ConsultationSupportSignupCard />
+            </div>
           </div>
         </div>
       </section>

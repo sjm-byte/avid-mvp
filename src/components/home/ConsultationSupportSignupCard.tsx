@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -73,25 +74,37 @@ export function ConsultationSupportSignupCard() {
   }
 
   return (
-    <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-gold/40 bg-navy p-6 text-white shadow-[0_8px_28px_-12px_rgba(13,27,62,0.55)]">
+    <div className="relative overflow-hidden rounded-2xl border border-gold/30 bg-gradient-to-br from-background via-gold/[0.06] to-navy/[0.04] p-4 shadow-[0_10px_40px_-24px_rgba(13,27,62,0.45)] sm:p-5">
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-l from-gold via-gold-light to-gold/60"
+        className="pointer-events-none absolute -left-8 -top-8 size-24 rounded-full bg-gold/10 blur-2xl"
         aria-hidden
       />
-      <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full border border-gold/50 bg-gold/15 text-sm font-bold text-gold">
-        ۶
-      </div>
-      <h3 className="text-lg font-semibold text-white">
-        درخواست مشاوره و پشتیبانی
-      </h3>
-      <p className="mt-2 text-sm leading-relaxed text-white/75">
-        اگر سؤالی دارید یا می‌خواهید قبل از مشارکت راهنمایی بگیرید، شماره
-        موبایل خود را وارد کنید.
-      </p>
+      <div
+        className="pointer-events-none absolute -bottom-10 -right-6 size-28 rounded-full bg-navy/8 blur-2xl"
+        aria-hidden
+      />
 
-      <form onSubmit={handleSubmit} className="mt-5 flex flex-1 flex-col gap-3">
-        <div className="space-y-2">
-          <Label htmlFor="consultation-phone" className="text-white/90">
+      <div className="relative flex items-start gap-3">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold">
+          <Sparkles className="size-4" aria-hidden />
+        </div>
+        <div className="min-w-0 flex-1">
+          <h3 className="text-base font-semibold text-foreground">
+            درخواست مشاوره و اعلام آمادگی
+          </h3>
+          <p className="mt-1 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+            شماره موبایل خود را بگذارید تا برای مشاوره یا اعلام آمادگی با شما
+            تماس بگیریم.
+          </p>
+        </div>
+      </div>
+
+      <form
+        onSubmit={handleSubmit}
+        className="relative mt-4 flex flex-col gap-2.5 sm:flex-row sm:items-end"
+      >
+        <div className="min-w-0 flex-1 space-y-1.5">
+          <Label htmlFor="consultation-phone" className="text-xs text-muted-foreground">
             شماره موبایل
           </Label>
           <Input
@@ -106,7 +119,7 @@ export function ConsultationSupportSignupCard() {
               setPhone(e.target.value);
               if (feedback) setFeedback(null);
             }}
-            className="border-white/20 bg-white/10 text-left text-white placeholder:text-white/40 focus-visible:ring-gold"
+            className="h-9 border-gold/25 bg-background/80 text-left text-sm focus-visible:ring-gold/40"
             aria-invalid={feedback?.type === "error"}
             aria-describedby={feedback ? "consultation-feedback" : undefined}
           />
@@ -114,28 +127,30 @@ export function ConsultationSupportSignupCard() {
         <Button
           type="submit"
           disabled={submitting}
-          className="mt-auto w-full rounded-full bg-gold font-semibold text-navy hover:bg-gold-light"
+          size="sm"
+          className="h-9 shrink-0 rounded-full bg-navy px-4 text-xs font-semibold text-white hover:bg-navy-light sm:h-9"
         >
-          {submitting ? "در حال ثبت…" : "ثبت درخواست مشاوره"}
+          {submitting ? "در حال ثبت…" : "ثبت درخواست"}
         </Button>
-        {feedback ? (
-          <p
-            id="consultation-feedback"
-            role="status"
-            className={
-              feedback.type === "success"
-                ? "text-xs leading-relaxed text-emerald-300"
-                : "text-xs leading-relaxed text-red-300"
-            }
-          >
-            {feedback.message}
-          </p>
-        ) : (
-          <p className="text-xs leading-relaxed text-white/50">
-            اطلاعات شما فقط برای تماس تیم آوید استفاده می‌شود.
-          </p>
-        )}
       </form>
+
+      {feedback ? (
+        <p
+          id="consultation-feedback"
+          role="status"
+          className={
+            feedback.type === "success"
+              ? "relative mt-2 text-xs leading-relaxed text-emerald-700"
+              : "relative mt-2 text-xs leading-relaxed text-red-600"
+          }
+        >
+          {feedback.message}
+        </p>
+      ) : (
+        <p className="relative mt-2 text-[11px] leading-relaxed text-muted-foreground">
+          اطلاعات شما فقط برای تماس تیم آوید استفاده می‌شود.
+        </p>
+      )}
     </div>
   );
 }

@@ -86,7 +86,7 @@ export function PublicHeader() {
         )}
         aria-hidden={!visible}
       >
-        <div className="container mx-auto flex h-14 min-w-0 max-w-full items-center justify-between gap-2 px-3 sm:h-[72px] sm:gap-4 sm:px-4">
+        <div className="container mx-auto flex h-14 min-w-0 max-w-full items-center justify-between gap-2 pe-3 ps-5 sm:h-[72px] sm:gap-4 sm:pe-4 sm:ps-7">
           <div className="flex min-w-0 flex-1 items-center gap-3 sm:gap-8">
             <AvidLogo
               href="/"

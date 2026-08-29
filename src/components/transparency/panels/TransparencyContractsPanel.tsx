@@ -50,11 +50,9 @@ export function TransparencyContractsPanel() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div>
-              <h3 className="text-base font-semibold">ساختار</h3>
-              <div
-                className={`mt-2 space-y-3 text-sm leading-relaxed text-justify text-muted-foreground ${sectionBodyIndent}`}
-              >
+            <div
+              className={`space-y-3 text-sm leading-relaxed text-justify text-muted-foreground ${sectionBodyIndent}`}
+            >
                 <p>
                   در این قرارداد، سرمایه‌گذار به‌جای پرداخت مستقیم وجه نقد،
                   دارایی یا مواد اولیه مورد نیاز مانند آهن یا ماشین‌آلات را
@@ -72,11 +70,10 @@ export function TransparencyContractsPanel() {
                   در این فرایند، هم سرمایه‌پذیر تأمین مالی شده و به مقصود خود
                   یعنی تهیه کالا رسیده است و هم سرمایه‌گذار به سود مورد انتظار.
                 </p>
-              </div>
             </div>
 
             <div>
-              <h3 className="text-base font-semibold">ریسک‌های مرتبط</h3>
+              <h3 className="text-base font-semibold">ریسک قرارداد</h3>
               <div className={`mt-3 space-y-3 ${sectionBodyIndent}`}>
                 {murabahaRisks.map((risk) => (
                   <div
@@ -101,11 +98,9 @@ export function TransparencyContractsPanel() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div>
-              <h3 className="text-base font-semibold">ساختار</h3>
-              <div
-                className={`mt-2 text-sm leading-relaxed text-justify text-muted-foreground ${sectionBodyIndent}`}
-              >
+            <div
+              className={`text-sm leading-relaxed text-justify text-muted-foreground ${sectionBodyIndent}`}
+            >
                 <p>
                   در این قرارداد، سرمایه‌گذار وجه نقد را امروز پرداخت می‌کند تا
                   کالا را در آینده، مثلاً شش ماه بعد، تحویل بگیرد. در این
@@ -124,11 +119,10 @@ export function TransparencyContractsPanel() {
                   به نحوی تنظیم کند که در صورت افزایش قیمت کالا، سود بیشتری
                   نصیب او شود.
                 </p>
-              </div>
             </div>
 
             <div>
-              <h3 className="text-base font-semibold">مزیت و ریسک</h3>
+              <h3 className="text-base font-semibold">ریسک قرارداد</h3>
               <div
                 className={`mt-2 text-sm leading-relaxed text-justify text-muted-foreground ${sectionBodyIndent}`}
               >
@@ -149,15 +143,12 @@ export function TransparencyContractsPanel() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div>
-              <h3 className="text-base font-semibold">ساختار</h3>
-              <p
-                className={`mt-2 text-sm leading-relaxed text-justify text-muted-foreground ${sectionBodyIndent}`}
-              >
-                در این قرارداد، هم سرمایه‌گذار و هم مجری آورده مالی دارند و در
-                سود و زیان شریک می‌شوند.
-              </p>
-            </div>
+            <p
+              className={`text-sm leading-relaxed text-justify text-muted-foreground ${sectionBodyIndent}`}
+            >
+              در این قرارداد، هم سرمایه‌گذار و هم مجری آورده مالی دارند و در
+              سود و زیان شریک می‌شوند.
+            </p>
 
             <div>
               <h3 className="text-base font-semibold">انواع آن</h3>
@@ -211,7 +202,7 @@ export function TransparencyContractsPanel() {
             </div>
 
             <div>
-              <h3 className="text-base font-semibold">مزیت و ریسک</h3>
+              <h3 className="text-base font-semibold">ریسک قرارداد</h3>
               <div
                 className={`mt-2 space-y-3 text-sm leading-relaxed text-justify text-muted-foreground ${sectionBodyIndent}`}
               >
