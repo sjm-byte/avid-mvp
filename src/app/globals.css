@@ -52,4 +52,51 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  @keyframes transparency-flow-glow {
+    0%,
+    18%,
+    100% {
+      box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+      border-color: hsl(var(--border));
+    }
+    8% {
+      box-shadow:
+        0 0 0 1px hsl(var(--gold) / 0.45),
+        0 0 16px hsl(var(--gold) / 0.28);
+      border-color: hsl(var(--gold) / 0.65);
+    }
+  }
+
+  .transparency-flow-pulse-0 {
+    animation: transparency-flow-glow 4.5s ease-in-out infinite;
+  }
+
+  .transparency-flow-pulse-1 {
+    animation: transparency-flow-glow 4.5s ease-in-out 1.5s infinite;
+  }
+
+  .transparency-flow-pulse-2 {
+    animation: transparency-flow-glow 4.5s ease-in-out 3s infinite;
+  }
+
+  @keyframes transparency-flow-shine {
+    0% {
+      background-position: 200% center;
+    }
+    100% {
+      background-position: -200% center;
+    }
+  }
+
+  .transparency-flow-shimmer {
+    background-image: linear-gradient(
+      105deg,
+      transparent 42%,
+      hsl(var(--gold) / 0.12) 50%,
+      transparent 58%
+    );
+    background-size: 220% 100%;
+    animation: transparency-flow-shine 5s ease-in-out infinite;
+  }
 }

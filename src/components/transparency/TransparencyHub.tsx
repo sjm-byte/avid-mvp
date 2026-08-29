@@ -2,11 +2,11 @@
 
 import { useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { TransparencyFlowNav } from "@/components/transparency/TransparencyFlowNav";
 import { TransparencyContractsPanel } from "@/components/transparency/panels/TransparencyContractsPanel";
 import { TransparencyHistoryPanel } from "@/components/transparency/panels/TransparencyHistoryPanel";
 import { TransparencyMethodologyPanel } from "@/components/transparency/panels/TransparencyMethodologyPanel";
 import { Card, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import {
   isTransparencySectionId,
   transparencySections,
@@ -59,36 +59,11 @@ export function TransparencyHub({ rows }: TransparencyHubProps) {
         </p>
       </header>
 
-      <div className="sticky top-14 z-30 mt-10 border-y bg-background/95 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/80 sm:top-[72px]">
-        <div
-          className="mx-auto flex max-w-4xl flex-wrap justify-center gap-2"
-          role="tablist"
-          aria-label="بخش‌های شفافیت"
-        >
-          {transparencySections.map((section) => {
-            const isActive = section.id === activeSection;
-
-            return (
-              <button
-                key={section.id}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                aria-controls={`transparency-panel-${section.id}`}
-                id={`transparency-tab-${section.id}`}
-                onClick={() => setSection(section.id)}
-                className={cn(
-                  "rounded-full border px-4 py-2.5 text-sm font-medium transition-colors",
-                  isActive
-                    ? "border-primary bg-primary text-primary-foreground shadow-sm"
-                    : "border-border bg-background text-foreground/85 shadow-sm hover:border-primary/40 hover:bg-primary/5 hover:text-foreground",
-                )}
-              >
-                {section.label}
-              </button>
-            );
-          })}
-        </div>
+      <div className="sticky top-14 z-30 mt-10 border-y border-gold/15 bg-gradient-to-b from-background/98 to-muted/20 py-5 backdrop-blur supports-[backdrop-filter]:bg-background/85 sm:top-[72px]">
+        <TransparencyFlowNav
+          activeSection={activeSection}
+          onSelect={setSection}
+        />
       </div>
 
       <Card className="mt-6 border-muted/80 shadow-sm">
