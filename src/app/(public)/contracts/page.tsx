@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaimer";
 import { TransparencyHubNav } from "@/components/transparency/TransparencyHubNav";
 import { TransparencyNextSteps } from "@/components/transparency/TransparencyNextSteps";
 import {
@@ -61,10 +60,6 @@ export default function ContractsPage() {
         <TransparencyHubNav current="/contracts" />
       </div>
 
-      <div className="mt-8">
-        <ProjectRiskDisclaimer />
-      </div>
-
       <div className="mt-10 space-y-6">
         <Card>
           <CardHeader className="pb-2">
@@ -86,9 +81,6 @@ export default function ContractsPage() {
                   فعالیت اقتصادی و میزان سود در بازه کوتاهی پایان یافته و مشخص
                   می‌شود. در این نوع قرارداد، نرخ بازدهی تقریباً ثابت و قابل
                   پیش‌بینی است.
-                </p>
-                <p className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900">
-                  این عدد پیش‌بینی است و سود قطعی یا تضمینی محسوب نمی‌شود.
                 </p>
                 <p>
                   برای راحتی سرمایه‌گذار، پروژه عملاً به این شکل پیش می‌رود که
@@ -176,9 +168,6 @@ export default function ContractsPage() {
                   به نحوی تنظیم کند که در صورت افزایش قیمت کالا، سود بیشتری
                   نصیب او شود.
                 </p>
-                <p className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900">
-                  این عدد پیش‌بینی است و سود قطعی یا تضمینی محسوب نمی‌شود.
-                </p>
               </div>
             </div>
           </CardContent>
@@ -224,9 +213,6 @@ export default function ContractsPage() {
                   طی هفت ماه حدود ۴۰٪ سود برداشت کند؛ یعنی یک میلیارد تومان
                   سرمایه او در پایان هفت ماه به یک میلیارد و چهارصد میلیون
                   تومان برسد.
-                </p>
-                <p className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900">
-                  این عدد پیش‌بینی است و سود قطعی یا تضمینی محسوب نمی‌شود.
                 </p>
                 <p>
                   فرض کنیم در این قرارداد، سرمایه‌پذیر نیز باید یک میلیارد تومان
