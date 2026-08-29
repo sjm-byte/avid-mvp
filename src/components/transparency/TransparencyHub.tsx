@@ -49,13 +49,8 @@ export function TransparencyHub({ rows }: TransparencyHubProps) {
         <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
           صفحه شفافیت آوید
         </h1>
-        <p className="text-sm leading-relaxed text-justify text-muted-foreground md:text-base md:whitespace-nowrap">
-          سه بخش{" "}
-          <span className="font-medium text-foreground">سابقه</span>،{" "}
-          <span className="font-medium text-foreground">اصول قراردادی</span>{" "}
-          و{" "}
-          <span className="font-medium text-foreground">متن قراردادها</span> —
-          برای تصویر کامل، هر سه را ببینید.
+        <p className="text-sm leading-relaxed text-justify text-muted-foreground md:text-base">
+          این صفحه ضمن سه بخش به شما کمک می‌کند تا با آوید بیشتر آشنا شوید.
         </p>
       </header>
 

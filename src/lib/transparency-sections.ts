@@ -20,8 +20,7 @@ export const transparencySections: TransparencySection[] = [
   {
     id: "contracts",
     label: "متن قراردادها",
-    description:
-      "ساختار مرابحه، سلف و مشارکت؛ ریسک‌ها و الگوهای تجربه‌شده هر مدل.",
+    description: "",
   },
 ];
 

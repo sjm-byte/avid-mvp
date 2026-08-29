@@ -24,14 +24,6 @@ export function TransparencyFlowNav({
 }: TransparencyFlowNavProps) {
   return (
     <div className="mx-auto max-w-3xl">
-      <p className="mb-3 text-center text-xs font-medium text-muted-foreground">
-        مسیر مطالعه شفافیت
-        <span className="mx-1.5 text-gold" aria-hidden>
-          ←
-        </span>
-        <span className="text-foreground/70">از سابقه تا متن قراردادها</span>
-      </p>
-
       <div
         className="flex flex-wrap items-center justify-center gap-1 sm:gap-0"
         role="tablist"
