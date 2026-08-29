@@ -18,6 +18,28 @@ const murabahaRisks = [
   },
 ];
 
+const salafRisks = [
+  {
+    title: "۱. ریسک کاهش قیمت",
+    body: "سرمایه‌گذار مالک کالا است. اگر در سررسید قیمت کالا کاهش پیدا کند ضرر متوجه وی خواهد بود.",
+  },
+  {
+    title: "۲. ریسک فروش نرفتن در سررسید",
+    body: "ریسک دیگر این قرارداد، فروش نرفتن کالا در سررسید است.",
+  },
+];
+
+const partnershipRisks = [
+  {
+    title: "۱. ریسک اصل سرمایه و سود",
+    body: "اصل سرمایه در این قرارداد، نسبت به مرابحه و سلف، به میزان بیشتری در معرض ریسک قرار دارد. در مورد سود نیز میزان نااطمینانی کمی بیشتر است؛ اما در مقابل، امکان برداشت سود بیشتر وجود دارد.",
+  },
+  {
+    title: "۲. محدودیت در فعالیت‌های تولیدی",
+    body: "همچنین در فعالیت‌هایی که منجر به تولید کالا نمی‌شوند و عملیات از نوع ارائه خدمات است، این قرارداد نسبت به دو مورد دیگر ترجیح خواهد داشت.",
+  },
+];
+
 const partnershipTypes = [
   {
     title: "مشارکت کامل",
@@ -123,14 +145,18 @@ export function TransparencyContractsPanel() {
 
             <div>
               <h3 className="text-base font-semibold">ریسک قرارداد</h3>
-              <div
-                className={`mt-2 text-sm leading-relaxed text-justify text-muted-foreground ${sectionBodyIndent}`}
-              >
-                <p>
-                  سرمایه‌گذار مالک کالا است. اگر در سررسید قیمت کالا کاهش پیدا
-                  کند ضرر متوجه وی خواهد بود. ریسک دیگر این قرارداد، فروش
-                  نرفتن کالا در سررسید است.
-                </p>
+              <div className={`mt-3 space-y-3 ${sectionBodyIndent}`}>
+                {salafRisks.map((risk) => (
+                  <div
+                    key={risk.title}
+                    className="rounded-md border border-dashed px-4 py-3"
+                  >
+                    <p className="text-sm font-medium">{risk.title}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-justify text-muted-foreground">
+                      {risk.body}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </CardContent>
@@ -203,20 +229,18 @@ export function TransparencyContractsPanel() {
 
             <div>
               <h3 className="text-base font-semibold">ریسک قرارداد</h3>
-              <div
-                className={`mt-2 space-y-3 text-sm leading-relaxed text-justify text-muted-foreground ${sectionBodyIndent}`}
-              >
-                <p>
-                  اصل سرمایه در این قرارداد، نسبت به مرابحه و سلف، به میزان
-                  بیشتری در معرض ریسک قرار دارد. در مورد سود نیز میزان
-                  نااطمینانی کمی بیشتر است؛ اما در مقابل، امکان برداشت سود
-                  بیشتر وجود دارد.
-                </p>
-                <p>
-                  همچنین در فعالیت‌هایی که منجر به تولید کالا نمی‌شوند و عملیات
-                  از نوع ارائه خدمات است، این قرارداد نسبت به دو مورد دیگر
-                  ترجیح خواهد داشت.
-                </p>
+              <div className={`mt-3 space-y-3 ${sectionBodyIndent}`}>
+                {partnershipRisks.map((risk) => (
+                  <div
+                    key={risk.title}
+                    className="rounded-md border border-dashed px-4 py-3"
+                  >
+                    <p className="text-sm font-medium">{risk.title}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-justify text-muted-foreground">
+                      {risk.body}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </CardContent>
