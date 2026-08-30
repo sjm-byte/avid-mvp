@@ -50,7 +50,7 @@ export function TransparencyHub({ rows }: TransparencyHubProps) {
           صفحه شفافیت آوید
         </h1>
         <p className="text-sm leading-relaxed text-justify text-muted-foreground md:text-base">
-          این صفحه ضمن سه بخش به شما کمک می‌کند تا با آوید بیشتر آشنا شوید.
+          در این صفحه می‌توانید با مرور سوابق عملکردی و آشنایی با اصول و شیوه‌های کاری، با رویکرد آوید در سرمایه‌گذاری بیشتر آشنا شوید.
         </p>
       </header>
 
