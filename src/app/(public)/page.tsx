@@ -73,11 +73,11 @@ export default function HomePage() {
     <>
       <HomeHeroSlideshow>
         <div className="container mx-auto max-w-6xl px-4 py-10 sm:py-12 md:py-16">
-          <div className="relative max-w-3xl translate-x-2 translate-y-4 rounded-xl border border-white/10 bg-navy/75 px-5 py-6 backdrop-blur-md sm:translate-x-4 sm:translate-y-5 sm:px-6 sm:py-8 md:translate-x-6 md:translate-y-6">
-            <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl">
+          <div className="relative max-w-2xl translate-x-4 translate-y-6 rounded-xl border border-white/10 bg-navy/50 px-4 py-5 backdrop-blur-sm sm:translate-x-6 sm:translate-y-8 sm:px-5 sm:py-6 md:translate-x-8 md:translate-y-10">
+            <h1 className="text-2xl font-extrabold leading-tight tracking-tight text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.45)] sm:text-3xl md:text-4xl lg:text-5xl">
               با آوید، به سرمایه‌گذاری واقعی فکر کن
             </h1>
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/95 [text-shadow:0_1px_8px_rgba(0,0,0,0.4)] sm:mt-6 sm:text-base md:text-lg">
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/95 [text-shadow:0_1px_8px_rgba(0,0,0,0.4)] sm:mt-4 sm:text-[0.9375rem] md:text-base">
               پروژه‌ها را جداگانه بررسی کنید، ریسک‌ها را ببینید و بازده
               پیش‌بینی‌شده را در کنار واقعیت اجرا ارزیابی کنید.
             </p>
