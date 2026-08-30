@@ -60,6 +60,10 @@ const faqItems = [
     q: "پرداخت چگونه انجام می‌شود؟",
     a: "واریز مستقیماً به حساب معرفی‌شده همان پروژه و خارج از سامانه انجام می‌شود. آوید وجهی دریافت نمی‌کند.",
   },
+  {
+    q: "چگونه در یک پروژه مشارکت کنم؟",
+    a: "ابتدا صفحه شفافیت آوید را مطالعه کرده و سپس درخواست مشارکت ثبت کنید. در صورت موافقت، پروژه مدنظر به شما معرفی خواهد شد.",
+  },
 ];
 
 export default function HomePage() {
@@ -118,7 +122,7 @@ export default function HomePage() {
           <div className="mt-8 flex justify-center">
             <Link
               href="/transparency"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-gold/70 bg-navy px-4 py-2.5 text-sm font-medium text-white shadow-[0_4px_18px_-4px_rgba(13,27,62,0.45)] transition-all duration-300 transparency-cta-shimmer hover:border-gold hover:shadow-[0_6px_22px_-4px_rgba(13,27,62,0.52)]"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-gold/70 bg-navy px-4 py-2.5 text-sm font-medium text-white transition-all duration-300 transparency-cta-shimmer hover:border-gold hover:opacity-100"
             >
               <span className="relative z-[1] flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold text-navy">
                 <Eye className="size-3.5" aria-hidden />
@@ -209,9 +213,6 @@ export default function HomePage() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Button variant="outline" asChild>
               <Link href="/faq">همه سوالات</Link>
-            </Button>
-            <Button asChild>
-              <Link href="/projects">شروع از مشاهده پروژه‌ها</Link>
             </Button>
           </div>
         </div>

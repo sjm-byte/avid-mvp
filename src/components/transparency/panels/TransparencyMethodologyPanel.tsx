@@ -160,6 +160,14 @@ export function TransparencyMethodologyPanel() {
               است. پس به طور خلاصه درست است که در آوید اصل سرمایه و سود
               تضمین نمی‌شود اما این به معنی پذیرش ریسک زیاد نیست.
             </p>
+            <div className="rounded-md border border-gold/30 bg-gold/5 px-4 py-3 text-navy">
+              <p className="text-sm font-medium">پیشنهاد ویژه</p>
+              <p className="mt-1 text-sm leading-relaxed text-justify text-muted-foreground">
+                ایجاد سبد سرمایه‌گذاری علاوه بر کاهش ریسک می‌تواند به ایجاد
+                سود بیشتر کمک کند. ما با ایجاد تنوع در سبد شما می‌توانیم
+                ترکیبی از سود طلایی، دلاری و ریالی را ارائه کنیم.
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>

@@ -5,7 +5,7 @@ const stats = [
   {
     plus: "+",
     number: "50",
-    suffix: "میلیارد تومن",
+    suffix: "میلیارد تومان",
     label: "حجم مشارکت ثبت‌شده",
   },
   { plus: "+", number: "15", label: "پروژه‌های در جریان" },
