@@ -73,7 +73,7 @@ export default function HomePage() {
     <>
       <HomeHeroSlideshow>
         <div className="container mx-auto max-w-6xl px-4 py-10 sm:py-12 md:py-16">
-          <div className="max-w-3xl bg-gradient-to-l from-navy/50 via-navy/15 to-transparent">
+          <div className="relative max-w-3xl translate-x-2 translate-y-4 rounded-xl border border-white/10 bg-navy/75 px-5 py-6 backdrop-blur-md sm:translate-x-4 sm:translate-y-5 sm:px-6 sm:py-8 md:translate-x-6 md:translate-y-6">
             <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.45)] sm:text-4xl md:text-5xl lg:text-6xl">
               با آوید، به سرمایه‌گذاری واقعی فکر کن
             </h1>
@@ -81,25 +81,6 @@ export default function HomePage() {
               پروژه‌ها را جداگانه بررسی کنید، ریسک‌ها را ببینید و بازده
               پیش‌بینی‌شده را در کنار واقعیت اجرا ارزیابی کنید.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center">
-              <Button
-                size="lg"
-                asChild
-                className="w-full rounded-full bg-gold text-navy hover:bg-gold-light sm:w-auto"
-              >
-                <Link href="/projects">مشاهده پروژه‌های باز</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                asChild
-                className="w-full rounded-full border-gold/70 bg-transparent text-white hover:bg-white/10 hover:text-gold sm:w-auto"
-              >
-                <Link href="/transparency?section=methodology">
-                  افشای ریسک و هشدارها
-                </Link>
-              </Button>
-            </div>
           </div>
         </div>
       </HomeHeroSlideshow>
