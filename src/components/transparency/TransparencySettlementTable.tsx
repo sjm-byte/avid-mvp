@@ -237,10 +237,11 @@ export function TransparencySettlementTable({
       <div className="hidden overflow-hidden rounded-xl border bg-card shadow-sm md:block">
         <div className="w-full min-w-0 overflow-x-auto">
           <div
+            dir="ltr"
             className="max-h-[min(55vh,28rem)] min-w-[720px] overflow-y-auto overscroll-contain"
             aria-label="ردیف‌های جدول وضعیت تسویه"
           >
-            <table className="w-full table-fixed border-separate border-spacing-0 text-sm">
+            <table dir="rtl" className="w-full table-fixed border-separate border-spacing-0 text-sm">
               {TABLE_COLGROUP}
               <SettlementTableHead />
               <SettlementTableBody rows={rows} />
