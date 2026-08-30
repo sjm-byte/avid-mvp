@@ -61,8 +61,8 @@ export function TransparencyMethodologyPanel() {
           </CardHeader>
           <CardContent className="space-y-6">
             <p className="text-sm leading-relaxed text-justify text-muted-foreground">
-              در تمام طرح‌های سرمایه‌گذاری و مالی، به‌طور کلی با دو دسته ریسک
-              مواجه هستیم که ماهیت و نحوه مواجهه با آن‌ها کاملاً متفاوت است:
+              به‌طور کلی در تمام طرح‌های سرمایه‌گذاری و مالی با دو دسته ریسک
+              مواجه هستیم که ماهیت و نحوه پوشش هر کدام متفاوت است:
             </p>
 
             <div className="space-y-4">
