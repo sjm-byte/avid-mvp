@@ -136,10 +136,6 @@ export function TransparencyMethodologyPanel() {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-sm leading-relaxed text-justify text-muted-foreground">
-              در آوید اصل سرمایه و سود تضمین نمی‌شود اما این به معنی پذیرش
-              ریسک بالا نیست.
-            </p>
-            <p className="text-sm leading-relaxed text-justify text-muted-foreground">
               به‌طور کلی اکثر بسترهای جذب سرمایه از جمله سکوهای تأمین مالی
               جمعی (Crowdfunding)، با تضمین اصل و فرع وعده سود می‌دهند.
               در سوی دیگر طیف عملیات اقتصادی همواره با ریسک‌های پیش‌بینی‌شده و
@@ -161,7 +157,8 @@ export function TransparencyMethodologyPanel() {
               کالا را چند ماه بعد تحویل دهد. اگر در زمان تحویل، قیمت کالا
               کاهش پیدا کند زیان کاهش قیمت متوجه سرمایه‌گذار خواهد بود.
               ناگفته پیداست که ریسک کاهش قیمت یک کالا در شرایط تورمی ناچیز
-              است.
+              است. پس به طور خلاصه درست است که در آوید اصل سرمایه و سود
+              تضمین نمی‌شود اما این به معنی پذیرش ریسک زیاد نیست.
             </p>
           </CardContent>
         </Card>

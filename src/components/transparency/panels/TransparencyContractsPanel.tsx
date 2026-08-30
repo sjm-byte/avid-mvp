@@ -95,7 +95,9 @@ export function TransparencyContractsPanel() {
             </div>
 
             <div>
-              <h3 className="text-base font-semibold">ریسک قرارداد</h3>
+              <h3 className={`text-base font-semibold ${sectionBodyIndent}`}>
+                ریسک قرارداد:
+              </h3>
               <div className={`mt-3 space-y-3 ${sectionBodyIndent}`}>
                 {murabahaRisks.map((risk) => (
                   <div
@@ -144,7 +146,9 @@ export function TransparencyContractsPanel() {
             </div>
 
             <div>
-              <h3 className="text-base font-semibold">ریسک قرارداد</h3>
+              <h3 className={`text-base font-semibold ${sectionBodyIndent}`}>
+                ریسک قرارداد:
+              </h3>
               <div className={`mt-3 space-y-3 ${sectionBodyIndent}`}>
                 {salafRisks.map((risk) => (
                   <div
@@ -177,7 +181,9 @@ export function TransparencyContractsPanel() {
             </p>
 
             <div>
-              <h3 className="text-base font-semibold">انواع آن</h3>
+              <h3 className={`text-base font-semibold ${sectionBodyIndent}`}>
+                انواع آن:
+              </h3>
               <div className={`mt-3 space-y-3 ${sectionBodyIndent}`}>
                 {partnershipTypes.map((type) => (
                   <div
@@ -194,7 +200,9 @@ export function TransparencyContractsPanel() {
             </div>
 
             <div>
-              <h3 className="text-base font-semibold">مثال</h3>
+              <h3 className={`text-base font-semibold ${sectionBodyIndent}`}>
+                مثال:
+              </h3>
               <div
                 className={`mt-2 space-y-3 text-sm leading-relaxed text-justify text-muted-foreground ${sectionBodyIndent}`}
               >
@@ -228,7 +236,9 @@ export function TransparencyContractsPanel() {
             </div>
 
             <div>
-              <h3 className="text-base font-semibold">ریسک قرارداد</h3>
+              <h3 className={`text-base font-semibold ${sectionBodyIndent}`}>
+                ریسک قرارداد:
+              </h3>
               <div className={`mt-3 space-y-3 ${sectionBodyIndent}`}>
                 {partnershipRisks.map((risk) => (
                   <div
