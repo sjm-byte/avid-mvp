@@ -103,9 +103,9 @@ export default function HomePage() {
           <div className="mt-8 flex justify-center">
             <Link
               href="/transparency"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-gold/70 bg-navy px-4 py-2.5 text-sm font-medium text-white transition-all duration-300 transparency-cta-shimmer hover:border-gold hover:opacity-100"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border px-4 py-2.5 text-sm font-medium text-white transition-colors duration-300 transparency-cta-shimmer"
             >
-              <span className="relative z-[1] flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold text-navy">
+              <span className="transparency-cta-icon relative z-[1] flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold text-navy">
                 <Eye className="size-3.5" aria-hidden />
               </span>
               <span className="relative z-[1] whitespace-nowrap">
