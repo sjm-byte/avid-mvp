@@ -37,13 +37,12 @@ export default function HomePage() {
         <div className="container mx-auto max-w-6xl px-4 py-10 sm:py-12 md:py-16">
           <div className="relative max-w-3xl translate-x-4 translate-y-12 rounded-xl border border-white/10 bg-navy/50 px-4 py-5 backdrop-blur-sm sm:translate-x-6 sm:translate-y-16 sm:px-5 sm:py-6 md:translate-x-8 md:translate-y-20">
             <h1 className="whitespace-nowrap text-[clamp(1rem,3.6vw,2.25rem)] font-extrabold leading-tight tracking-tight text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.45)]">
-              با آوید، به سرمایه‌گذاری واقعی فکر کن
+              با آوید، به سرمایه‌گذاری واقعی فکر کن!
             </h1>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/95 [text-shadow:0_1px_8px_rgba(0,0,0,0.4)] sm:mt-4 sm:text-[0.9375rem] md:text-base">
-              آوید، گامی است به سمت اقتصاد مشارکتی.
-              <br />
-              در آوید پروژه‌ها را بررسی کنید، ریسک‌ها را ببینید و بازده
-              پیش‌بینی‌شده را در کنار واقعیت اجرا ارزیابی کنید.
+              آوید گامی است برای حرکت به سمت اقتصاد مشارکتی. در آوید، پروژه‌ها
+              را بررسی کنید. ریسک‌ها را ببینید و بازده پیش‌بینی‌شده را در کنار
+              واقعیت اجرا ارزیابی کرده، سپس به ما بپیوندید.
             </p>
           </div>
         </div>
