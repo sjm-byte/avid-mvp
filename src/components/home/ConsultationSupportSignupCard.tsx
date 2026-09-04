@@ -103,10 +103,6 @@ export function ConsultationSupportSignupCard({
           <h3 className="text-base font-semibold text-foreground">
             درخواست مشاوره و اعلام آمادگی
           </h3>
-          <p className="mt-1 text-xs leading-relaxed text-muted-foreground sm:text-sm">
-            شماره موبایل خود را بگذارید تا برای مشاوره یا اعلام آمادگی با شما
-            تماس بگیریم.
-          </p>
         </div>
       </div>
 
