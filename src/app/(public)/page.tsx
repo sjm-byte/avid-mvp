@@ -73,7 +73,7 @@ export default function HomePage() {
 
       {/* Performance snapshot */}
       <section className="border-y bg-muted/30">
-        <div className="container mx-auto max-w-4xl px-4 py-14 md:py-16">
+        <div className="container mx-auto max-w-5xl px-4 py-14 md:py-16">
           <div className="mx-auto max-w-xl text-center">
             <h2 className="text-2xl font-bold md:text-3xl">
               خلاصه عملکرد آوید در یک نگاه
