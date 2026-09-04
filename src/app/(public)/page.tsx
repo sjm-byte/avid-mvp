@@ -29,21 +29,9 @@ const howItWorks = [
   },
   {
     step: "۳",
-    title: "هماهنگی خارج از سامانه",
-    description:
-      "جزئیات مشارکت با تیم آوید خارج از پلتفرم هماهنگ می‌شود.",
-  },
-  {
-    step: "۴",
     title: "عقد قرارداد",
     description:
       "قرارداد و واریز به حساب پروژه خارج از آوید انجام می‌شود؛ پلتفرم درگاه پرداخت ندارد.",
-  },
-  {
-    step: "۵",
-    title: "تسویه بر اساس نتیجه واقعی در سررسید",
-    description:
-      "پس از پایان پروژه، تسویه خارج از سامانه و بر اساس نتیجه واقعی انجام می‌شود.",
   },
 ];
 
@@ -55,10 +43,6 @@ const faqItems = [
   {
     q: "آیا بازده پیش‌بینی‌شده همان نتیجه واقعی پروژه است؟",
     a: "خیر. بازده پیش‌بینی‌شده صرفاً سناریو است و همان نتیجه واقعی پروژه محسوب نمی‌شود.",
-  },
-  {
-    q: "پرداخت چگونه انجام می‌شود؟",
-    a: "واریز مستقیماً به حساب معرفی‌شده همان پروژه و خارج از سامانه انجام می‌شود. آوید وجهی دریافت نمی‌کند.",
   },
   {
     q: "چگونه در یک پروژه مشارکت کنم؟",
@@ -142,9 +126,9 @@ export default function HomePage() {
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold md:text-3xl">مسیر مشارکت در آوید</h2>
           </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-10 grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {howItWorks.map((item) => (
-              <Card key={item.step} className="bg-background">
+              <Card key={item.step} className="h-full bg-background">
                 <CardHeader className="space-y-3 p-5">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
                     {item.step}
@@ -160,11 +144,7 @@ export default function HomePage() {
                 </CardContent>
               </Card>
             ))}
-          </div>
-          <div className="mt-8 flex justify-center">
-            <div className="w-full max-w-md">
-              <ConsultationSupportSignupCard />
-            </div>
+            <ConsultationSupportSignupCard layout="tile" />
           </div>
         </div>
       </section>
