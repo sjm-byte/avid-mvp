@@ -4,36 +4,14 @@ import { getFeaturedPublicProjects } from "@/lib/data/public-projects";
 import { Button } from "@/components/ui/button";
 import { PublicProjectCard } from "@/components/projects/PublicProjectCard";
 import { HomeHeroSlideshow } from "@/components/home/HomeHeroSlideshow";
-import { ConsultationSupportSignupCard } from "@/components/home/ConsultationSupportSignupCard";
+import { ParticipationPathSection } from "@/components/home/ParticipationPathSection";
 import { TransparencyStatsCards } from "@/components/transparency/TransparencyStatsCards";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-const howItWorks = [
-  {
-    step: "۱",
-    title: "مطالعه صفحه شفافیت آوید",
-    description:
-      "سابقه عملکرد، اصول قراردادی و انواع قراردادها را در صفحه شفافیت ببینید.",
-  },
-  {
-    step: "۲",
-    title: "اعلام آمادگی",
-    description:
-      "علاقه خود را به مشارکت در پروژه مورد نظر اعلام کنید.",
-  },
-  {
-    step: "۳",
-    title: "عقد قرارداد و واریز وجه",
-    description:
-      "قرارداد و واریز به حساب پروژه خارج از آوید انجام می‌شود؛ پلتفرم درگاه پرداخت ندارد.",
-  },
-];
 
 const faqItems = [
   {
@@ -122,34 +100,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* How it works */}
-      <section className="border-y bg-muted/25">
-        <div className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-bold md:text-3xl">مسیر مشارکت در آوید</h2>
-          </div>
-          <div className="mt-10 grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {howItWorks.map((item) => (
-              <Card key={item.step} className="h-full bg-background">
-                <CardHeader className="space-y-3 p-5">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
-                    {item.step}
-                  </div>
-                  <CardTitle className="text-base leading-snug">
-                    {item.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="px-5 pb-5 pt-0">
-                  <CardDescription className="text-sm leading-relaxed">
-                    {item.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-            <ConsultationSupportSignupCard layout="tile" />
-          </div>
-        </div>
-      </section>
+      <ParticipationPathSection />
 
       {/* FAQ */}
       <section className="border-t bg-muted/20">
