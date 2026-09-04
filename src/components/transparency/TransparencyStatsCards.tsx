@@ -51,29 +51,24 @@ function StatValue({
 
 export function TransparencyStatsCards() {
   return (
-    <div className="mx-auto max-w-3xl space-y-4">
-      <div className="grid gap-4 sm:grid-cols-3">
-        {stats.map((stat) => (
-          <Card
-            key={stat.label}
-            className="border-muted/60 shadow-sm transition-shadow hover:shadow-md"
-          >
-            <CardContent className="space-y-1 px-4 py-5 text-center sm:px-5">
-              <StatValue
-                plus={stat.plus}
-                number={stat.number}
-                suffix={"suffix" in stat ? stat.suffix : undefined}
-              />
-              <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
-                {stat.label}
-              </p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-      <p className="text-center text-xs leading-relaxed text-muted-foreground">
-        این عدد پیش‌بینی است و سود قطعی یا تضمینی محسوب نمی‌شود.
-      </p>
+    <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-3">
+      {stats.map((stat) => (
+        <Card
+          key={stat.label}
+          className="border-muted/60 shadow-sm transition-shadow hover:shadow-md"
+        >
+          <CardContent className="space-y-1 px-4 py-5 text-center sm:px-5">
+            <StatValue
+              plus={stat.plus}
+              number={stat.number}
+              suffix={"suffix" in stat ? stat.suffix : undefined}
+            />
+            <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
+              {stat.label}
+            </p>
+          </CardContent>
+        </Card>
+      ))}
     </div>
   );
 }
