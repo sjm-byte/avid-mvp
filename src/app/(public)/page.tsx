@@ -57,7 +57,7 @@ export default function HomePage() {
     <>
       <HomeHeroSlideshow>
         <div className="container mx-auto max-w-6xl px-4 py-10 sm:py-12 md:py-16">
-          <div className="relative max-w-2xl translate-x-4 translate-y-6 rounded-xl border border-white/10 bg-navy/50 px-4 py-5 backdrop-blur-sm sm:translate-x-6 sm:translate-y-8 sm:px-5 sm:py-6 md:translate-x-8 md:translate-y-10">
+          <div className="relative max-w-2xl translate-x-4 translate-y-12 rounded-xl border border-white/10 bg-navy/50 px-4 py-5 backdrop-blur-sm sm:translate-x-6 sm:translate-y-16 sm:px-5 sm:py-6 md:translate-x-8 md:translate-y-20">
             <h1 className="text-2xl font-extrabold leading-tight tracking-tight text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.45)] sm:text-3xl md:text-4xl lg:text-5xl">
               با آوید، به سرمایه‌گذاری واقعی فکر کن
             </h1>
