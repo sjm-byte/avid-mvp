@@ -5,6 +5,7 @@ import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 
 /** Iranian mobile: 09 followed by 9 digits (Persian/Arabic digits normalized). */
 function normalizeIranPhone(raw: string): string {
@@ -24,7 +25,12 @@ type Feedback =
   | { type: "error"; message: string }
   | null;
 
-export function ConsultationSupportSignupCard() {
+export function ConsultationSupportSignupCard({
+  layout = "banner",
+}: {
+  layout?: "banner" | "tile";
+}) {
+  const isTile = layout === "tile";
   const [phone, setPhone] = useState("");
   const [feedback, setFeedback] = useState<Feedback>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -74,7 +80,12 @@ export function ConsultationSupportSignupCard() {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-gold/30 bg-gradient-to-br from-background via-gold/[0.06] to-navy/[0.04] p-4 shadow-[0_10px_40px_-24px_rgba(13,27,62,0.45)] sm:p-5">
+    <div
+      className={cn(
+        "relative overflow-hidden rounded-2xl border border-gold/30 bg-gradient-to-br from-background via-gold/[0.06] to-navy/[0.04] p-4 shadow-[0_10px_40px_-24px_rgba(13,27,62,0.45)] sm:p-5",
+        isTile && "flex h-full flex-col",
+      )}
+    >
       <div
         className="pointer-events-none absolute -left-8 -top-8 size-24 rounded-full bg-gold/10 blur-2xl"
         aria-hidden
@@ -101,7 +112,10 @@ export function ConsultationSupportSignupCard() {
 
       <form
         onSubmit={handleSubmit}
-        className="relative mt-4 flex flex-col gap-2.5 sm:flex-row sm:items-end"
+        className={cn(
+          "relative mt-4 flex flex-col gap-2.5",
+          isTile ? "mt-auto" : "sm:flex-row sm:items-end",
+        )}
       >
         <div className="min-w-0 flex-1 space-y-1.5">
           <Label htmlFor="consultation-phone" className="text-xs text-muted-foreground">
