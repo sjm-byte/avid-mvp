@@ -24,9 +24,7 @@ export function PublicFooter() {
           <div>
             <AvidLogo href="/" imageClassName="h-12" />
             <p className="mt-3 text-sm leading-relaxed text-white/70">
-              پلتفرم مدیریت مشارکت پروژه‌ای. پروژه‌ها را جداگانه بررسی کنید،
-              ریسک‌ها را ببینید و وضعیت سرمایه خود را مرحله‌به‌مرحله دنبال
-              کنید.
+              بستری برای مشارکت در اقتصاد
             </p>
           </div>
 

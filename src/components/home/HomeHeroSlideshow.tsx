@@ -66,7 +66,7 @@ export function HomeHeroSlideshow({
         {children}
         <div className="container mx-auto max-w-6xl px-4 pb-8 sm:pb-10">
           <div
-            className="flex flex-wrap gap-1.5 sm:gap-2"
+            className="inline-flex flex-wrap items-center gap-2 rounded-full bg-navy/55 px-3 py-2 backdrop-blur-sm ring-1 ring-white/15 sm:gap-2.5 sm:px-3.5 sm:py-2.5"
             aria-label="انتخاب تصویر پس‌زمینه"
           >
             {SLIDES.map((src, index) => (
@@ -74,10 +74,13 @@ export function HomeHeroSlideshow({
                 key={src}
                 type="button"
                 aria-label={`تصویر ${index + 1}`}
+                aria-current={index === current ? "true" : undefined}
                 onClick={() => setCurrent(index)}
                 className={cn(
-                  "h-2 w-2 shrink-0 rounded-full border-2 border-gold/70 transition sm:h-2.5 sm:w-2.5",
-                  index === current ? "scale-110 bg-gold" : "bg-transparent",
+                  "shrink-0 rounded-full transition-all duration-300",
+                  index === current
+                    ? "h-2.5 w-6 bg-gold shadow-[0_0_10px_rgba(212,175,55,0.55)] sm:h-3 sm:w-7"
+                    : "h-2.5 w-2.5 bg-white/55 ring-1 ring-white/70 hover:bg-white/80 sm:h-3 sm:w-3",
                 )}
               />
             ))}
