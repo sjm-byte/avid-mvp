@@ -1,6 +1,7 @@
 /** Public office contact details for Avid. */
 export const companyPhoneDisplay = "۰۲۱ ۹۱۰۳ ۵۹۱۴";
 export const companyPhoneTel = "02191035914";
+export const companyEmail = "info@avidinvest.ir";
 
 export const companyAddressLines = [
   "تهران، ستارخان، خیابان حبیب‌الله",

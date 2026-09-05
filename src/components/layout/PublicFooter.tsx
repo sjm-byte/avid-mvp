@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AvidLogo } from "@/components/brand/AvidLogo";
-import { RiskDisclosureBox } from "@/components/shared/RiskDisclosureBox";
 import { Separator } from "@/components/ui/separator";
 import {
-  companyAddressLines,
+  companyAddressFull,
+  companyEmail,
   companyPhoneDisplay,
   companyPhoneTel,
 } from "@/lib/company-contact";
@@ -29,6 +29,7 @@ export function PublicFooter() {
               کنید.
             </p>
           </div>
+
           <div>
             <p className="font-medium text-gold">دسترسی سریع</p>
             <ul className="mt-3 space-y-2 text-sm text-white/70">
@@ -48,32 +49,40 @@ export function PublicFooter() {
                 </Link>
               </li>
             </ul>
-            <div className="mt-5 space-y-2 text-sm text-white/70">
-              <p className="font-medium text-gold">دفتر شرکت</p>
+          </div>
+
+          <div className="space-y-3 text-sm text-white/70">
+            <p className="font-medium text-gold">دفتر شرکت</p>
+            <p>
+              <span className="text-white/90">شماره تماس: </span>
               <a
                 href={`tel:${companyPhoneTel}`}
                 dir="ltr"
-                className="inline-block tracking-wide text-white hover:text-gold"
+                className="tracking-wide text-white hover:text-gold"
               >
                 {companyPhoneDisplay}
               </a>
-              <address className="not-italic leading-relaxed">
-                {companyAddressLines.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-              </address>
-            </div>
-          </div>
-          <div>
-            <RiskDisclosureBox variant="compact" />
+            </p>
+            <p>
+              <span className="text-white/90">آدرس دفتر: </span>
+              <span>{companyAddressFull}</span>
+            </p>
+            <p>
+              <span className="text-white/90">ایمیل: </span>
+              <a
+                href={`mailto:${companyEmail}`}
+                dir="ltr"
+                className="text-white hover:text-gold"
+              >
+                {companyEmail}
+              </a>
+            </p>
           </div>
         </div>
+
         <Separator className="my-8 bg-white/10" />
         <p className="text-center text-xs text-white/50">
-          © {new Date().getFullYear()} آوید — تمامی حقوق محفوظ است. این
-          پلتفرم صندوق سرمایه‌گذاری رسمی نیست.
+          © {new Date().getFullYear()} آوید — تمامی حقوق محفوظ است.
         </p>
       </div>
     </footer>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import {
   companyAddressLines,
+  companyEmail,
   companyPhoneDisplay,
   companyPhoneTel,
 } from "@/lib/company-contact";
@@ -36,7 +37,7 @@ export default function ContactPage() {
                 <Phone className="size-4" aria-hidden />
               </span>
               <div className="min-w-0 space-y-1">
-                <p className="text-sm font-medium text-foreground">تلفن دفتر</p>
+                <p className="text-sm font-medium text-foreground">شماره تماس</p>
                 <a
                   href={`tel:${companyPhoneTel}`}
                   dir="ltr"
@@ -60,6 +61,22 @@ export default function ContactPage() {
                     </span>
                   ))}
                 </address>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold/35 bg-gold/10 text-gold">
+                <Mail className="size-4" aria-hidden />
+              </span>
+              <div className="min-w-0 space-y-1">
+                <p className="text-sm font-medium text-foreground">ایمیل</p>
+                <a
+                  href={`mailto:${companyEmail}`}
+                  dir="ltr"
+                  className="inline-block text-base font-semibold tracking-wide text-navy hover:text-navy-light"
+                >
+                  {companyEmail}
+                </a>
               </div>
             </div>
           </CardContent>
