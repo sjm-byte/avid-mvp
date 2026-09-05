@@ -62,9 +62,9 @@ export function HomeHeroSlideshow({
         style={{ background: HERO_OVERLAY }}
         aria-hidden
       />
-      <div className="relative z-10 flex min-h-[85dvh] flex-col justify-center pt-14 sm:min-h-dvh sm:pt-16 md:pt-14">
+      <div className="relative z-10 flex min-h-[85dvh] flex-col justify-end gap-5 pb-10 pt-28 sm:min-h-dvh sm:gap-6 sm:pb-14 sm:pt-32 md:pb-16">
         {children}
-        <div className="container mx-auto max-w-6xl px-4 pb-8 sm:pb-10">
+        <div className="container mx-auto max-w-6xl px-4">
           <div
             className="inline-flex flex-wrap items-center gap-2 rounded-full bg-navy/55 px-3 py-2 backdrop-blur-sm ring-1 ring-white/15 sm:gap-2.5 sm:px-3.5 sm:py-2.5"
             aria-label="انتخاب تصویر پس‌زمینه"
