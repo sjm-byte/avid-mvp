@@ -5,6 +5,11 @@ import { usePathname } from "next/navigation";
 import { AvidLogo } from "@/components/brand/AvidLogo";
 import { RiskDisclosureBox } from "@/components/shared/RiskDisclosureBox";
 import { Separator } from "@/components/ui/separator";
+import {
+  companyAddressLines,
+  companyPhoneDisplay,
+  companyPhoneTel,
+} from "@/lib/company-contact";
 
 export function PublicFooter() {
   const pathname = usePathname();
@@ -43,6 +48,23 @@ export function PublicFooter() {
                 </Link>
               </li>
             </ul>
+            <div className="mt-5 space-y-2 text-sm text-white/70">
+              <p className="font-medium text-gold">دفتر شرکت</p>
+              <a
+                href={`tel:${companyPhoneTel}`}
+                dir="ltr"
+                className="inline-block tracking-wide text-white hover:text-gold"
+              >
+                {companyPhoneDisplay}
+              </a>
+              <address className="not-italic leading-relaxed">
+                {companyAddressLines.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
+              </address>
+            </div>
           </div>
           <div>
             <RiskDisclosureBox variant="compact" />
