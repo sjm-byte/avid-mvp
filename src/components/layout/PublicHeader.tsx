@@ -76,10 +76,7 @@ export function PublicHeader() {
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-50 max-w-full transition-all duration-300 ease-out",
-          "border-b border-gold/25",
-          "bg-[rgba(13,27,62,0.42)] backdrop-blur-md backdrop-saturate-150",
-          "supports-[backdrop-filter]:bg-[rgba(13,27,62,0.32)]",
-          "shadow-[0_1px_0_rgba(201,162,39,0.12)]",
+          "border-b border-gold/25 bg-navy shadow-sm",
           visible
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-full opacity-0",
