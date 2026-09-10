@@ -90,13 +90,10 @@ export default async function ProjectDetailPage({
                 <Link href="/dashboard/investments">مشارکت‌های ثبت‌شده من</Link>
               </Button>
             ) : (
-              <Button variant="outline" size="sm" asChild>
-                <Link href="/login">ورود به پنل</Link>
+              <Button size="sm" asChild>
+                <Link href="/contact">تماس با تیم آوید</Link>
               </Button>
             )}
-            <Button variant="link" size="sm" className="h-auto p-0" asChild>
-              <Link href="/contact">تماس با تیم آوید</Link>
-            </Button>
           </CardContent>
         </Card>
       </div>

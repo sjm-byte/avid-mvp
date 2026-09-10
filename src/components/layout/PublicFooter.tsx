@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import {
   companyAddressFull,
   companyEmail,
+  companyLegalName,
   companyPhoneDisplay,
   companyPhoneTel,
 } from "@/lib/company-contact";
@@ -80,7 +81,7 @@ export function PublicFooter() {
 
         <Separator className="my-8 bg-white/10" />
         <p className="text-center text-xs text-white/50">
-          © {new Date().getFullYear()} آوید — تمامی حقوق محفوظ است.
+          © {new Date().getFullYear()} {companyLegalName} — تمامی حقوق محفوظ است.
         </p>
       </div>
     </footer>

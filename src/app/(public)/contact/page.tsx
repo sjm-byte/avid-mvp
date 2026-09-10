@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import {
   Card,
@@ -122,11 +121,7 @@ export default function ContactPage() {
                 >
                   {companyPhoneDisplay}
                 </a>{" "}
-                تماس بگیرید یا از{" "}
-                <Link href="/login" className="text-primary hover:underline">
-                  ورود آزمایشی
-                </Link>{" "}
-                استفاده کنید.
+                تماس بگیرید.
               </p>
             </form>
           </CardContent>

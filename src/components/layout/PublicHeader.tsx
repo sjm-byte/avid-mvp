@@ -123,21 +123,12 @@ export function PublicHeader() {
               )}
             </Button>
             <Button
-              variant="ghost"
-              size="sm"
-              asChild
-              className="hidden text-white/90 hover:bg-white/10 hover:text-gold min-[380px]:inline-flex sm:inline-flex"
-              tabIndex={headerInteractive ? undefined : -1}
-            >
-              <Link href="/login">ورود</Link>
-            </Button>
-            <Button
               size="sm"
               asChild
               className="rounded-full bg-gold px-3 text-navy shadow-sm hover:bg-gold-light sm:px-4"
               tabIndex={headerInteractive ? undefined : -1}
             >
-              <Link href="/signup">ثبت‌نام</Link>
+              <Link href="/contact">تماس با ما</Link>
             </Button>
           </div>
         </div>
@@ -170,13 +161,13 @@ export function PublicHeader() {
               </Link>
             </li>
           ))}
-          <li className="border-t border-white/10 pt-2 sm:hidden">
+          <li className="border-t border-white/10 pt-2 md:hidden">
             <Link
-              href="/login"
-              className="block rounded-md px-3 py-2.5 text-sm font-medium text-white/90 hover:bg-white/10 hover:text-gold"
+              href="/contact"
+              className="block rounded-md px-3 py-2.5 text-sm font-medium text-gold hover:bg-white/10"
               onClick={() => setMobileNavOpen(false)}
             >
-              ورود
+              تماس با ما
             </Link>
           </li>
         </ul>

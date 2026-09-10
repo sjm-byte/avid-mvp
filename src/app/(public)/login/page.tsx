@@ -1,15 +1,9 @@
-import { LoginForm } from "@/components/auth/LoginForm";
+import { AuthUnavailableNotice } from "@/components/auth/AuthUnavailableNotice";
 
-interface LoginPageProps {
-  searchParams: Promise<{ redirect?: string }>;
-}
-
-export default async function LoginPage({ searchParams }: LoginPageProps) {
-  const { redirect } = await searchParams;
-
+export default function LoginPage() {
   return (
     <div className="flex min-h-[calc(100vh-8rem)] items-center justify-center px-4 py-12">
-      <LoginForm redirectTo={redirect} />
+      <AuthUnavailableNotice title="ورود به‌زودی" />
     </div>
   );
 }
