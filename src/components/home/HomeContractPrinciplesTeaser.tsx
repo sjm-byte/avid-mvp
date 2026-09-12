@@ -29,7 +29,8 @@ export function HomeContractPrinciplesTeaser() {
             قبل از مشارکت، این را بدانید
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
-            چکیده اصول قراردادی آوید؛ جزئیات کامل در صفحه شفافیت آمده است.
+            چکیده اصول قراردادی آوید؛ پیش از انتخاب طرح، جزئیات را در صفحه
+            شفافیت بخوانید.
           </p>
         </div>
 
