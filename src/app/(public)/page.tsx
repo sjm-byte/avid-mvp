@@ -4,6 +4,7 @@ import { getFeaturedPublicProjects } from "@/lib/data/public-projects";
 import { Button } from "@/components/ui/button";
 import { PublicProjectCard } from "@/components/projects/PublicProjectCard";
 import { HomeHeroSlideshow } from "@/components/home/HomeHeroSlideshow";
+import { HomeContractPrinciplesTeaser } from "@/components/home/HomeContractPrinciplesTeaser";
 import { ParticipationPathSection } from "@/components/home/ParticipationPathSection";
 import { TransparencyStatsCards } from "@/components/transparency/TransparencyStatsCards";
 import {
@@ -78,6 +79,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <HomeContractPrinciplesTeaser />
 
       {/* Investment plans */}
       <section className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
