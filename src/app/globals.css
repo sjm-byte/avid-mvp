@@ -38,6 +38,17 @@
     @apply border-border;
   }
 
+  html {
+    /* Keep hash/focus scroll targets below the fixed public header (56px / 72px). */
+    scroll-padding-top: 3.5rem;
+  }
+
+  @media (min-width: 640px) {
+    html {
+      scroll-padding-top: 4.5rem;
+    }
+  }
+
   html,
   body {
     @apply max-w-full overflow-x-hidden;
@@ -45,6 +56,17 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Anchor headings and in-page sections clear the sticky header. */
+  :where(h1, h2, h3, h4, section, [id]) {
+    scroll-margin-top: 3.5rem;
+  }
+
+  @media (min-width: 640px) {
+    :where(h1, h2, h3, h4, section, [id]) {
+      scroll-margin-top: 4.5rem;
+    }
   }
 }
 

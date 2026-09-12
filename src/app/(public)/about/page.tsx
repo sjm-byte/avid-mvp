@@ -1,5 +1,14 @@
 import { RiskDisclosureBox } from "@/components/shared/RiskDisclosureBox";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  companyAddressFull,
+  companyEmail,
+  companyLegalName,
+  companyNationalId,
+  companyPhoneDisplay,
+  companyRegistrationNumber,
+} from "@/lib/company-contact";
+import { toPersianDigits } from "@/lib/utils";
 
 const principles = [
   "هر پروژه مستقل است و سرمایه‌گذار هر پروژه را جداگانه انتخاب می‌کند.",
@@ -19,6 +28,56 @@ export default function AboutPage() {
         ریسک‌ها و شرایط هر پروژه را بخوانند و وضعیت سرمایه خود را در طول
         اجرا دنبال کنند.
       </p>
+
+      <div className="mt-10">
+        <h2 className="text-xl font-semibold">هویت حقوقی</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          فعالیت پلتفرم آوید تحت شخصیت حقوقی زیر انجام می‌شود.
+        </p>
+        <Card className="mt-4 max-w-2xl border-gold/25">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base font-semibold text-navy">
+              {companyLegalName}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3 text-sm">
+            <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border/60 pb-3">
+              <span className="text-muted-foreground">شماره ثبت</span>
+              <span className="font-semibold tracking-wide" dir="ltr">
+                {toPersianDigits(companyRegistrationNumber)}
+              </span>
+            </div>
+            <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border/60 pb-3">
+              <span className="text-muted-foreground">شناسه ملی</span>
+              <span className="font-semibold tracking-wide" dir="ltr">
+                {toPersianDigits(companyNationalId)}
+              </span>
+            </div>
+            <div className="space-y-1 pt-1">
+              <p className="text-muted-foreground">نشانی دفتر</p>
+              <p className="leading-relaxed text-foreground">
+                {companyAddressFull}
+              </p>
+            </div>
+            <div className="flex flex-wrap items-baseline justify-between gap-2 pt-1">
+              <span className="text-muted-foreground">تماس</span>
+              <span className="font-medium tracking-wide" dir="ltr">
+                {companyPhoneDisplay}
+              </span>
+            </div>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <span className="text-muted-foreground">ایمیل</span>
+              <a
+                href={`mailto:${companyEmail}`}
+                dir="ltr"
+                className="font-medium text-navy hover:text-navy-light"
+              >
+                {companyEmail}
+              </a>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
 
       <div className="mt-10">
         <h2 className="text-xl font-semibold">اصول کلیدی</h2>

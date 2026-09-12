@@ -51,13 +51,13 @@ function StatValue({
 
 export function TransparencyStatsCards() {
   return (
-    <div className="mx-auto grid w-full max-w-5xl gap-4 sm:grid-cols-3 sm:gap-5">
+    <div className="mx-auto grid w-full max-w-3xl gap-4 sm:grid-cols-3 sm:gap-4">
       {stats.map((stat) => (
         <Card
           key={stat.label}
           className="border-muted/60 shadow-sm transition-shadow hover:shadow-md"
         >
-          <CardContent className="flex min-h-[7.5rem] flex-col items-center justify-center space-y-2 px-5 py-7 text-center sm:min-h-[8.25rem] sm:px-6 sm:py-8">
+          <CardContent className="flex aspect-[5/4] flex-col items-center justify-center space-y-2 px-4 py-6 text-center sm:px-5 sm:py-7">
             <StatValue
               plus={stat.plus}
               number={stat.number}
