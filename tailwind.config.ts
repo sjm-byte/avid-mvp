@@ -56,6 +56,15 @@ const config: Config = {
           DEFAULT: "hsl(var(--navy))",
           light: "hsl(var(--navy-light))",
         },
+        /** Mobile-only Yas-inspired surface tokens (do not use on desktop chrome). */
+        yas: {
+          ink: "#292334",
+          purple: "#7B60A1",
+          "purple-soft": "#946CB9",
+          night: "#0B0D12",
+          panel: "#161B26",
+          mist: "#F4F2F7",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
