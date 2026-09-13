@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { Phone } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 function normalizeIranPhone(raw: string): string {
@@ -16,20 +16,8 @@ function isValidIranMobile(phone: string): boolean {
   return /^09\d{9}$/.test(phone);
 }
 
-export function MobilePhoneCapture({
-  title,
-  highlight,
-  subtitle,
-  submitLabel = "ثبت",
-  className,
-}: {
-  title: string;
-  /** Word inside title rendered in purple (Yas “یاس” treatment). */
-  highlight?: string;
-  subtitle?: string;
-  submitLabel?: string;
-  className?: string;
-}) {
+/** Compact consultation form — same content as desktop card, mobile Yas styling. */
+export function MobilePhoneCapture({ className }: { className?: string }) {
   const [phone, setPhone] = useState("");
   const [feedback, setFeedback] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -64,66 +52,65 @@ export function MobilePhoneCapture({
     }
   }
 
-  const titleNode =
-    highlight && title.includes(highlight) ? (
-      <>
-        {title.slice(0, title.indexOf(highlight))}
-        <span className="text-yas-purple">{highlight}</span>
-        {title.slice(title.indexOf(highlight) + highlight.length)}
-      </>
-    ) : (
-      title
-    );
-
   return (
     <div
       className={cn(
-        "rounded-[1.35rem] border border-white/70 bg-white/92 p-4 shadow-[0_28px_70px_rgba(72,56,85,0.12),inset_0_1px_0_rgba(255,255,255,0.86)] backdrop-blur-md",
+        "rounded-2xl border border-yas-purple/20 bg-white p-4 shadow-[0_16px_40px_-24px_rgba(72,56,85,0.35)]",
         className,
       )}
     >
-      <h1 className="text-[1.35rem] font-extrabold leading-snug text-yas-ink">
-        {titleNode}
-      </h1>
-      {subtitle ? (
-        <p className="mt-1.5 text-sm text-yas-ink/55">{subtitle}</p>
-      ) : null}
+      <div className="flex items-start gap-3">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-yas-purple/12 text-yas-purple">
+          <Sparkles className="size-4" aria-hidden />
+        </span>
+        <h3 className="pt-1.5 text-base font-semibold text-yas-ink">
+          درخواست مشاوره و اعلام آمادگی
+        </h3>
+      </div>
 
-      <form onSubmit={handleSubmit} className="mt-4 flex gap-2">
-        <label className="relative min-w-0 flex-1">
-          <span className="sr-only">شماره موبایل</span>
-          <Phone
-            className="pointer-events-none absolute end-3 top-1/2 size-4 -translate-y-1/2 text-yas-ink/35"
-            aria-hidden
-          />
+      <form onSubmit={handleSubmit} className="mt-4 space-y-3">
+        <div className="space-y-1.5">
+          <label
+            htmlFor="mobile-consultation-phone"
+            className="block text-xs text-yas-ink/55"
+          >
+            شماره موبایل
+          </label>
           <input
+            id="mobile-consultation-phone"
             type="tel"
             inputMode="numeric"
             autoComplete="tel"
             dir="ltr"
-            placeholder="شماره موبایل"
+            placeholder="09121234567"
             value={phone}
             onChange={(e) => {
               setPhone(e.target.value);
               setError(null);
               setFeedback(null);
             }}
-            className="h-11 w-full rounded-xl border border-black/8 bg-white pe-10 ps-3 text-left text-sm outline-none ring-yas-purple/25 focus:ring-2"
+            className="h-11 w-full rounded-xl border border-yas-purple/20 bg-yas-mist/60 px-3 text-left text-sm text-yas-ink outline-none ring-yas-purple/25 placeholder:text-yas-ink/35 focus:ring-2"
+            aria-invalid={error ? true : undefined}
           />
-        </label>
+        </div>
         <button
           type="submit"
           disabled={submitting}
-          className="h-11 shrink-0 rounded-xl bg-yas-purple px-5 text-sm font-bold text-white disabled:opacity-60"
+          className="h-11 w-full rounded-full bg-yas-purple text-sm font-semibold text-white disabled:opacity-60"
         >
-          {submitting ? "…" : submitLabel}
+          {submitting ? "در حال ثبت…" : "ثبت درخواست"}
         </button>
       </form>
+
       {error ? (
         <p className="mt-2 text-xs text-red-600">{error}</p>
       ) : feedback ? (
         <p className="mt-2 text-xs text-emerald-700">{feedback}</p>
-      ) : null}
+      ) : (
+        <p className="mt-2 text-center text-[11px] leading-relaxed text-yas-ink/50">
+          اطلاعات شما فقط برای تماس تیم آوید استفاده می‌شود.
+        </p>
+      )}
     </div>
   );
 }

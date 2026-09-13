@@ -229,10 +229,7 @@ export function MobileHomePage({
 
       {/* Participation path — after projects */}
       <section className="bg-yas-mist px-4 py-10">
-        <p className="text-center text-xs font-semibold text-yas-purple">
-          ۳ گام شفاف
-        </p>
-        <h2 className="mt-2 text-center text-xl font-bold">مسیر مشارکت در آوید</h2>
+        <h2 className="text-center text-xl font-bold">مسیر مشارکت در آوید</h2>
         <ul className="mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {steps.map((item) => {
             const Icon = item.icon;
@@ -260,21 +257,9 @@ export function MobileHomePage({
         </ul>
       </section>
 
-      {/* Consultation */}
+      {/* Consultation — single card, no duplicate headings */}
       <section className="bg-gradient-to-b from-[#EDE7F5] to-white px-4 py-10">
-        <h2 className="text-center text-xl font-bold">
-          درخواست مشاوره و اعلام آمادگی
-        </h2>
-        <p className="mt-2 text-center text-sm text-yas-ink/65">
-          اگر آماده‌اید یا سوال دارید، شماره بگذارید تا تماس بگیریم.
-        </p>
-        <div className="mt-5">
-          <MobilePhoneCapture
-            title="شماره موبایل خود را وارد کنید"
-            subtitle="تیم آوید در اسرع وقت با شما تماس می‌گیرد"
-            submitLabel="ثبت درخواست"
-          />
-        </div>
+        <MobilePhoneCapture />
       </section>
 
       {/* FAQ */}
