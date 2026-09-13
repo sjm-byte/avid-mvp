@@ -55,15 +55,15 @@ export function MobilePhoneCapture({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "rounded-2xl border border-yas-purple/20 bg-white p-4 shadow-[0_16px_40px_-24px_rgba(72,56,85,0.35)]",
+        "rounded-2xl border border-white/10 bg-[#16131f] p-4",
         className,
       )}
     >
       <div className="flex items-start gap-3">
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-yas-purple/12 text-yas-purple">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#7B60A1]/25 text-[#B9A0D4]">
           <Sparkles className="size-4" aria-hidden />
         </span>
-        <h3 className="pt-1.5 text-base font-semibold text-yas-ink">
+        <h3 className="pt-1.5 text-base font-semibold text-white">
           درخواست مشاوره و اعلام آمادگی
         </h3>
       </div>
@@ -72,7 +72,7 @@ export function MobilePhoneCapture({ className }: { className?: string }) {
         <div className="space-y-1.5">
           <label
             htmlFor="mobile-consultation-phone"
-            className="block text-xs text-yas-ink/55"
+            className="block text-xs text-white/55"
           >
             شماره موبایل
           </label>
@@ -89,25 +89,25 @@ export function MobilePhoneCapture({ className }: { className?: string }) {
               setError(null);
               setFeedback(null);
             }}
-            className="h-11 w-full rounded-xl border border-yas-purple/20 bg-yas-mist/60 px-3 text-left text-sm text-yas-ink outline-none ring-yas-purple/25 placeholder:text-yas-ink/35 focus:ring-2"
+            className="h-11 w-full rounded-xl border border-white/15 bg-[#0B0D12] px-3 text-left text-sm text-white outline-none ring-[#7B60A1]/40 placeholder:text-white/35 focus:ring-2"
             aria-invalid={error ? true : undefined}
           />
         </div>
         <button
           type="submit"
           disabled={submitting}
-          className="h-11 w-full rounded-full bg-yas-purple text-sm font-semibold text-white disabled:opacity-60"
+          className="h-11 w-full rounded-full bg-[#7B60A1] text-sm font-semibold text-white disabled:opacity-60"
         >
           {submitting ? "در حال ثبت…" : "ثبت درخواست"}
         </button>
       </form>
 
       {error ? (
-        <p className="mt-2 text-xs text-red-600">{error}</p>
+        <p className="mt-2 text-xs text-red-300">{error}</p>
       ) : feedback ? (
-        <p className="mt-2 text-xs text-emerald-700">{feedback}</p>
+        <p className="mt-2 text-xs text-emerald-300">{feedback}</p>
       ) : (
-        <p className="mt-2 text-center text-[11px] leading-relaxed text-yas-ink/50">
+        <p className="mt-2 text-center text-[11px] leading-relaxed text-white/45">
           اطلاعات شما فقط برای تماس تیم آوید استفاده می‌شود.
         </p>
       )}
