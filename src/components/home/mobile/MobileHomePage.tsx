@@ -81,27 +81,29 @@ const stats = [
   { label: "میانگین سود ماهانه محقق‌شده", value: "+۵٪" },
 ] as const;
 
+/** Alternating bands: dark → mid-purple → dark → light → dark → soft. */
 export function MobileHomePage({
   projects,
 }: {
   projects: PublicProject[];
 }) {
   return (
-    <div className="bg-[#0B0D12] text-white">
+    <div className="bg-[#18141f] text-white">
       <MobileHomeHero />
 
+      {/* Dark */}
       <section className="px-4 py-10">
         <h2 className="text-center text-xl font-bold leading-snug text-white">
           خلاصه عملکرد آوید در یک نگاه
         </h2>
-        <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-[#16131f]">
-          <div className="grid grid-cols-3 divide-x divide-x-reverse divide-white/10">
+        <div className="mt-6 overflow-hidden rounded-2xl border border-white/12 bg-[#242030]">
+          <div className="grid grid-cols-3 divide-x divide-x-reverse divide-white/12">
             {stats.map((stat) => (
               <div key={stat.label} className="px-2 py-4 text-center">
-                <p className="text-[10px] leading-relaxed text-white/50">
+                <p className="text-[10px] leading-relaxed text-white/55">
                   {stat.label}
                 </p>
-                <p className="mt-2 text-sm font-bold leading-snug text-[#B9A0D4]">
+                <p className="mt-2 text-sm font-bold leading-snug text-[#C9B4DE]">
                   {stat.value}
                 </p>
               </div>
@@ -110,11 +112,12 @@ export function MobileHomePage({
         </div>
       </section>
 
+      {/* Lighter purple */}
       <section
         className="py-10 text-white"
         style={{
           backgroundImage:
-            "radial-gradient(70% 55% at 80% 0%, rgba(148,108,185,0.45), transparent 62%), linear-gradient(165deg, #2a1b45 0%, #3a2760 45%, #241833 100%)",
+            "radial-gradient(70% 55% at 80% 0%, rgba(168,128,205,0.4), transparent 62%), linear-gradient(165deg, #3a2860 0%, #4a3578 45%, #322250 100%)",
         }}
       >
         <h2 className="px-4 text-center text-[1.35rem] font-bold leading-snug">
@@ -130,18 +133,18 @@ export function MobileHomePage({
               <li key={item.id} className="w-[78%] shrink-0 snap-center">
                 <Link
                   href={transparencySectionHref(item.id)}
-                  className="flex h-full min-h-[11rem] flex-col rounded-2xl border border-white/18 bg-white/10 p-5 backdrop-blur-sm"
+                  className="flex h-full min-h-[11rem] flex-col rounded-2xl border border-white/20 bg-white/12 p-5 backdrop-blur-sm"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-3xl font-extrabold leading-none tracking-tight text-[#D4AF37]">
                       {item.step}
                     </span>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#946CB9]/35 text-[#E2D4F0]">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#A07CC4]/40 text-[#F0E6FA]">
                       <Icon className="size-4" aria-hidden />
                     </span>
                   </div>
                   <h3 className="mt-5 text-lg font-semibold">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/70">
+                  <p className="mt-2 text-sm leading-relaxed text-white/75">
                     {item.hook}
                   </p>
                 </Link>
@@ -152,7 +155,7 @@ export function MobileHomePage({
         <div className="mt-8 flex justify-center px-4">
           <Link
             href="/transparency"
-            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#946CB9] px-5 py-3 text-sm font-semibold text-white"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#A07CC4] px-5 py-3 text-sm font-semibold text-white"
           >
             <Eye className="size-4" aria-hidden />
             صفحه شفافیت آوید
@@ -160,10 +163,11 @@ export function MobileHomePage({
         </div>
       </section>
 
+      {/* Dark */}
       <section className="px-4 py-10">
         <div className="flex items-end justify-between gap-3">
           <h2 className="text-xl font-bold text-white">طرح‌های سرمایه‌گذاری</h2>
-          <Link href="/projects" className="text-sm font-medium text-[#B9A0D4]">
+          <Link href="/projects" className="text-sm font-medium text-[#C9B4DE]">
             همه
           </Link>
         </div>
@@ -172,38 +176,38 @@ export function MobileHomePage({
             <li key={project.id} className="w-[82%] shrink-0 snap-center">
               <Link
                 href={`/projects/${project.slug}`}
-                className="block overflow-hidden rounded-2xl border border-white/10 bg-[#16131f]"
+                className="block overflow-hidden rounded-2xl border border-white/12 bg-[#242030]"
               >
                 <SafeProjectCoverImage
                   src={project.image}
                   alt={project.title}
                   aspectClassName="aspect-[5/3]"
-                  className="rounded-none border-b border-white/10"
+                  className="rounded-none border-b border-white/12"
                 />
                 <div className="p-4">
                   <h3 className="text-base font-semibold leading-snug text-white">
                     {project.title}
                   </h3>
-                  <p className="mt-1 text-xs text-white/50">{project.activity}</p>
-                  <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-white/85">
+                  <p className="mt-1 text-xs text-white/55">{project.activity}</p>
+                  <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-white/90">
                     <div>
-                      <p className="text-white/40">مبلغ</p>
+                      <p className="text-white/45">مبلغ</p>
                       <p className="mt-0.5 font-semibold">
                         {formatPersianNumber(project.amount)} تومان
                       </p>
                     </div>
                     <div>
-                      <p className="text-white/40">شروع</p>
+                      <p className="text-white/45">شروع</p>
                       <p className="mt-0.5 font-semibold" dir="ltr">
                         {formatJalaliDateDisplay(project.startDate)}
                       </p>
                     </div>
                     <div>
-                      <p className="text-white/40">مدت</p>
+                      <p className="text-white/45">مدت</p>
                       <p className="mt-0.5 font-semibold">{project.duration}</p>
                     </div>
                     <div>
-                      <p className="text-white/40">بازده پیش‌بینی</p>
+                      <p className="text-white/45">بازده پیش‌بینی</p>
                       <p className="mt-0.5 font-semibold leading-snug">
                         {project.predictedReturn.replace(
                           /^بازده پیش‌بینی‌شده\s*/,
@@ -212,7 +216,7 @@ export function MobileHomePage({
                       </p>
                     </div>
                   </div>
-                  <p className="mt-3 text-[10px] leading-relaxed text-amber-200/80">
+                  <p className="mt-3 text-[10px] leading-relaxed text-amber-100/85">
                     این عدد پیش‌بینی است و سود قطعی یا تضمینی محسوب نمی‌شود.
                   </p>
                 </div>
@@ -222,8 +226,15 @@ export function MobileHomePage({
         </ul>
       </section>
 
-      <section className="px-4 py-10">
-        <h2 className="text-center text-xl font-bold text-white">
+      {/* Light — participation path */}
+      <section
+        className="px-4 py-10 text-[#292334]"
+        style={{
+          backgroundImage:
+            "radial-gradient(80% 55% at 0% 0%, rgba(210,228,245,0.9), transparent 65%), linear-gradient(180deg, #eaf0fb 0%, #efe8f7 100%)",
+        }}
+      >
+        <h2 className="text-center text-xl font-bold text-[#2A4A6E]">
           مسیر مشارکت در آوید
         </h2>
         <ul className="mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -233,17 +244,17 @@ export function MobileHomePage({
               <li key={item.step} className="w-[72%] shrink-0 snap-center">
                 <Link
                   href={item.href}
-                  className="flex h-full flex-col rounded-2xl border border-white/10 bg-[#16131f] p-5"
+                  className="flex h-full flex-col rounded-2xl border border-[#8aa9c8]/30 bg-white/95 p-5 shadow-[0_12px_28px_-18px_rgba(42,74,110,0.35)]"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-extrabold text-[#B9A0D4]">
+                    <span className="text-2xl font-extrabold text-[#2A4A6E]/85">
                       {item.step}
                     </span>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/8 text-[#B9A0D4]">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#2A4A6E]/10 text-[#2A4A6E]">
                       <Icon className="size-4" aria-hidden />
                     </span>
                   </div>
-                  <h3 className="mt-5 text-base font-semibold leading-snug text-white">
+                  <h3 className="mt-5 text-base font-semibold leading-snug text-[#292334]">
                     {item.title}
                   </h3>
                 </Link>
@@ -253,11 +264,19 @@ export function MobileHomePage({
         </ul>
       </section>
 
+      {/* Dark */}
       <section className="px-4 py-10">
         <MobilePhoneCapture />
       </section>
 
-      <section className="px-4 py-10 pb-14">
+      {/* Soft lighter band */}
+      <section
+        className="px-4 py-10 pb-14"
+        style={{
+          backgroundImage:
+            "linear-gradient(180deg, #2a2438 0%, #221e30 55%, #1c1826 100%)",
+        }}
+      >
         <h2 className="text-center text-xl font-bold text-white">
           سوالات پرتکرار
         </h2>
@@ -267,14 +286,14 @@ export function MobileHomePage({
             return (
               <details
                 key={item.q}
-                className="group rounded-2xl border border-white/10 bg-[#16131f]"
+                className="group rounded-2xl border border-white/12 bg-[#2e2840]"
                 open={index === 0}
               >
                 <summary className="cursor-pointer list-none px-4 py-3.5 text-sm font-semibold text-white marker:content-none [&::-webkit-details-marker]:hidden">
-                  <span className="me-2 text-[#B9A0D4]">{step}</span>
+                  <span className="me-2 text-[#C9B4DE]">{step}</span>
                   {item.q}
                 </summary>
-                <p className="border-t border-white/10 px-4 py-3 text-sm leading-relaxed text-white/65">
+                <p className="border-t border-white/10 px-4 py-3 text-sm leading-relaxed text-white/70">
                   {item.a}
                 </p>
               </details>
@@ -283,7 +302,7 @@ export function MobileHomePage({
         </div>
         <Link
           href="/faq"
-          className="mt-5 block text-center text-sm font-medium text-[#B9A0D4]"
+          className="mt-5 block text-center text-sm font-medium text-[#C9B4DE]"
         >
           همه سوالات
         </Link>

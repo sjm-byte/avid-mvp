@@ -45,9 +45,9 @@ export function MobileHomeHero() {
   }, []);
 
   return (
-    <section className="bg-[#0B0D12] pb-8">
+    <section className="bg-[#18141f] pb-8">
       <div
-        className="relative aspect-[16/9] w-full overflow-hidden bg-[#0B0D12] touch-pan-y"
+        className="relative aspect-[16/9] w-full overflow-hidden bg-[#18141f] touch-pan-y"
         onTouchStart={(e) => {
           touchStartX.current = e.changedTouches[0]?.clientX ?? null;
           pauseUntil.current = Date.now() + AUTOPLAY_MS;

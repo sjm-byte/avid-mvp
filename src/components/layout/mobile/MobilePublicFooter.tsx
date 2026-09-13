@@ -28,7 +28,7 @@ export function MobilePublicFooter() {
       className="border-t border-white/15 text-white"
       style={{
         backgroundImage:
-          "radial-gradient(80% 60% at 0% 0%, rgba(123,96,161,0.35), transparent 55%), linear-gradient(165deg, #1a1228 0%, #0B0D12 70%)",
+          "radial-gradient(80% 60% at 0% 0%, rgba(148,108,185,0.32), transparent 55%), linear-gradient(165deg, #241833 0%, #18141f 70%)",
       }}
     >
       <div className="px-4 py-10">

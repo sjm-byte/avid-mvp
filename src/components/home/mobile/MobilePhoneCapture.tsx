@@ -55,12 +55,12 @@ export function MobilePhoneCapture({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "rounded-2xl border border-white/10 bg-[#16131f] p-4",
+        "rounded-2xl border border-white/12 bg-[#242030] p-4",
         className,
       )}
     >
       <div className="flex items-start gap-3">
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#7B60A1]/25 text-[#B9A0D4]">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#A07CC4]/30 text-[#C9B4DE]">
           <Sparkles className="size-4" aria-hidden />
         </span>
         <h3 className="pt-1.5 text-base font-semibold text-white">
@@ -89,14 +89,14 @@ export function MobilePhoneCapture({ className }: { className?: string }) {
               setError(null);
               setFeedback(null);
             }}
-            className="h-11 w-full rounded-xl border border-white/15 bg-[#0B0D12] px-3 text-left text-sm text-white outline-none ring-[#7B60A1]/40 placeholder:text-white/35 focus:ring-2"
+            className="h-11 w-full rounded-xl border border-white/15 bg-[#18141f] px-3 text-left text-sm text-white outline-none ring-[#A07CC4]/40 placeholder:text-white/35 focus:ring-2"
             aria-invalid={error ? true : undefined}
           />
         </div>
         <button
           type="submit"
           disabled={submitting}
-          className="h-11 w-full rounded-full bg-[#7B60A1] text-sm font-semibold text-white disabled:opacity-60"
+          className="h-11 w-full rounded-full bg-[#A07CC4] text-sm font-semibold text-white disabled:opacity-60"
         >
           {submitting ? "در حال ثبت…" : "ثبت درخواست"}
         </button>
