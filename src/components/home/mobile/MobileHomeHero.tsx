@@ -14,8 +14,11 @@ const SLIDES = [
   "/assets/hero/slide-12.png",
 ] as const;
 
+/** Fixed stage height — prevents layout jump when slides change (Yas figure ~288px). */
+const STAGE_HEIGHT_CLASS = "h-[260px]";
+
 const SWIPE_THRESHOLD_PX = 48;
-const AUTOPLAY_MS = 5000;
+const AUTOPLAY_MS = 5500;
 
 export function MobileHomeHero() {
   const [current, setCurrent] = useState(0);
@@ -35,24 +38,41 @@ export function MobileHomeHero() {
     return () => window.clearInterval(timer);
   }, []);
 
+  function onTouchStart(e: React.TouchEvent) {
+    touchStartX.current = e.changedTouches[0]?.clientX ?? null;
+  }
+
+  function onTouchEnd(e: React.TouchEvent) {
+    const start = touchStartX.current;
+    touchStartX.current = null;
+    if (start == null) return;
+    const end = e.changedTouches[0]?.clientX;
+    if (end == null) return;
+    const delta = end - start;
+    if (Math.abs(delta) < SWIPE_THRESHOLD_PX) return;
+    if (delta < 0) goTo(current + 1);
+    else goTo(current - 1);
+  }
+
   return (
-    <section className="bg-yas-mist">
+    <section
+      className="relative overflow-hidden pb-6 pt-2"
+      style={{
+        backgroundImage: `
+          radial-gradient(105% 58% at 100% 0px, rgba(225, 244, 221, 0.94) 0px, transparent 68%),
+          radial-gradient(112% 66% at 0px 100%, rgba(232, 220, 241, 0.96) 0px, transparent 72%),
+          linear-gradient(180deg, #f7f4fb 0%, #eef6ef 48%, #f3eaf8 100%)
+        `,
+      }}
+    >
+      {/* Fixed-height visual stage — full width, no height jitter */}
       <div
-        className="relative w-full touch-pan-y bg-yas-night"
-        onTouchStart={(e) => {
-          touchStartX.current = e.changedTouches[0]?.clientX ?? null;
-        }}
-        onTouchEnd={(e) => {
-          const start = touchStartX.current;
-          touchStartX.current = null;
-          if (start == null) return;
-          const end = e.changedTouches[0]?.clientX;
-          if (end == null) return;
-          const delta = end - start;
-          if (Math.abs(delta) < SWIPE_THRESHOLD_PX) return;
-          if (delta < 0) goTo(current + 1);
-          else goTo(current - 1);
-        }}
+        className={cn(
+          "relative mx-auto w-full max-w-[28rem] touch-pan-y overflow-hidden",
+          STAGE_HEIGHT_CLASS,
+        )}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
         role="region"
         aria-roledescription="carousel"
         aria-label="گالری تصاویر آوید"
@@ -65,12 +85,13 @@ export function MobileHomeHero() {
             alt=""
             draggable={false}
             className={cn(
-              "h-auto w-full max-w-none select-none",
-              index === current ? "block" : "hidden",
+              "absolute inset-0 h-full w-full select-none object-cover object-center transition-opacity duration-700",
+              index === current ? "opacity-100" : "opacity-0",
             )}
           />
         ))}
-        <div className="absolute inset-x-0 bottom-3 flex justify-center gap-1.5">
+
+        <div className="absolute inset-x-0 bottom-3 z-10 flex justify-center gap-1.5">
           {SLIDES.map((src, index) => (
             <button
               key={src}
@@ -80,19 +101,25 @@ export function MobileHomeHero() {
               onClick={() => goTo(index)}
               className={cn(
                 "h-1.5 rounded-full transition-all",
-                index === current ? "w-5 bg-white" : "w-1.5 bg-white/45",
+                index === current
+                  ? "w-5 bg-yas-ink/80"
+                  : "w-1.5 bg-yas-ink/30",
               )}
             />
           ))}
         </div>
       </div>
 
-      <div className="relative z-10 -mt-8 px-4 pb-8">
-        <MobilePhoneCapture title="با آوید، به سرمایه‌گذاری واقعی فکر کن!" />
-        <p className="mt-3 px-1 text-sm leading-relaxed text-yas-ink/70">
-          آوید گامی است برای حرکت به سمت اقتصاد مشارکتی. پروژه‌ها را بررسی کنید،
-          ریسک‌ها را ببینید و بازده پیش‌بینی‌شده را در کنار واقعیت اجرا ارزیابی
-          کرده و به ما بپیوندید.
+      {/* Floating CTA card — Yas pattern */}
+      <div className="relative z-10 -mt-4 px-4">
+        <MobilePhoneCapture
+          title="با آوید، به سرمایه‌گذاری واقعی فکر کن!"
+          highlight="آوید"
+          subtitle="مشارکت شفاف در پروژه‌های واقعی"
+        />
+        <p className="mt-3 px-1 text-center text-[13px] leading-relaxed text-yas-ink/60">
+          پروژه‌ها را بررسی کنید، ریسک‌ها را ببینید و بازده پیش‌بینی‌شده را در
+          کنار واقعیت اجرا ارزیابی کرده و به ما بپیوندید.
         </p>
       </div>
     </section>

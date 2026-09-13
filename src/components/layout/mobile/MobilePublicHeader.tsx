@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
 import { AvidLogo } from "@/components/brand/AvidLogo";
 import { cn } from "@/lib/utils";
 
@@ -16,32 +15,42 @@ const navLinks = [
   { href: "/contact", label: "تماس" },
 ];
 
+/** Floating glass header — mirrors Yas mobile chrome. */
 export function MobilePublicHeader() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    if (!open) return;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+    function onScroll() {
+      setScrolled(window.scrollY > 24);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-yas-night text-white">
-        <div className="flex h-14 items-center gap-2 px-3">
-          <AvidLogo href="/" imageClassName="h-8 w-auto brightness-0 invert" />
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-[1000] px-2 pt-2">
+        <header
+          className={cn(
+            "pointer-events-auto mx-auto flex h-14 w-full items-center gap-2 rounded-2xl px-2.5",
+            "border border-white/15 text-white shadow-[0_14px_34px_rgba(20,15,29,0.28),inset_0_1px_0_rgba(255,255,255,0.14)]",
+            "backdrop-blur-[18px] transition-all duration-250",
+            scrolled
+              ? "bg-[linear-gradient(110deg,rgba(18,13,25,0.94),rgba(43,31,57,0.91))]"
+              : "bg-[linear-gradient(110deg,rgba(24,18,33,0.88),rgba(40,29,52,0.8))]",
+          )}
+        >
+          <AvidLogo
+            href="/"
+            imageClassName="h-7 w-auto shrink-0 brightness-0 invert"
+          />
           <nav
-            className="ms-auto flex min-w-0 flex-1 items-center justify-end gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="flex min-w-0 flex-1 items-center justify-start gap-0.5 overflow-x-auto whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             aria-label="ناوبری موبایل"
           >
-            {navLinks.slice(0, 4).map((link) => {
+            {navLinks.map((link) => {
               const active =
                 link.href === "/"
                   ? pathname === "/"
@@ -51,60 +60,27 @@ export function MobilePublicHeader() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "shrink-0 rounded-full px-2.5 py-1.5 text-[11px] font-medium transition-colors",
+                    "relative shrink-0 rounded-lg px-2.5 py-2 text-[11px] font-bold transition-colors",
                     active
-                      ? "bg-yas-purple text-white"
-                      : "text-white/75 hover:bg-white/10 hover:text-white",
+                      ? "bg-white/13 text-white"
+                      : "text-white/70 hover:text-white",
                   )}
                 >
                   {link.label}
+                  {active ? (
+                    <span
+                      className="absolute inset-x-2 bottom-1 h-0.5 rounded-full bg-yas-purple-soft"
+                      aria-hidden
+                    />
+                  ) : null}
                 </Link>
               );
             })}
           </nav>
-          <button
-            type="button"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white/90 hover:bg-white/10"
-            aria-label={open ? "بستن منو" : "باز کردن منو"}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
-          </button>
-        </div>
-      </header>
-
-      {open ? (
-        <div
-          className="fixed inset-0 z-40 bg-black/55"
-          aria-hidden
-          onClick={() => setOpen(false)}
-        />
-      ) : null}
-
-      <nav
-        className={cn(
-          "fixed inset-x-0 top-14 z-50 border-b border-white/10 bg-yas-night px-4 py-4 shadow-xl transition-all duration-300",
-          open
-            ? "translate-y-0 opacity-100"
-            : "pointer-events-none -translate-y-2 opacity-0",
-        )}
-        aria-hidden={!open}
-      >
-        <ul className="space-y-1">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="block rounded-xl px-3 py-3 text-sm font-medium text-white/90 hover:bg-white/10"
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
+        </header>
+      </div>
+      {/* Spacer so content clears floating header */}
+      <div className="h-16" aria-hidden />
     </>
   );
 }

@@ -133,8 +133,8 @@ export function MobileHomePage({
       </section>
 
       {/* Dark carousel — Yas “why silver” pattern */}
-      <section className="bg-yas-night py-10 text-white">
-        <h2 className="px-4 text-center text-xl font-bold leading-snug">
+      <section className="bg-[#14101c] py-10 text-white">
+        <h2 className="px-4 text-center text-[1.35rem] font-bold leading-snug">
           قبل از مشارکت، این سه بخش را ببینید
         </h2>
         <ul
@@ -150,7 +150,7 @@ export function MobileHomePage({
               >
                 <Link
                   href={transparencySectionHref(item.id)}
-                  className="flex h-full min-h-[11rem] flex-col rounded-2xl border border-white/10 bg-yas-panel p-5"
+                  className="flex h-full min-h-[11rem] flex-col rounded-2xl border border-white/10 bg-[#1c1728] p-5"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-white/45">{item.step}</span>
@@ -218,6 +218,7 @@ export function MobileHomePage({
                 <SafeProjectCoverImage
                   src={project.image}
                   alt={project.title}
+                  aspectClassName="aspect-[5/3]"
                   className="rounded-none border-b"
                 />
                 <div className="p-4">
@@ -270,7 +271,9 @@ export function MobileHomePage({
         </p>
         <div className="mt-5">
           <MobilePhoneCapture
-            title="شماره موبایل خود را وارد کنید"
+            title="راهنمای مشارکت در آوید"
+            highlight="آوید"
+            subtitle="شماره بگذارید تا با شما تماس بگیریم"
             submitLabel="درخواست راهنما"
           />
         </div>
