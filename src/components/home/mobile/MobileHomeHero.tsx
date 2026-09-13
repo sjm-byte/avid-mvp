@@ -17,8 +17,7 @@ const SWIPE_THRESHOLD_PX = 48;
 const AUTOPLAY_MS = 5500;
 
 /**
- * Stable mobile hero: one visible full-width image (no flex-track width math).
- * Dots match the first working Yas-style carousel.
+ * Fixed-aspect carousel (no layout jump) + frosted CTA overlapping the image.
  */
 export function MobileHomeHero() {
   const [current, setCurrent] = useState(0);
@@ -46,9 +45,9 @@ export function MobileHomeHero() {
   }, []);
 
   return (
-    <section className="bg-[#0B0D12]">
+    <section className="bg-[#0B0D12] pb-8">
       <div
-        className="relative w-full touch-pan-y bg-[#0B0D12]"
+        className="relative aspect-[16/9] w-full overflow-hidden bg-[#0B0D12] touch-pan-y"
         onTouchStart={(e) => {
           touchStartX.current = e.changedTouches[0]?.clientX ?? null;
           pauseUntil.current = Date.now() + AUTOPLAY_MS;
@@ -78,13 +77,13 @@ export function MobileHomeHero() {
             loading={index === 0 ? "eager" : "lazy"}
             decoding="async"
             className={cn(
-              "h-auto w-full max-w-none select-none",
-              index === current ? "block" : "hidden",
+              "absolute inset-0 h-full w-full select-none object-cover object-center transition-opacity duration-500",
+              index === current ? "opacity-100" : "opacity-0",
             )}
           />
         ))}
 
-        <div className="absolute inset-x-0 bottom-3 flex justify-center gap-1.5">
+        <div className="absolute inset-x-0 bottom-[4.75rem] z-10 flex justify-center gap-1.5">
           {SLIDES.map((src, index) => (
             <button
               key={src}
@@ -101,14 +100,14 @@ export function MobileHomeHero() {
         </div>
       </div>
 
-      <div className="relative z-10 -mt-6 px-4 pb-8">
-        <div className="rounded-2xl border border-white/10 bg-[#16131f]/95 p-4 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.65)] backdrop-blur-md">
+      <div className="relative z-10 -mt-14 px-4">
+        <div className="rounded-2xl border border-white/25 bg-white/12 p-4 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.55)] backdrop-blur-xl">
           <h1 className="text-[1.35rem] font-extrabold leading-snug text-white">
-            با <span className="text-[#B9A0D4]">آوید</span>، به سرمایه‌گذاری
+            با <span className="text-[#D4C0EA]">آوید</span>، به سرمایه‌گذاری
             واقعی فکر کن!
           </h1>
-          <p className="mt-2 text-[13px] leading-relaxed text-white/70">
-            <span className="font-medium text-white/85">
+          <p className="mt-2 text-[13px] leading-relaxed text-white/80">
+            <span className="font-medium text-white/90">
               مشارکت شفاف در پروژه‌های واقعی.{" "}
             </span>
             پروژه‌ها را بررسی کنید، ریسک‌ها را ببینید و بازده پیش‌بینی‌شده را در

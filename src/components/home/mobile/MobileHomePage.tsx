@@ -110,18 +110,11 @@ export function MobileHomePage({
         </div>
       </section>
 
-      <section className="px-4 py-8">
-        <h2 className="text-center text-xl font-bold text-white">شفافیت آوید</h2>
-        <p className="mt-2 text-center text-sm leading-relaxed text-white/60">
-          سابقه، اصول قراردادی و متن قراردادها را پیش از مشارکت بخوانید.
-        </p>
-      </section>
-
       <section
         className="py-10 text-white"
         style={{
           backgroundImage:
-            "linear-gradient(165deg, #14101c 0%, #1a1228 48%, #0B0D12 100%)",
+            "radial-gradient(70% 55% at 80% 0%, rgba(148,108,185,0.45), transparent 62%), linear-gradient(165deg, #2a1b45 0%, #3a2760 45%, #241833 100%)",
         }}
       >
         <h2 className="px-4 text-center text-[1.35rem] font-bold leading-snug">
@@ -137,18 +130,18 @@ export function MobileHomePage({
               <li key={item.id} className="w-[78%] shrink-0 snap-center">
                 <Link
                   href={transparencySectionHref(item.id)}
-                  className="flex h-full min-h-[11rem] flex-col rounded-2xl border border-white/12 bg-white/[0.04] p-5"
+                  className="flex h-full min-h-[11rem] flex-col rounded-2xl border border-white/18 bg-white/10 p-5 backdrop-blur-sm"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-3xl font-extrabold leading-none tracking-tight text-[#D4AF37]">
                       {item.step}
                     </span>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#7B60A1]/30 text-[#B9A0D4]">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#946CB9]/35 text-[#E2D4F0]">
                       <Icon className="size-4" aria-hidden />
                     </span>
                   </div>
                   <h3 className="mt-5 text-lg font-semibold">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/60">
+                  <p className="mt-2 text-sm leading-relaxed text-white/70">
                     {item.hook}
                   </p>
                 </Link>
@@ -156,10 +149,10 @@ export function MobileHomePage({
             );
           })}
         </ul>
-        <div className="mt-8 px-4">
+        <div className="mt-8 flex justify-center px-4">
           <Link
             href="/transparency"
-            className="flex items-center justify-center gap-2 rounded-2xl bg-[#7B60A1] px-4 py-3.5 text-sm font-semibold text-white"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#946CB9] px-5 py-3 text-sm font-semibold text-white"
           >
             <Eye className="size-4" aria-hidden />
             صفحه شفافیت آوید
