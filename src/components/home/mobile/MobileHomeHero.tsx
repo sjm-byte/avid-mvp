@@ -45,7 +45,7 @@ export function MobileHomeHero() {
   }, []);
 
   return (
-    <section className="bg-[#18141f] pb-8">
+    <section className="bg-[#18141f] pb-4">
       <div
         className="relative aspect-[16/9] w-full overflow-hidden bg-[#18141f] touch-pan-y"
         onTouchStart={(e) => {

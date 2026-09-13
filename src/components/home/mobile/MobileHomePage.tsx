@@ -92,18 +92,21 @@ export function MobileHomePage({
       <MobileHomeHero />
 
       {/* Dark */}
-      <section className="px-4 py-10">
+      <section className="px-4 py-5">
         <h2 className="text-center text-xl font-bold leading-snug text-white">
           خلاصه عملکرد آوید در یک نگاه
         </h2>
-        <div className="mt-6 overflow-hidden rounded-2xl border border-white/12 bg-[#242030]">
+        <div className="mt-4 overflow-hidden rounded-2xl border border-white/12 bg-[#242030]">
           <div className="grid grid-cols-3 divide-x divide-x-reverse divide-white/12">
             {stats.map((stat) => (
-              <div key={stat.label} className="px-2 py-4 text-center">
-                <p className="text-[10px] leading-relaxed text-white/55">
+              <div
+                key={stat.label}
+                className="flex flex-col px-2 py-3.5 text-center"
+              >
+                <p className="min-h-[2.6rem] text-[10px] leading-snug text-white/55">
                   {stat.label}
                 </p>
-                <p className="mt-2 text-sm font-bold leading-snug text-[#C9B4DE]">
+                <p className="mt-auto pt-1.5 text-sm font-bold leading-snug text-[#C9B4DE]">
                   {stat.value}
                 </p>
               </div>
