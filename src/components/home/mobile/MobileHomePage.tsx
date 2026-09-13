@@ -41,20 +41,23 @@ const transparencyCards = [
 
 const steps = [
   {
-    step: "۱",
+    step: "۰۱",
     title: "مطالعه صفحه شفافیت",
+    description: "سابقه، اصول قراردادی و متن قراردادها را پیش از مشارکت بخوانید.",
     href: "/transparency" as const,
     icon: BookOpen,
   },
   {
-    step: "۲",
+    step: "۰۲",
     title: "اعلام آمادگی",
+    description: "شماره تماس بگذارید تا تیم آوید برای هماهنگی با شما تماس بگیرد.",
     href: "/contact" as const,
     icon: HandHelping,
   },
   {
-    step: "۳",
+    step: "۰۳",
     title: "عقد قرارداد و واریز وجه",
+    description: "پس از موافقت، قرارداد تنظیم و دستور پرداخت اعلام می‌شود.",
     href: "/projects" as const,
     icon: FilePenLine,
   },
@@ -115,19 +118,32 @@ export function MobileHomePage({
         </div>
       </section>
 
-      {/* Lighter purple */}
+      {/* Lighter purple — title + transparency CTA as one unit */}
       <section
-        className="py-10 text-white"
+        className="py-5 text-white"
         style={{
           backgroundImage:
             "radial-gradient(70% 55% at 80% 0%, rgba(168,128,205,0.4), transparent 62%), linear-gradient(165deg, #3a2860 0%, #4a3578 45%, #322250 100%)",
         }}
       >
-        <h2 className="px-4 text-center text-[1.35rem] font-bold leading-snug">
-          قبل از مشارکت، این سه بخش را ببینید
-        </h2>
+        <div className="px-4 text-center">
+          <p className="text-sm text-white/70">قبل از مشارکت بخوانید</p>
+          <Link
+            href="/transparency"
+            className="mt-1.5 inline-flex items-center gap-2 text-[1.35rem] font-bold leading-snug text-white underline decoration-[#D4C0EA]/70 decoration-2 underline-offset-[6px] transition-colors active:text-[#E8DCF5]"
+          >
+            <Eye className="size-5 shrink-0 text-[#D4C0EA]" aria-hidden />
+            صفحه شفافیت آوید
+            <span className="text-[#D4C0EA]" aria-hidden>
+              ‹
+            </span>
+          </Link>
+          <p className="mt-2 text-xs leading-relaxed text-white/55">
+            این سه بخش را مرور کنید — سابقه، اصول و متن قراردادها
+          </p>
+        </div>
         <ul
-          className="mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           aria-label="بخش‌های شفافیت"
         >
           {transparencyCards.map((item) => {
@@ -139,7 +155,7 @@ export function MobileHomePage({
                   className="flex h-full min-h-[11rem] flex-col rounded-2xl border border-white/20 bg-white/12 p-5 backdrop-blur-sm"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-3xl font-extrabold leading-none tracking-tight text-[#D4AF37]">
+                    <span className="flex h-9 w-9 items-center justify-center text-3xl font-extrabold leading-none tracking-tight text-[#D4AF37]">
                       {item.step}
                     </span>
                     <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#A07CC4]/40 text-[#F0E6FA]">
@@ -155,15 +171,6 @@ export function MobileHomePage({
             );
           })}
         </ul>
-        <div className="mt-8 flex justify-center px-4">
-          <Link
-            href="/transparency"
-            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#A07CC4] px-5 py-3 text-sm font-semibold text-white"
-          >
-            <Eye className="size-4" aria-hidden />
-            صفحه شفافیت آوید
-          </Link>
-        </div>
       </section>
 
       {/* Dark */}
@@ -229,37 +236,56 @@ export function MobileHomePage({
         </ul>
       </section>
 
-      {/* Light — participation path + consultation (one band) */}
+      {/* Yas-style participation path + consultation */}
       <section
-        className="px-4 py-5 text-[#292334]"
+        className="relative overflow-hidden px-4 py-8 text-[#292334]"
         style={{
-          backgroundImage:
-            "radial-gradient(80% 55% at 0% 0%, rgba(210,228,245,0.9), transparent 65%), linear-gradient(180deg, #eaf0fb 0%, #efe8f7 100%)",
+          backgroundColor: "#F5F3F8",
+          backgroundImage: `
+            radial-gradient(95% 55% at 50% 100%, rgba(167, 139, 250, 0.28), transparent 68%),
+            repeating-linear-gradient(
+              -32deg,
+              transparent 0,
+              transparent 14px,
+              rgba(123, 96, 161, 0.055) 14px,
+              rgba(123, 96, 161, 0.055) 15px
+            ),
+            linear-gradient(180deg, #F7F5FA 0%, #F2EFF7 100%)
+          `,
         }}
       >
-        <h2 className="text-center text-xl font-bold text-[#2A4A6E]">
-          مسیر مشارکت در آوید
+        <h2 className="text-center text-[1.45rem] font-extrabold leading-snug tracking-tight">
+          مسیر مشارکت در{" "}
+          <span className="bg-gradient-to-l from-[#7B60A1] to-[#B9A0D4] bg-clip-text text-transparent">
+            آوید
+          </span>
         </h2>
-        <ul className="mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <ul className="mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {steps.map((item) => {
             const Icon = item.icon;
             return (
-              <li key={item.step} className="w-[72%] shrink-0 snap-center">
+              <li key={item.step} className="w-[78%] shrink-0 snap-center">
                 <Link
                   href={item.href}
-                  className="flex h-full min-h-[8.5rem] flex-col rounded-2xl border border-[#8aa9c8]/30 bg-white/95 p-5 shadow-[0_12px_28px_-18px_rgba(42,74,110,0.35)]"
+                  className="relative flex h-full min-h-[10.5rem] flex-col overflow-hidden rounded-[1.35rem] bg-white p-5 shadow-[0_14px_36px_-18px_rgba(72,56,110,0.28)]"
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="flex h-8 w-8 items-center justify-center text-2xl font-extrabold leading-none text-[#2A4A6E]/85">
-                      {item.step}
-                    </span>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#2A4A6E]/10 text-[#2A4A6E]">
+                  <span
+                    className="pointer-events-none absolute start-3 top-1 text-[3.4rem] font-extrabold leading-none text-[#292334]/[0.08]"
+                    aria-hidden
+                  >
+                    {item.step}
+                  </span>
+                  <div className="relative z-[1] flex justify-end">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-[0.7rem] bg-[#7B60A1] text-white shadow-[0_8px_18px_-10px_rgba(123,96,161,0.7)]">
                       <Icon className="size-4" aria-hidden />
                     </span>
                   </div>
-                  <h3 className="mt-auto pt-5 text-base font-semibold leading-snug text-[#292334]">
+                  <h3 className="relative z-[1] mt-10 text-base font-bold leading-snug text-[#292334]">
                     {item.title}
                   </h3>
+                  <p className="relative z-[1] mt-2 text-[13px] leading-relaxed text-[#292334]/55">
+                    {item.description}
+                  </p>
                 </Link>
               </li>
             );
