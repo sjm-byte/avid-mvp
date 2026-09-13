@@ -42,10 +42,7 @@ export function MobilePublicHeader() {
               : "bg-[linear-gradient(110deg,rgba(24,18,33,0.88),rgba(40,29,52,0.8))]",
           )}
         >
-          <AvidLogo
-            href="/"
-            imageClassName="h-7 w-auto shrink-0 brightness-0 invert"
-          />
+          <AvidLogo href="/" imageClassName="h-8 w-auto shrink-0" />
           <nav
             className="flex min-w-0 flex-1 items-center justify-start gap-0.5 overflow-x-auto whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             aria-label="ناوبری موبایل"

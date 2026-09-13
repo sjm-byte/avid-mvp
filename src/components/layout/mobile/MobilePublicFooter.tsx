@@ -26,7 +26,7 @@ export function MobilePublicFooter() {
   return (
     <footer className="border-t border-white/10 bg-yas-night text-white">
       <div className="px-4 py-10">
-        <AvidLogo href="/" imageClassName="h-10 w-auto brightness-0 invert" />
+        <AvidLogo href="/" imageClassName="h-11 w-auto" />
         <p className="mt-3 text-sm leading-relaxed text-white/65">
           بستری برای مشارکت در اقتصاد
         </p>
