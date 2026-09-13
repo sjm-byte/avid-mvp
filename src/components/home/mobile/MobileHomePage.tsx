@@ -229,9 +229,9 @@ export function MobileHomePage({
         </ul>
       </section>
 
-      {/* Light — participation path */}
+      {/* Light — participation path + consultation (one band) */}
       <section
-        className="px-4 py-10 text-[#292334]"
+        className="px-4 py-5 text-[#292334]"
         style={{
           backgroundImage:
             "radial-gradient(80% 55% at 0% 0%, rgba(210,228,245,0.9), transparent 65%), linear-gradient(180deg, #eaf0fb 0%, #efe8f7 100%)",
@@ -240,24 +240,24 @@ export function MobileHomePage({
         <h2 className="text-center text-xl font-bold text-[#2A4A6E]">
           مسیر مشارکت در آوید
         </h2>
-        <ul className="mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <ul className="mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {steps.map((item) => {
             const Icon = item.icon;
             return (
               <li key={item.step} className="w-[72%] shrink-0 snap-center">
                 <Link
                   href={item.href}
-                  className="flex h-full flex-col rounded-2xl border border-[#8aa9c8]/30 bg-white/95 p-5 shadow-[0_12px_28px_-18px_rgba(42,74,110,0.35)]"
+                  className="flex h-full min-h-[8.5rem] flex-col rounded-2xl border border-[#8aa9c8]/30 bg-white/95 p-5 shadow-[0_12px_28px_-18px_rgba(42,74,110,0.35)]"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-extrabold text-[#2A4A6E]/85">
+                    <span className="flex h-8 w-8 items-center justify-center text-2xl font-extrabold leading-none text-[#2A4A6E]/85">
                       {item.step}
                     </span>
                     <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#2A4A6E]/10 text-[#2A4A6E]">
                       <Icon className="size-4" aria-hidden />
                     </span>
                   </div>
-                  <h3 className="mt-5 text-base font-semibold leading-snug text-[#292334]">
+                  <h3 className="mt-auto pt-5 text-base font-semibold leading-snug text-[#292334]">
                     {item.title}
                   </h3>
                 </Link>
@@ -265,11 +265,10 @@ export function MobileHomePage({
             );
           })}
         </ul>
-      </section>
 
-      {/* Dark */}
-      <section className="px-4 py-10">
-        <MobilePhoneCapture />
+        <div className="mt-6">
+          <MobilePhoneCapture />
+        </div>
       </section>
 
       {/* Soft lighter band */}
