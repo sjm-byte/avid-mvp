@@ -24,7 +24,13 @@ export function MobilePublicFooter() {
   if (pathname === "/transparency") return null;
 
   return (
-    <footer className="border-t border-white/10 bg-yas-night text-white">
+    <footer
+      className="border-t border-white/15 text-white"
+      style={{
+        backgroundImage:
+          "radial-gradient(80% 60% at 0% 0%, rgba(123,96,161,0.35), transparent 55%), linear-gradient(165deg, #1a1228 0%, #0B0D12 70%)",
+      }}
+    >
       <div className="px-4 py-10">
         <AvidLogo href="/" imageClassName="h-11 w-auto" />
         <p className="mt-3 text-sm leading-relaxed text-white/65">
