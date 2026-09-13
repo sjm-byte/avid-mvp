@@ -93,7 +93,7 @@ export function HomeHeroSlideshow({
 
   const mobileDots = (
     <div
-      className="mt-4 flex justify-center gap-2"
+      className="inline-flex flex-wrap items-center justify-center gap-2 rounded-full bg-navy/55 px-3 py-2 backdrop-blur-sm ring-1 ring-white/15"
       aria-label="انتخاب تصویر"
     >
       {SLIDES.map((src, index) => (
@@ -106,8 +106,8 @@ export function HomeHeroSlideshow({
           className={cn(
             "shrink-0 rounded-full transition-all duration-300",
             index === current
-              ? "h-2 w-5 bg-navy"
-              : "h-2 w-2 bg-navy/30 hover:bg-navy/50",
+              ? "h-2.5 w-6 bg-gold shadow-[0_0_10px_rgba(212,175,55,0.55)]"
+              : "h-2.5 w-2.5 bg-white/55 ring-1 ring-white/70",
           )}
         />
       ))}
@@ -143,10 +143,10 @@ export function HomeHeroSlideshow({
           {children}
         </div>
 
-        {/* Mobile: contained swipeable carousel (not full-viewport) */}
-        <div className="order-2 px-4 pb-10 md:hidden">
+        {/* Mobile: edge-to-edge width, natural height — no side crop */}
+        <div className="order-2 pb-8 md:hidden">
           <div
-            className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-navy shadow-[0_16px_40px_-24px_rgba(13,27,62,0.55)] ring-1 ring-navy/10 touch-pan-y"
+            className="relative w-full touch-pan-y bg-navy"
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
             role="region"
@@ -161,17 +161,16 @@ export function HomeHeroSlideshow({
                 alt=""
                 draggable={false}
                 className={cn(
-                  "absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-500 select-none",
-                  index === current ? "opacity-100" : "opacity-0",
+                  "h-auto w-full max-w-none select-none",
+                  index === current ? "block" : "hidden",
                 )}
               />
             ))}
-            <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-navy/35 to-transparent"
-              aria-hidden
-            />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-navy/50 to-transparent" aria-hidden />
+            <div className="absolute inset-x-0 bottom-4 flex justify-center pointer-events-none">
+              <div className="pointer-events-auto">{mobileDots}</div>
+            </div>
           </div>
-          {mobileDots}
         </div>
 
         {/* Desktop dots */}
