@@ -34,15 +34,15 @@ export default function HomePage() {
   return (
     <>
       <HomeHeroSlideshow>
-        <div className="container mx-auto max-w-6xl px-4">
-          <div className="relative max-w-3xl translate-x-4 rounded-xl border border-white/10 bg-navy/50 px-4 py-5 backdrop-blur-sm sm:translate-x-6 sm:px-5 sm:py-6 md:translate-x-8">
-            <h1 className="whitespace-nowrap text-[clamp(1rem,3.6vw,2.25rem)] font-extrabold leading-tight tracking-tight text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.45)]">
+        <div className="container mx-auto max-w-6xl md:px-4">
+          <div className="relative max-w-3xl md:translate-x-4 md:rounded-xl md:border md:border-white/10 md:bg-navy/50 md:px-4 md:py-5 md:backdrop-blur-sm lg:translate-x-8 lg:px-5 lg:py-6">
+            <h1 className="text-[clamp(1.35rem,5.5vw,2.25rem)] font-extrabold leading-tight tracking-tight text-navy md:whitespace-nowrap md:text-[clamp(1rem,3.6vw,2.25rem)] md:text-white md:[text-shadow:0_2px_16px_rgba(0,0,0,0.45)]">
               با آوید، به سرمایه‌گذاری واقعی فکر کن!
             </h1>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/95 [text-shadow:0_1px_8px_rgba(0,0,0,0.4)] sm:mt-4 sm:text-[0.9375rem] md:text-base">
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:mt-4 sm:text-[0.9375rem] md:text-base md:text-white/95 md:[text-shadow:0_1px_8px_rgba(0,0,0,0.4)]">
               آوید گامی است برای حرکت به سمت اقتصاد مشارکتی. در آوید، پروژه‌ها
               را بررسی کنید. ریسک‌ها را ببینید و بازده پیش‌بینی‌شده را در کنار
-              واقعیت اجرا ارزیابی کرده، سپس به ما بپیوندید.
+              واقعیت اجرا ارزیابی کرده و به ما بپیوندید.
             </p>
           </div>
         </div>
