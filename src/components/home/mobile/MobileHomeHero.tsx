@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const SLIDES = [
@@ -14,9 +13,7 @@ const SLIDES = [
   "/assets/hero/slide-12.png",
 ] as const;
 
-/** Fixed stage height — prevents layout jump when slides change. */
 const STAGE_HEIGHT_CLASS = "h-[260px]";
-
 const SWIPE_THRESHOLD_PX = 40;
 const AUTOPLAY_MS = 5500;
 
@@ -24,6 +21,7 @@ export function MobileHomeHero() {
   const [current, setCurrent] = useState(0);
   const [dragPx, setDragPx] = useState(0);
   const [dragging, setDragging] = useState(false);
+  const [trackWidth, setTrackWidth] = useState(0);
   const touchStartX = useRef<number | null>(null);
   const pauseUntil = useRef(0);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -33,6 +31,28 @@ export function MobileHomeHero() {
     setDragPx(0);
     pauseUntil.current = Date.now() + AUTOPLAY_MS;
   }
+
+  useEffect(() => {
+    SLIDES.forEach((src) => {
+      const img = new window.Image();
+      img.src = src;
+    });
+  }, []);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    function measure() {
+      if (!el) return;
+      setTrackWidth(el.offsetWidth);
+    }
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -72,14 +92,12 @@ export function MobileHomeHero() {
     const delta = end - start;
     setDragPx(0);
     if (Math.abs(delta) < SWIPE_THRESHOLD_PX) return;
-    // Finger left → next; finger right → previous
     if (delta < 0) goTo(current + 1);
     else goTo(current - 1);
   }
 
-  const trackWidth = trackRef.current?.offsetWidth ?? 1;
-  const dragPercent = dragging ? (dragPx / trackWidth) * 100 : 0;
-  const translatePercent = -current * 100 + dragPercent;
+  const offsetX = trackWidth > 0 ? -current * trackWidth + dragPx : 0;
+  const progress = ((current + 1) / SLIDES.length) * 100;
 
   return (
     <section
@@ -96,7 +114,7 @@ export function MobileHomeHero() {
         <div
           ref={trackRef}
           className={cn(
-            "relative overflow-hidden rounded-2xl bg-yas-night shadow-[0_18px_40px_-20px_rgba(20,15,29,0.45)] touch-pan-y",
+            "relative overflow-hidden rounded-2xl bg-[#1a1228] shadow-[0_18px_40px_-20px_rgba(20,15,29,0.45)] touch-pan-y",
             STAGE_HEIGHT_CLASS,
           )}
           onTouchStart={onTouchStart}
@@ -108,74 +126,70 @@ export function MobileHomeHero() {
         >
           <div
             className={cn(
-              "flex h-full w-full",
-              !dragging && "transition-transform duration-500 ease-out",
+              "flex h-full will-change-transform",
+              !dragging &&
+                "transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
             )}
-            style={{ transform: `translateX(${translatePercent}%)` }}
+            style={{ transform: `translate3d(${offsetX}px, 0, 0)` }}
           >
             {SLIDES.map((src) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
+              <div
                 key={src}
-                src={src}
-                alt=""
-                draggable={false}
-                className="h-full w-full shrink-0 select-none object-cover object-center"
-              />
+                className="relative h-full shrink-0"
+                style={{ width: trackWidth > 0 ? trackWidth : "100%" }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={src}
+                  alt=""
+                  draggable={false}
+                  loading="eager"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full select-none object-cover object-center"
+                />
+              </div>
             ))}
           </div>
 
           <div
-            className="pointer-events-none absolute inset-y-0 start-0 w-10 bg-gradient-to-l from-transparent to-black/25"
+            className="pointer-events-none absolute inset-y-8 start-0 w-8 bg-gradient-to-l from-transparent to-black/20"
             aria-hidden
           />
           <div
-            className="pointer-events-none absolute inset-y-0 end-0 w-10 bg-gradient-to-r from-transparent to-black/25"
+            className="pointer-events-none absolute inset-y-8 end-0 w-8 bg-gradient-to-r from-transparent to-black/20"
             aria-hidden
           />
 
-          <button
-            type="button"
-            aria-label="اسلاید قبلی"
-            onClick={() => goTo(current - 1)}
-            className="absolute start-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-black/35 text-white backdrop-blur-md active:scale-95"
-          >
-            <ChevronRight className="size-4" aria-hidden />
-          </button>
-          <button
-            type="button"
-            aria-label="اسلاید بعدی"
-            onClick={() => goTo(current + 1)}
-            className="absolute end-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-black/35 text-white backdrop-blur-md active:scale-95"
-          >
-            <ChevronLeft className="size-4" aria-hidden />
-          </button>
-
-          <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/55 via-black/20 to-transparent px-3 pb-3 pt-8">
-            <div className="flex items-center justify-between gap-3">
-              <p className="text-[11px] font-medium text-white/80">
-                بکشید یا فلش بزنید
+          <div className="absolute inset-x-0 bottom-0 z-10 px-3 pb-3 pt-10">
+            <div className="mb-2.5 h-[3px] overflow-hidden rounded-full bg-white/20">
+              <div
+                className="h-full rounded-full bg-gradient-to-l from-gold-light via-white to-yas-purple-soft transition-[width] duration-500 ease-out"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+            <div className="flex items-center justify-between gap-2">
+              <button
+                type="button"
+                onClick={() => goTo(current - 1)}
+                className="rounded-full border border-white/25 bg-white/12 px-3 py-1 text-[11px] font-medium text-white/90 backdrop-blur-md active:scale-95"
+                aria-label="اسلاید قبلی"
+              >
+                قبلی
+              </button>
+              <p
+                className="rounded-full border border-white/20 bg-black/35 px-3 py-1 text-[11px] font-semibold tabular-nums text-white backdrop-blur-md"
+                dir="ltr"
+              >
+                {current + 1} / {SLIDES.length}
               </p>
-              <div className="flex items-center gap-1.5" aria-label="انتخاب تصویر">
-                {SLIDES.map((src, index) => (
-                  <button
-                    key={src}
-                    type="button"
-                    aria-label={`تصویر ${index + 1}`}
-                    aria-current={index === current ? "true" : undefined}
-                    onClick={() => goTo(index)}
-                    className={cn(
-                      "rounded-full transition-all duration-300",
-                      index === current
-                        ? "h-2 w-6 bg-white shadow-[0_0_10px_rgba(255,255,255,0.45)]"
-                        : "h-2 w-2 bg-white/45",
-                    )}
-                  />
-                ))}
-              </div>
-              <p className="min-w-[2.5rem] text-end text-[11px] font-semibold tabular-nums text-white/90" dir="ltr">
-                {current + 1}/{SLIDES.length}
-              </p>
+              <button
+                type="button"
+                onClick={() => goTo(current + 1)}
+                className="rounded-full border border-white/25 bg-white/12 px-3 py-1 text-[11px] font-medium text-white/90 backdrop-blur-md active:scale-95"
+                aria-label="اسلاید بعدی"
+              >
+                بعدی
+              </button>
             </div>
           </div>
         </div>
@@ -187,10 +201,10 @@ export function MobileHomeHero() {
             با <span className="text-yas-purple">آوید</span>، به سرمایه‌گذاری
             واقعی فکر کن!
           </h1>
-          <p className="mt-1.5 text-sm text-yas-ink/55">
-            مشارکت شفاف در پروژه‌های واقعی
-          </p>
-          <p className="mt-3 text-[13px] leading-relaxed text-yas-ink/70">
+          <p className="mt-2 text-[13px] leading-relaxed text-yas-ink/70">
+            <span className="font-medium text-yas-ink/80">
+              مشارکت شفاف در پروژه‌های واقعی.{" "}
+            </span>
             پروژه‌ها را بررسی کنید، ریسک‌ها را ببینید و بازده پیش‌بینی‌شده را در
             کنار واقعیت اجرا ارزیابی کرده و به ما بپیوندید.
           </p>
