@@ -5,19 +5,14 @@ import { cn } from "@/lib/utils";
 
 /**
  * Hero slideshow display order (index 0 = first shown on load).
- * Playground / indoor play area (slide-6) must lead; then 1–5, 7–12.
+ * Playground / indoor play area (slide-6) must lead.
  * Do not use Array.from or sequential slide-(n+1) generation — order is this list only.
  */
 const SLIDES = [
   "/assets/hero/slide-6.png", // first shown
   "/assets/hero/slide-1.png",
-  "/assets/hero/slide-2.png",
   "/assets/hero/slide-3.png",
-  "/assets/hero/slide-4.png",
-  "/assets/hero/slide-5.png",
   "/assets/hero/slide-7.png",
-  "/assets/hero/slide-8.png",
-  "/assets/hero/slide-9.png",
   "/assets/hero/slide-10.png",
   "/assets/hero/slide-11.png",
   "/assets/hero/slide-12.png",
