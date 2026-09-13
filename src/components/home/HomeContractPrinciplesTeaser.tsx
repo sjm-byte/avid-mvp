@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { ArrowLeft, FileText, ScrollText, Table2 } from "lucide-react";
+import { Eye, FileText, ScrollText, Table2 } from "lucide-react";
 import { transparencySectionHref } from "@/lib/transparency-sections";
 
 const previews = [
   {
     id: "history" as const,
     step: "۱",
-    title: "سابقه",
+    title: "سابقه عملکردی",
     hook: "جدول تسویه و فاصله پیش‌بینی تا واقعیت",
     icon: Table2,
   },
@@ -34,9 +34,6 @@ export function HomeContractPrinciplesTeaser() {
           <h2 className="text-2xl font-bold md:text-3xl">
             قبل از مشارکت، صفحه شفافیت را ببینید
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
-            سه درگاه به همان سه بخش شفافیت؛ جزئیات همان‌جا خوانده می‌شود.
-          </p>
         </div>
 
         <ul className="mt-10 grid gap-4 md:grid-cols-3">
@@ -48,6 +45,7 @@ export function HomeContractPrinciplesTeaser() {
                   href={transparencySectionHref(item.id)}
                   className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border/80 bg-card p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/50 hover:bg-gold/[0.04] hover:shadow-[0_12px_28px_-16px_rgba(13,27,62,0.35)]"
                   style={{ animationDelay: `${index * 90}ms` }}
+                  aria-label={`${item.title} — مشاهده در صفحه شفافیت`}
                 >
                   <span
                     className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-l from-transparent via-gold/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -66,22 +64,28 @@ export function HomeContractPrinciplesTeaser() {
                   <h3 className="mt-5 text-lg font-semibold text-navy">
                     {item.title}
                   </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                     {item.hook}
                   </p>
-
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-navy/80 transition-colors group-hover:text-navy">
-                    مشاهده در شفافیت
-                    <ArrowLeft
-                      className="size-4 transition-transform duration-300 group-hover:-translate-x-1"
-                      aria-hidden
-                    />
-                  </span>
                 </Link>
               </li>
             );
           })}
         </ul>
+
+        <div className="mt-8 flex justify-center">
+          <Link
+            href="/transparency"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border px-4 py-2.5 text-sm font-medium text-white transition-colors duration-300 transparency-cta-shimmer"
+          >
+            <span className="transparency-cta-icon relative z-[1] flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold text-navy">
+              <Eye className="size-3.5" aria-hidden />
+            </span>
+            <span className="relative z-[1] whitespace-nowrap">
+              صفحه شفافیت آوید
+            </span>
+          </Link>
+        </div>
       </div>
     </section>
   );

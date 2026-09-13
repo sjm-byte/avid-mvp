@@ -1,26 +1,32 @@
+import Link from "next/link";
 import { BookOpen, FilePenLine, HandHelping } from "lucide-react";
 import { ConsultationSupportSignupCard } from "@/components/home/ConsultationSupportSignupCard";
 
 const steps = [
   {
     step: "۱",
-    title: "مطالعه صفحه شفافیت آوید",
-    description:
-      "سابقه عملکرد، اصول قراردادی و انواع قراردادها را در صفحه شفافیت ببینید.",
     icon: BookOpen,
+    title: (
+      <>
+        مطالعه{" "}
+        <Link
+          href="/transparency"
+          className="text-navy underline decoration-gold/60 underline-offset-4 transition-colors hover:text-gold hover:decoration-gold"
+        >
+          صفحه شفافیت
+        </Link>
+      </>
+    ),
   },
   {
     step: "۲",
-    title: "اعلام آمادگی",
-    description: "علاقه خود را به مشارکت در پروژه مورد نظر اعلام کنید.",
     icon: HandHelping,
+    title: "اعلام آمادگی",
   },
   {
     step: "۳",
-    title: "عقد قرارداد و واریز وجه",
-    description:
-      "قرارداد و واریز به حساب پروژه خارج از آوید انجام می‌شود؛ پلتفرم درگاه پرداخت ندارد.",
     icon: FilePenLine,
+    title: "عقد قرارداد و واریز وجه",
   },
 ] as const;
 
@@ -30,9 +36,6 @@ export function ParticipationPathSection() {
       <div className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-2xl font-bold md:text-3xl">مسیر مشارکت در آوید</h2>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
-            سه گام شفاف تا هماهنگی مشارکت؛ بدون درگاه پرداخت داخل سامانه.
-          </p>
         </div>
 
         <div className="mt-10 grid items-stretch gap-8 lg:grid-cols-[minmax(0,1.55fr)_minmax(17rem,0.9fr)] lg:gap-10">
@@ -75,9 +78,6 @@ export function ParticipationPathSection() {
                     <h3 className="text-base font-semibold leading-snug text-foreground">
                       {item.title}
                     </h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">
-                      {item.description}
-                    </p>
                   </div>
                 </li>
               );
