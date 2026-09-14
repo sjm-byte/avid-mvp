@@ -9,7 +9,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { MobilePublicPageShell } from "@/components/layout/mobile/MobilePublicPageShell";
+import { MobilePublicPageShell, mobileDarkCardClassName } from "@/components/layout/mobile/MobilePublicPageShell";
+import { cn } from "@/lib/utils";
 import {
   companyAddressLines,
   companyEmail,
@@ -20,9 +21,9 @@ import {
 function ContactBody() {
   return (
     <div className="mx-auto grid max-w-4xl gap-5 lg:grid-cols-2 lg:gap-6">
-      <Card className="max-md:border-white/12 max-md:bg-[#242030]">
+      <Card className={cn(mobileDarkCardClassName)}>
         <CardHeader>
-          <CardTitle className="text-lg">دفتر شرکت</CardTitle>
+          <CardTitle className="text-lg max-md:text-white">دفتر شرکت</CardTitle>
         </CardHeader>
         <CardContent className="space-y-5">
           <div className="flex items-start gap-3">
@@ -30,7 +31,9 @@ function ContactBody() {
               <Phone className="size-4" aria-hidden />
             </span>
             <div className="min-w-0 space-y-1">
-              <p className="text-sm font-medium text-foreground">شماره تماس</p>
+              <p className="text-sm font-medium text-foreground max-md:text-white/90">
+                شماره تماس
+              </p>
               <a
                 href={`tel:${companyPhoneTel}`}
                 dir="ltr"
@@ -46,8 +49,10 @@ function ContactBody() {
               <MapPin className="size-4" aria-hidden />
             </span>
             <div className="min-w-0 space-y-1">
-              <p className="text-sm font-medium text-foreground">آدرس دفتر</p>
-              <address className="not-italic text-sm leading-relaxed text-muted-foreground">
+              <p className="text-sm font-medium text-foreground max-md:text-white/90">
+                آدرس دفتر
+              </p>
+              <address className="not-italic text-sm leading-relaxed text-muted-foreground max-md:text-white/60">
                 {companyAddressLines.map((line) => (
                   <span key={line} className="block">
                     {line}
@@ -62,7 +67,9 @@ function ContactBody() {
               <Mail className="size-4" aria-hidden />
             </span>
             <div className="min-w-0 space-y-1">
-              <p className="text-sm font-medium text-foreground">ایمیل</p>
+              <p className="text-sm font-medium text-foreground max-md:text-white/90">
+                ایمیل
+              </p>
               <a
                 href={`mailto:${companyEmail}`}
                 dir="ltr"
@@ -75,37 +82,43 @@ function ContactBody() {
         </CardContent>
       </Card>
 
-      <Card className="max-md:border-white/12 max-md:bg-[#242030]">
+      <Card className={cn(mobileDarkCardClassName)}>
         <CardHeader>
-          <CardTitle className="text-lg">فرم تماس</CardTitle>
+          <CardTitle className="text-lg max-md:text-white">فرم تماس</CardTitle>
         </CardHeader>
         <CardContent>
           <form className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">نام و نام خانوادگی</Label>
+              <Label htmlFor="name" className="max-md:text-white/75">
+                نام و نام خانوادگی
+              </Label>
               <Input
                 id="name"
                 placeholder="نام شما"
-                className="max-md:border-white/15 max-md:bg-[#18141f]"
+                className="max-md:border-white/15 max-md:bg-[#18141f] max-md:text-white"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="contact-email">ایمیل</Label>
+              <Label htmlFor="contact-email" className="max-md:text-white/75">
+                ایمیل
+              </Label>
               <Input
                 id="contact-email"
                 type="email"
                 placeholder="name@example.com"
                 dir="ltr"
-                className="text-left max-md:border-white/15 max-md:bg-[#18141f]"
+                className="text-left max-md:border-white/15 max-md:bg-[#18141f] max-md:text-white"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="message">پیام</Label>
+              <Label htmlFor="message" className="max-md:text-white/75">
+                پیام
+              </Label>
               <Textarea
                 id="message"
                 placeholder="سوال یا درخواست خود را بنویسید..."
                 rows={4}
-                className="max-md:border-white/15 max-md:bg-[#18141f]"
+                className="max-md:border-white/15 max-md:bg-[#18141f] max-md:text-white"
               />
             </div>
             <Button
@@ -115,7 +128,7 @@ function ContactBody() {
             >
               ارسال پیام — به‌زودی
             </Button>
-            <p className="text-center text-xs leading-relaxed text-muted-foreground">
+            <p className="text-center text-xs leading-relaxed text-muted-foreground max-md:text-white/50">
               ارسال واقعی پیام در نسخه فعلی فعال نیست. برای تماس سریع با شماره{" "}
               <a
                 href={`tel:${companyPhoneTel}`}

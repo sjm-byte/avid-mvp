@@ -4,7 +4,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { MobilePublicPageShell } from "@/components/layout/mobile/MobilePublicPageShell";
+import { MobilePublicPageShell, mobileDarkCardClassName } from "@/components/layout/mobile/MobilePublicPageShell";
+import { cn } from "@/lib/utils";
 
 const faqItems = [
   {
@@ -41,12 +42,9 @@ function FaqList() {
   return (
     <div className="mx-auto max-w-3xl space-y-3 md:space-y-4">
       {faqItems.map((item, index) => (
-        <Card
-          key={item.q}
-          className="max-md:border-white/12 max-md:bg-[#242030]"
-        >
+        <Card key={item.q} className={cn(mobileDarkCardClassName)}>
           <CardHeader className="pb-2 max-md:px-4 max-md:pt-4">
-            <CardTitle className="text-base leading-snug max-md:flex max-md:gap-2">
+            <CardTitle className="text-base leading-snug max-md:flex max-md:gap-2 max-md:text-white">
               <span className="hidden text-[#C9B4DE] max-md:inline">
                 {["۱", "۲", "۳", "۴", "۵", "۶", "۷"][index]}
               </span>
@@ -54,7 +52,7 @@ function FaqList() {
             </CardTitle>
           </CardHeader>
           <CardContent className="max-md:px-4 max-md:pb-4">
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm leading-relaxed text-muted-foreground max-md:text-white/65">
               {item.a}
             </p>
           </CardContent>

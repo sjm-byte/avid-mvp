@@ -2,6 +2,7 @@ import { RiskDisclosureBox } from "@/components/shared/RiskDisclosureBox";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   MobilePublicPageShell,
+  mobileDarkCardClassName,
 } from "@/components/layout/mobile/MobilePublicPageShell";
 import {
   companyAddressFull,
@@ -11,7 +12,7 @@ import {
   companyPhoneDisplay,
   companyRegistrationNumber,
 } from "@/lib/company-contact";
-import { toPersianDigits } from "@/lib/utils";
+import { cn, toPersianDigits } from "@/lib/utils";
 
 const principles = [
   "هر پروژه مستقل است و سرمایه‌گذار هر پروژه را جداگانه انتخاب می‌کند.",
@@ -25,41 +26,60 @@ function AboutBody() {
   return (
     <>
       <div>
-        <h2 className="text-lg font-semibold md:text-xl">هویت حقوقی</h2>
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+        <h2 className="text-lg font-semibold text-[#1F1A2A] md:text-xl md:text-foreground">
+          هویت حقوقی
+        </h2>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[#292334]/65 md:text-muted-foreground">
           فعالیت پلتفرم آوید تحت شخصیت حقوقی زیر انجام می‌شود.
         </p>
-        <Card className="mt-4 max-w-2xl border-gold/25 max-md:border-white/12 max-md:bg-[#242030]">
+        <Card
+          className={cn(
+            "mt-4 max-w-2xl border-gold/25",
+            mobileDarkCardClassName,
+          )}
+        >
           <CardHeader className="pb-3">
             <CardTitle className="text-base font-semibold text-navy max-md:text-[#E8DCF5]">
               {companyLegalName}
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-sm">
-            <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border/60 pb-3">
-              <span className="text-muted-foreground">شماره ثبت</span>
+          <CardContent className="space-y-3 text-sm max-md:text-white">
+            <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border/60 pb-3 max-md:border-white/10">
+              <span className="text-muted-foreground max-md:text-white/55">
+                شماره ثبت
+              </span>
               <span className="font-semibold tracking-wide" dir="ltr">
                 {toPersianDigits(companyRegistrationNumber)}
               </span>
             </div>
-            <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border/60 pb-3">
-              <span className="text-muted-foreground">شناسه ملی</span>
+            <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border/60 pb-3 max-md:border-white/10">
+              <span className="text-muted-foreground max-md:text-white/55">
+                شناسه ملی
+              </span>
               <span className="font-semibold tracking-wide" dir="ltr">
                 {toPersianDigits(companyNationalId)}
               </span>
             </div>
             <div className="space-y-1 pt-1">
-              <p className="text-muted-foreground">نشانی دفتر</p>
-              <p className="leading-relaxed text-foreground">{companyAddressFull}</p>
+              <p className="text-muted-foreground max-md:text-white/55">
+                نشانی دفتر
+              </p>
+              <p className="leading-relaxed text-foreground max-md:text-white/90">
+                {companyAddressFull}
+              </p>
             </div>
             <div className="flex flex-wrap items-baseline justify-between gap-2 pt-1">
-              <span className="text-muted-foreground">تماس</span>
+              <span className="text-muted-foreground max-md:text-white/55">
+                تماس
+              </span>
               <span className="font-medium tracking-wide" dir="ltr">
                 {companyPhoneDisplay}
               </span>
             </div>
             <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <span className="text-muted-foreground">ایمیل</span>
+              <span className="text-muted-foreground max-md:text-white/55">
+                ایمیل
+              </span>
               <a
                 href={`mailto:${companyEmail}`}
                 dir="ltr"
@@ -73,18 +93,19 @@ function AboutBody() {
       </div>
 
       <div className="mt-10">
-        <h2 className="text-lg font-semibold md:text-xl">اصول کلیدی</h2>
+        <h2 className="text-lg font-semibold text-[#1F1A2A] md:text-xl md:text-foreground">
+          اصول کلیدی
+        </h2>
         <div className="mt-4 space-y-3">
           {principles.map((text, i) => (
-            <Card
-              key={text}
-              className="max-md:border-white/12 max-md:bg-[#242030]"
-            >
+            <Card key={text} className={cn(mobileDarkCardClassName)}>
               <CardContent className="flex items-start gap-3 p-4">
                 <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground max-md:bg-[#7B60A1]">
                   {i + 1}
                 </span>
-                <p className="text-sm leading-relaxed">{text}</p>
+                <p className="text-sm leading-relaxed max-md:text-white/90">
+                  {text}
+                </p>
               </CardContent>
             </Card>
           ))}
@@ -92,7 +113,7 @@ function AboutBody() {
       </div>
 
       <div className="mt-10">
-        <RiskDisclosureBox className="max-md:border-amber-400/30 max-md:bg-amber-500/10 max-md:text-amber-100" />
+        <RiskDisclosureBox className="max-md:border-amber-300/70 max-md:bg-amber-50/90 max-md:text-amber-950" />
       </div>
     </>
   );
