@@ -160,69 +160,119 @@ function SettlementTableBody({ rows }: { rows: PublicProject[] }) {
   );
 }
 
-function TransparencySettlementMobileCards({ rows }: { rows: PublicProject[] }) {
+function shortSettlementLabel(
+  outcome: ReturnType<typeof getSettlementOutcome>,
+): string {
+  if (!outcome) return "در جریان";
   return (
-    <div className="space-y-3 md:hidden">
-      {rows.map((project, index) => {
-        const outcome = getSettlementOutcome(project.id);
-        const endDate = getProjectEndDate(project);
-        const note = getTransparencyNote(project.id);
-        const outcomeLabel = SETTLEMENT_OUTCOME_COLUMNS.find(
-          (col) => col.key === outcome,
-        );
+    SETTLEMENT_OUTCOME_COLUMNS.find((col) => col.key === outcome)?.label ??
+    "تسویه شده"
+  );
+}
 
-        return (
-          <article
-            key={project.id}
-            className="rounded-xl border border-white/18 bg-white/[0.12] p-4 text-sm text-[#F3EEF8] shadow-none backdrop-blur-md"
-          >
-            <div className="flex items-start justify-between gap-3">
-              <div className="min-w-0 flex-1">
-                <p className="text-xs text-[#D2C8E0]">
-                  ردیف {toPersianDigits(index + 1)}
-                </p>
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="mt-1 block font-semibold leading-snug text-[#F8F4FC] hover:text-[#E8DCF5] hover:underline"
-                >
-                  {project.title}
-                </Link>
-                <p className="mt-1 text-xs leading-relaxed text-[#D2C8E0]">
-                  {project.activity}
-                </p>
-              </div>
-            </div>
-            <dl className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 text-xs">
-              <div>
-                <dt className="text-[#C8BCD8]">تاریخ شروع</dt>
-                <dd className="font-medium text-[#F3EEF8]">
-                  {formatJalaliDateDisplay(project.startDate)}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-[#C8BCD8]">تاریخ پایان</dt>
-                <dd className="font-medium text-[#F3EEF8]">
-                  {endDate ? formatJalaliDateDisplay(endDate) : "—"}
-                </dd>
-              </div>
-              <div className="col-span-2">
-                <dt className="text-[#C8BCD8]">وضعیت تسویه</dt>
-                <dd className="mt-0.5 font-medium text-[#F3EEF8]">
-                  {outcomeLabel ? outcomeLabel.hint : "در جریان — بدون تیک"}
-                </dd>
-              </div>
-              {note ? (
-                <div className="col-span-2">
-                  <dt className="text-[#C8BCD8]">توضیحات</dt>
-                  <dd className="mt-0.5 leading-relaxed text-[#E8E0F2]">
-                    {note}
-                  </dd>
+/** Compact 3-column row list for mobile — closer to a table than stacked cards. */
+function TransparencySettlementMobileTable({
+  rows,
+}: {
+  rows: PublicProject[];
+}) {
+  return (
+    <div
+      className="md:hidden overflow-hidden rounded-xl border border-white/15 bg-white/[0.06]"
+      role="table"
+      aria-label="خلاصه وضعیت تسویه طرح‌ها"
+    >
+      <div
+        className="grid grid-cols-[minmax(0,1.35fr)_minmax(0,0.95fr)_minmax(0,1fr)] border-b border-white/15 bg-white/[0.08] px-3 py-2.5 text-[11px] font-semibold text-[#E8E0F2]"
+        role="row"
+      >
+        <div role="columnheader">طرح</div>
+        <div className="text-center" role="columnheader">
+          بازه
+        </div>
+        <div className="text-center" role="columnheader">
+          تسویه
+        </div>
+      </div>
+
+      <ul className="max-h-[min(62vh,28rem)] overflow-y-auto overscroll-contain">
+        {rows.map((project, index) => {
+          const outcome = getSettlementOutcome(project.id);
+          const endDate = getProjectEndDate(project);
+          const note = getTransparencyNote(project.id);
+          const settled = Boolean(outcome);
+          const settlementText = shortSettlementLabel(outcome);
+          const startLabel = formatJalaliDateDisplay(project.startDate);
+          const endLabel = endDate ? formatJalaliDateDisplay(endDate) : "—";
+
+          return (
+            <li
+              key={project.id}
+              className="border-b border-white/10 last:border-b-0"
+              role="row"
+            >
+              <div className="grid grid-cols-[minmax(0,1.35fr)_minmax(0,0.95fr)_minmax(0,1fr)] items-stretch gap-0 px-3 py-3">
+                <div className="min-w-0 pe-2" role="cell">
+                  <p className="text-[10px] tabular-nums text-[#B9ADC8]">
+                    {toPersianDigits(index + 1)}
+                  </p>
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="mt-0.5 block text-[13px] font-semibold leading-snug text-[#F8F4FC] hover:text-[#E8DCF5] hover:underline"
+                  >
+                    {project.title}
+                  </Link>
+                  <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-[#C8BCD8]">
+                    {project.activity}
+                  </p>
+                  {note ? (
+                    <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-[#D4AF37]/85">
+                      {note}
+                    </p>
+                  ) : null}
                 </div>
-              ) : null}
-            </dl>
-          </article>
-        );
-      })}
+
+                <div
+                  className="flex flex-col items-center justify-center border-x border-white/10 px-1.5 text-center"
+                  role="cell"
+                >
+                  <p className="text-[11px] font-medium tabular-nums leading-snug text-[#F0EAF6]" dir="ltr">
+                    {startLabel}
+                  </p>
+                  <span className="my-1 text-[10px] text-[#9E92B4]" aria-hidden>
+                    ↓
+                  </span>
+                  <p className="text-[11px] font-medium tabular-nums leading-snug text-[#F0EAF6]" dir="ltr">
+                    {endLabel}
+                  </p>
+                </div>
+
+                <div
+                  className="flex flex-col items-center justify-center gap-1.5 ps-2 text-center"
+                  role="cell"
+                >
+                  {settled ? (
+                    <span
+                      className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-400/15 text-emerald-300"
+                      aria-hidden
+                    >
+                      <Check className="size-3.5" strokeWidth={2.5} />
+                    </span>
+                  ) : (
+                    <span
+                      className="inline-block h-1.5 w-1.5 rounded-full bg-[#9E92B4]/70"
+                      aria-hidden
+                    />
+                  )}
+                  <p className="text-[11px] font-medium leading-snug text-[#E8E0F2]">
+                    {settlementText}
+                  </p>
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
@@ -234,7 +284,7 @@ export function TransparencySettlementTable({
 }) {
   return (
     <>
-      <TransparencySettlementMobileCards rows={rows} />
+      <TransparencySettlementMobileTable rows={rows} />
 
       <div className="hidden overflow-hidden rounded-xl border bg-card shadow-sm md:block">
         <div className="w-full min-w-0 overflow-x-auto">
