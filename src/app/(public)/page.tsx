@@ -46,9 +46,9 @@ export default function HomePage() {
                 با آوید، به سرمایه‌گذاری واقعی فکر کن!
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/95 [text-shadow:0_1px_8px_rgba(0,0,0,0.4)] sm:mt-4 sm:text-[0.9375rem] md:text-base">
-                آوید گامی است برای حرکت به سمت اقتصاد مشارکتی. در آوید، پروژه‌ها
-                را بررسی کنید. ریسک‌ها را ببینید و بازده پیش‌بینی‌شده را در کنار
-                واقعیت اجرا ارزیابی کرده و به ما بپیوندید.
+                آوید گامی است برای حرکت به سمت اقتصاد مشارکتی. ابتدا شفافیت و
+                سابقه طرح‌های قبلی را ببینید؛ سپس در صورت آمادگی، از مسیر تماس
+                با دفتر آوید هماهنگ کنید.
               </p>
             </div>
           </div>
@@ -77,15 +77,15 @@ export default function HomePage() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h2 className="text-2xl font-bold md:text-3xl">
-                طرح‌های سرمایه‌گذاری
+                نمونه طرح‌های قبلی
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                هر کارت را باز کنید تا جزئیات، ریسک و بازده پیش‌بینی‌شده را
-                ببینید.
+                آرشیو سابقه است، نه فهرست فرصت باز. جزئیات هر طرح سابق را
+                ببینید؛ فرصت جدید از مسیر تماس هماهنگ می‌شود.
               </p>
             </div>
             <Button variant="outline" asChild>
-              <Link href="/projects">همه پروژه‌ها</Link>
+              <Link href="/projects">مشاهده آرشیو</Link>
             </Button>
           </div>
           <div className="mt-8 grid gap-8 md:grid-cols-2 xl:grid-cols-3">

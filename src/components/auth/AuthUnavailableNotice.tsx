@@ -28,7 +28,7 @@ export function AuthUnavailableNotice({
           <Link href="/contact">تماس با دفتر آوید</Link>
         </Button>
         <Button asChild variant="outline" className="w-full">
-          <Link href="/projects">مشاهده پروژه‌ها</Link>
+          <Link href="/projects">مشاهده آرشیو طرح‌ها</Link>
         </Button>
       </CardContent>
       <CardFooter className="justify-center border-t pt-4">

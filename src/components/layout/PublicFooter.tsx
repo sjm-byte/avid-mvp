@@ -34,7 +34,7 @@ export function PublicFooter() {
             <ul className="mt-3 space-y-2 text-sm text-white/70">
               <li>
                 <Link href="/projects" className="hover:text-gold">
-                  پروژه‌ها
+                  آرشیو طرح‌ها
                 </Link>
               </li>
               <li>

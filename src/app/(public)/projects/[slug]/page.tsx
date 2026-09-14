@@ -43,15 +43,23 @@ export default async function ProjectDetailPage({
             aspectClassName="aspect-[21/9] max-h-72"
             className="rounded-lg border lg:max-w-3xl"
           />
+          <p className="text-sm font-medium text-muted-foreground">
+            طرح سابق در آرشیو عمومی
+          </p>
           <p className="text-sm text-muted-foreground">{project.activity}</p>
           <h1 className="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
             {project.title}
           </h1>
+          <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            این صفحه فرصت باز برای جذب عمومی نیست. جزئیات طرح سابق برای شناخت
+            سابقه آوید نمایش داده می‌شود. فرصت‌های جدید از مسیر تماس و معرفی
+            هماهنگ می‌شوند.
+          </p>
         </div>
 
         <Card className="w-full shrink-0 lg:max-w-sm">
           <CardHeader className="space-y-1 pb-3">
-            <CardTitle className="text-base">خلاصه طرح</CardTitle>
+            <CardTitle className="text-base">خلاصه طرح سابق</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 text-sm">
             <div className="space-y-3">
@@ -82,18 +90,23 @@ export default async function ProjectDetailPage({
               این عدد پیش‌بینی است و سود قطعی یا تضمینی محسوب نمی‌شود.
             </p>
             <p className="text-xs leading-relaxed text-muted-foreground">
-              هماهنگی و واریز خارج از سامانه انجام می‌شود. آوید وجهی دریافت
-              نمی‌کند.
+              هماهنگی فرصت جدید و واریز خارج از سامانه انجام می‌شود. آوید وجهی
+              دریافت نمی‌کند.
             </p>
-            {user?.role === "investor" ? (
+            <div className="flex flex-col gap-2">
               <Button variant="outline" size="sm" asChild>
-                <Link href="/dashboard/investments">مشارکت‌های ثبت‌شده من</Link>
+                <Link href="/transparency">مشاهده شفافیت و نتایج</Link>
               </Button>
-            ) : (
-              <Button size="sm" asChild>
-                <Link href="/contact">تماس با تیم آوید</Link>
-              </Button>
-            )}
+              {user?.role === "investor" ? (
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/dashboard/investments">مشارکت‌های ثبت‌شده من</Link>
+                </Button>
+              ) : (
+                <Button size="sm" asChild>
+                  <Link href="/contact">اعلام آمادگی / تماس</Link>
+                </Button>
+              )}
+            </div>
           </CardContent>
         </Card>
       </div>

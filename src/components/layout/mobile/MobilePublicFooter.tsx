@@ -13,7 +13,7 @@ import {
 
 const quickLinks = [
   { href: "/transparency", label: "صفحه شفافیت" },
-  { href: "/projects", label: "طرح‌های سرمایه‌گذاری" },
+  { href: "/projects", label: "آرشیو طرح‌ها" },
   { href: "/about", label: "درباره آوید" },
   { href: "/faq", label: "سوالات متداول" },
   { href: "/contact", label: "تماس با ما" },

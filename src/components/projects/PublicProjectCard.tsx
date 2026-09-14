@@ -68,8 +68,8 @@ export function PublicProjectCard({ project }: PublicProjectCardProps) {
       </CardContent>
 
       <CardFooter className="border-t bg-muted/20 pt-4">
-        <Button asChild className="w-full" size="lg">
-          <Link href={`/projects/${project.slug}`}>مشاهده جزئیات پروژه</Link>
+        <Button asChild className="w-full" size="lg" variant="outline">
+          <Link href={`/projects/${project.slug}`}>مشاهده جزئیات طرح سابق</Link>
         </Button>
       </CardFooter>
     </Card>

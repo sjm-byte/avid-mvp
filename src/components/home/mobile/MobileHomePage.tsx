@@ -175,9 +175,9 @@ export function MobileHomePage({
       {/* Dark */}
       <section className="px-4 py-10">
         <div className="flex items-end justify-between gap-3">
-          <h2 className="text-xl font-bold text-white">طرح‌های سرمایه‌گذاری</h2>
+          <h2 className="text-xl font-bold text-white">نمونه طرح‌های قبلی</h2>
           <Link href="/projects" className="text-sm font-medium text-[#C9B4DE]">
-            همه
+            آرشیو
           </Link>
         </div>
         <ul className="mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">

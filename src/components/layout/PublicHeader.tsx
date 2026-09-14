@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "صفحه اصلی" },
-  { href: "/projects", label: "پروژه‌ها" },
+  { href: "/projects", label: "آرشیو طرح‌ها" },
   { href: "/transparency", label: "شفافیت" },
   { href: "/about", label: "درباره آوید" },
   { href: "/faq", label: "سوالات متداول" },
