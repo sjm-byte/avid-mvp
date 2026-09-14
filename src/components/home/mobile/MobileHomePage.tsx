@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {
   BookOpen,
-  Eye,
   FilePenLine,
   FileText,
   HandHelping,
@@ -130,17 +129,10 @@ export function MobileHomePage({
           <p className="text-sm text-white/70">قبل از مشارکت بخوانید</p>
           <Link
             href="/transparency"
-            className="mt-1.5 inline-flex items-center gap-2 text-[1.35rem] font-bold leading-snug text-white underline decoration-[#D4C0EA]/70 decoration-2 underline-offset-[6px] transition-colors active:text-[#E8DCF5]"
+            className="mt-1.5 inline-block text-[1.35rem] font-bold leading-snug text-[#E8DCF5] transition-opacity active:opacity-80"
           >
-            <Eye className="size-5 shrink-0 text-[#D4C0EA]" aria-hidden />
             صفحه شفافیت آوید
-            <span className="text-[#D4C0EA]" aria-hidden>
-              ‹
-            </span>
           </Link>
-          <p className="mt-2 text-xs leading-relaxed text-white/55">
-            این سه بخش را مرور کنید — سابقه، اصول و متن قراردادها
-          </p>
         </div>
         <ul
           className="mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
