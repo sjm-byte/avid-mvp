@@ -4,6 +4,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { MobilePublicPageShell } from "@/components/layout/mobile/MobilePublicPageShell";
 
 const faqItems = [
   {
@@ -36,27 +37,54 @@ const faqItems = [
   },
 ];
 
+function FaqList() {
+  return (
+    <div className="mx-auto max-w-3xl space-y-3 md:space-y-4">
+      {faqItems.map((item, index) => (
+        <Card
+          key={item.q}
+          className="max-md:border-white/12 max-md:bg-[#242030]"
+        >
+          <CardHeader className="pb-2 max-md:px-4 max-md:pt-4">
+            <CardTitle className="text-base leading-snug max-md:flex max-md:gap-2">
+              <span className="hidden text-[#C9B4DE] max-md:inline">
+                {["۱", "۲", "۳", "۴", "۵", "۶", "۷"][index]}
+              </span>
+              {item.q}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="max-md:px-4 max-md:pb-4">
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              {item.a}
+            </p>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+}
+
 export default function FaqPage() {
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold">سوالات متداول</h1>
-      <p className="mt-2 text-muted-foreground">
-        پاسخ سوالات رایج درباره مدل آوید
-      </p>
-      <div className="mx-auto mt-8 max-w-3xl space-y-4">
-        {faqItems.map((item) => (
-          <Card key={item.q}>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-base">{item.q}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                {item.a}
-              </p>
-            </CardContent>
-          </Card>
-        ))}
+    <>
+      <div className="md:hidden">
+        <MobilePublicPageShell
+          title="سوالات متداول"
+          lead="پاسخ سوالات رایج درباره مدل آوید، وجه، بازده پیش‌بینی‌شده و مسیر مشارکت."
+        >
+          <FaqList />
+        </MobilePublicPageShell>
       </div>
-    </div>
+
+      <div className="container mx-auto hidden px-4 py-12 md:block">
+        <h1 className="text-3xl font-bold">سوالات متداول</h1>
+        <p className="mt-2 text-muted-foreground">
+          پاسخ سوالات رایج درباره مدل آوید
+        </p>
+        <div className="mt-8">
+          <FaqList />
+        </div>
+      </div>
+    </>
   );
 }

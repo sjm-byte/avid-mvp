@@ -43,7 +43,7 @@ export function HomeHeroSlideshow({
             src={src}
             alt=""
             className={cn(
-              "absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000",
+              "absolute inset-0 h-full w-full object-cover object-left-top transition-opacity duration-1000",
               index === current ? "opacity-100" : "opacity-0",
             )}
           />

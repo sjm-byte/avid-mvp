@@ -1,6 +1,9 @@
 import { RiskDisclosureBox } from "@/components/shared/RiskDisclosureBox";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
+  MobilePublicPageShell,
+} from "@/components/layout/mobile/MobilePublicPageShell";
+import {
   companyAddressFull,
   companyEmail,
   companyLegalName,
@@ -18,25 +21,17 @@ const principles = [
   "نتیجه واقعی پروژه پس از اجرای واقعی و تهیه گزارش مالی مشخص می‌شود.",
 ];
 
-export default function AboutPage() {
+function AboutBody() {
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold">درباره آوید</h1>
-      <p className="mt-4 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-        آوید یک پلتفرم فارسی برای مدیریت مشارکت پروژه‌ای است. سرمایه‌گذاران
-        خرد و نیمه‌خرد می‌توانند پروژه‌های بازرگانی و تولیدی را مشاهده کنند،
-        ریسک‌ها و شرایط هر پروژه را بخوانند و وضعیت سرمایه خود را در طول
-        اجرا دنبال کنند.
-      </p>
-
-      <div className="mt-10">
-        <h2 className="text-xl font-semibold">هویت حقوقی</h2>
+    <>
+      <div>
+        <h2 className="text-lg font-semibold md:text-xl">هویت حقوقی</h2>
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
           فعالیت پلتفرم آوید تحت شخصیت حقوقی زیر انجام می‌شود.
         </p>
-        <Card className="mt-4 max-w-2xl border-gold/25">
+        <Card className="mt-4 max-w-2xl border-gold/25 max-md:border-white/12 max-md:bg-[#242030]">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base font-semibold text-navy">
+            <CardTitle className="text-base font-semibold text-navy max-md:text-[#E8DCF5]">
               {companyLegalName}
             </CardTitle>
           </CardHeader>
@@ -55,9 +50,7 @@ export default function AboutPage() {
             </div>
             <div className="space-y-1 pt-1">
               <p className="text-muted-foreground">نشانی دفتر</p>
-              <p className="leading-relaxed text-foreground">
-                {companyAddressFull}
-              </p>
+              <p className="leading-relaxed text-foreground">{companyAddressFull}</p>
             </div>
             <div className="flex flex-wrap items-baseline justify-between gap-2 pt-1">
               <span className="text-muted-foreground">تماس</span>
@@ -70,7 +63,7 @@ export default function AboutPage() {
               <a
                 href={`mailto:${companyEmail}`}
                 dir="ltr"
-                className="font-medium text-navy hover:text-navy-light"
+                className="font-medium text-navy hover:text-navy-light max-md:text-[#C9B4DE]"
               >
                 {companyEmail}
               </a>
@@ -80,12 +73,15 @@ export default function AboutPage() {
       </div>
 
       <div className="mt-10">
-        <h2 className="text-xl font-semibold">اصول کلیدی</h2>
+        <h2 className="text-lg font-semibold md:text-xl">اصول کلیدی</h2>
         <div className="mt-4 space-y-3">
           {principles.map((text, i) => (
-            <Card key={i}>
+            <Card
+              key={text}
+              className="max-md:border-white/12 max-md:bg-[#242030]"
+            >
               <CardContent className="flex items-start gap-3 p-4">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground max-md:bg-[#7B60A1]">
                   {i + 1}
                 </span>
                 <p className="text-sm leading-relaxed">{text}</p>
@@ -96,8 +92,36 @@ export default function AboutPage() {
       </div>
 
       <div className="mt-10">
-        <RiskDisclosureBox />
+        <RiskDisclosureBox className="max-md:border-amber-400/30 max-md:bg-amber-500/10 max-md:text-amber-100" />
       </div>
-    </div>
+    </>
+  );
+}
+
+export default function AboutPage() {
+  return (
+    <>
+      <div className="md:hidden">
+        <MobilePublicPageShell
+          title="درباره آوید"
+          lead="آوید پلتفرم فارسی مدیریت مشارکت پروژه‌ای است. پروژه‌ها را جداگانه ببینید، ریسک و شرایط را بخوانید و مسیر سرمایه را دنبال کنید."
+        >
+          <AboutBody />
+        </MobilePublicPageShell>
+      </div>
+
+      <div className="container mx-auto hidden px-4 py-12 md:block">
+        <h1 className="text-3xl font-bold">درباره آوید</h1>
+        <p className="mt-4 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+          آوید یک پلتفرم فارسی برای مدیریت مشارکت پروژه‌ای است. سرمایه‌گذاران
+          خرد و نیمه‌خرد می‌توانند پروژه‌های بازرگانی و تولیدی را مشاهده کنند،
+          ریسک‌ها و شرایط هر پروژه را بخوانند و وضعیت سرمایه خود را در طول اجرا
+          دنبال کنند.
+        </p>
+        <div className="mt-10">
+          <AboutBody />
+        </div>
+      </div>
+    </>
   );
 }

@@ -77,13 +77,13 @@ export function MobileHomeHero() {
             loading={index === 0 ? "eager" : "lazy"}
             decoding="async"
             className={cn(
-              "absolute inset-0 h-full w-full select-none object-cover object-center transition-opacity duration-500",
+              "absolute inset-0 h-full w-full select-none object-cover object-left-top transition-opacity duration-500",
               index === current ? "opacity-100" : "opacity-0",
             )}
           />
         ))}
 
-        <div className="absolute inset-x-0 bottom-[4.75rem] z-10 flex justify-center gap-1.5">
+        <div className="absolute inset-x-0 bottom-3 z-10 flex justify-center gap-1.5">
           {SLIDES.map((src, index) => (
             <button
               key={src}
@@ -100,8 +100,8 @@ export function MobileHomeHero() {
         </div>
       </div>
 
-      <div className="relative z-10 -mt-14 px-4">
-        <div className="rounded-2xl border border-white/25 bg-white/12 p-4 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.55)] backdrop-blur-xl">
+      <div className="relative z-10 -mt-8 px-4">
+        <div className="rounded-2xl border border-white/20 bg-white/[0.07] p-4 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.45)] backdrop-blur-lg">
           <h1 className="text-[1.35rem] font-extrabold leading-snug text-white">
             با <span className="text-[#D4C0EA]">آوید</span>، به سرمایه‌گذاری
             واقعی فکر کن!
