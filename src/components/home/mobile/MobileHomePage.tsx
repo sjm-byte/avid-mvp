@@ -79,7 +79,7 @@ const faqItems = [
 
 const stats = [
   { label: "پروژه خاتمه‌یافته", value: "+۱۵" },
-  { label: "حجم مشارکت ثبت‌شده", value: "+۵۰ میلیارد تومان" },
+  { label: "حجم مشارکت ثبت‌شده", value: "+۵۰", unit: "میلیارد تومان" },
   { label: "میانگین سود ماهانه محقق‌شده", value: "+۵٪" },
 ] as const;
 
@@ -108,8 +108,15 @@ export function MobileHomePage({
                 <p className="min-h-[2.6rem] text-[10px] leading-snug text-white/55">
                   {stat.label}
                 </p>
-                <p className="mt-auto pt-1.5 text-sm font-bold leading-snug text-[#C9B4DE]">
-                  {stat.value}
+                <p className="mt-auto pt-1.5 text-base font-bold leading-snug text-[#C9B4DE]">
+                  <span dir="ltr" className="inline-block">
+                    {stat.value}
+                  </span>
+                  {"unit" in stat && stat.unit ? (
+                    <span className="ms-1 text-[11px] font-semibold">
+                      {stat.unit}
+                    </span>
+                  ) : null}
                 </p>
               </div>
             ))}
@@ -262,7 +269,7 @@ export function MobileHomePage({
                   className="relative flex h-full min-h-[10.5rem] flex-col overflow-hidden rounded-[1.35rem] bg-white p-5 shadow-[0_14px_36px_-18px_rgba(72,56,110,0.28)]"
                 >
                   <span
-                    className="pointer-events-none absolute start-3 top-1 text-[3.4rem] font-extrabold leading-none text-[#292334]/[0.08]"
+                    className="pointer-events-none absolute start-5 top-3 text-[3.4rem] font-extrabold leading-none text-[#292334]/[0.08]"
                     aria-hidden
                   >
                     {item.step}
