@@ -4,13 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const SLIDES = [
+  "/assets/hero/slide-12.png",
+  "/assets/hero/slide-11.png",
   "/assets/hero/slide-6.png",
-  "/assets/hero/slide-1.png",
   "/assets/hero/slide-3.png",
   "/assets/hero/slide-7.png",
   "/assets/hero/slide-10.png",
-  "/assets/hero/slide-11.png",
-  "/assets/hero/slide-12.png",
 ] as const;
 
 const SWIPE_THRESHOLD_PX = 48;
