@@ -27,9 +27,11 @@ export function TransparencyHistoryPanel({ rows }: TransparencyHistoryPanelProps
           <TransparencySettlementTable rows={rows} />
         )}
 
-        <div className="rounded-lg border border-muted/80 bg-muted/20 px-5 py-4 shadow-sm">
-          <p className="font-semibold text-foreground">خلاصه عملکردی</p>
-          <p className="mt-2 text-sm leading-relaxed text-justify text-muted-foreground">
+        <div className="rounded-lg border border-muted/80 bg-muted/20 px-5 py-4 shadow-sm max-md:border-white/18 max-md:bg-white/[0.08]">
+          <p className="font-semibold text-foreground max-md:text-[#F3EEF8]">
+            خلاصه عملکردی
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-justify text-muted-foreground max-md:text-[#D8CFE8]">
             در هیچ پروژه‌ای زیان متوجه اصل سرمایه نشده است. در اغلب پروژه‌ها
             تسویه به موقع انجام شده و در برخی با حدود یک ماه تأخیر تسویه صورت
             گرفته است.

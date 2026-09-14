@@ -62,7 +62,7 @@ export function TransparencyHub({ rows }: TransparencyHubProps) {
       </div>
 
       <Card className="mt-6 border-muted/80 shadow-sm max-md:rounded-2xl max-md:border-[#1F1A2A]/12 max-md:bg-[#242030] max-md:text-white max-md:shadow-[0_14px_32px_-22px_rgba(40,30,60,0.35)]">
-        <CardContent className="p-6 md:p-8 max-md:[&_.text-muted-foreground]:text-white/65 max-md:[&_h2]:text-white max-md:[&_.bg-muted\/20]:bg-white/5 max-md:[&_.bg-muted\/30]:bg-white/5 max-md:[&_.border-orange-200\/90]:border-amber-300/40 max-md:[&_.from-orange-50]:from-amber-500/10 max-md:[&_.to-amber-50\/80]:to-amber-500/5 max-md:[&_.text-orange-950]:text-amber-100 max-md:[&_.text-orange-900]:text-amber-100">
+        <CardContent className="p-6 md:p-8 max-md:[&_.text-muted-foreground]:text-[#D8CFE8] max-md:[&_.text-foreground]:text-[#F3EEF8] max-md:[&_h2]:text-[#F3EEF8] max-md:[&_.bg-muted\/20]:bg-white/[0.08] max-md:[&_.bg-muted\/30]:bg-white/[0.08] max-md:[&_.border-muted\/80]:border-white/18 max-md:[&_.border-orange-200\/90]:border-amber-300/40 max-md:[&_.from-orange-50]:from-amber-500/10 max-md:[&_.to-amber-50\/80]:to-amber-500/5 max-md:[&_.text-orange-950]:text-amber-100 max-md:[&_.text-orange-900]:text-amber-100">
           {activeMeta?.description ? (
             <p className="mb-6 text-sm leading-relaxed text-justify text-muted-foreground">
               {activeMeta.description}
