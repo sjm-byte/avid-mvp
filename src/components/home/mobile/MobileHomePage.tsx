@@ -124,36 +124,24 @@ export function MobileHomePage({
         </div>
       </section>
 
-      {/* Mid purple — softer step from dark stats band */}
+      {/* Light band — distinct from dark neighbors */}
       <section
-        className="py-5 text-white"
+        className="py-6 text-[#292334]"
         style={{
+          backgroundColor: "#F5F3F8",
           backgroundImage:
-            "radial-gradient(70% 50% at 80% 0%, rgba(148,118,185,0.22), transparent 60%), linear-gradient(180deg, #221c2e 0%, #2c243c 48%, #241e32 100%)",
+            "radial-gradient(75% 55% at 85% 0%, rgba(167,139,250,0.18), transparent 62%)",
         }}
       >
-        <div className="px-4">
+        <div className="px-4 text-center">
+          <p className="text-xs font-medium text-[#6B5F7E]">
+            قبل از مشارکت بخوانید
+          </p>
           <Link
             href="/transparency"
-            className="group relative mx-auto flex max-w-sm flex-col items-center overflow-hidden rounded-2xl border border-[#C9B4DE]/28 bg-[#1c1826]/75 px-5 py-4 text-center shadow-[0_10px_24px_-16px_rgba(0,0,0,0.4)] transition-colors active:bg-[#221c2e]"
+            className="mt-1 inline-block text-[1.2rem] font-bold leading-snug text-[#3A2F4F] underline decoration-[#D4AF37]/55 underline-offset-4 transition-opacity active:opacity-75"
           >
-            <span
-              className="absolute inset-x-10 top-0 h-px bg-gradient-to-l from-transparent via-[#D4AF37]/45 to-transparent"
-              aria-hidden
-            />
-            <span className="text-xs font-medium leading-relaxed text-[#D8CDE8]">
-              قبل از مشارکت بخوانید
-            </span>
-            <span className="mt-2 text-[1.15rem] font-bold leading-snug tracking-tight text-[#F3EEF8]">
-              صفحه شفافیت آوید
-            </span>
-            <span
-              className="mt-3 h-px w-16 bg-gradient-to-l from-transparent via-[#D4AF37]/55 to-transparent"
-              aria-hidden
-            />
-            <span className="mt-2.5 text-xs font-medium text-[#B9A3D0]">
-              مشاهده شفافیت
-            </span>
+            صفحه شفافیت آوید
           </Link>
         </div>
         <ul
@@ -166,20 +154,20 @@ export function MobileHomePage({
               <li key={item.id} className="w-[78%] shrink-0 snap-center">
                 <Link
                   href={transparencySectionHref(item.id)}
-                  className="flex h-full min-h-[11rem] flex-col rounded-2xl border border-white/14 bg-[#2a2438]/90 p-5"
+                  className="flex h-full min-h-[11rem] flex-col rounded-2xl border border-[#1F1A2A]/10 bg-white/90 p-5 shadow-[0_10px_24px_-18px_rgba(40,30,60,0.28)]"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="flex h-9 w-9 items-center justify-center text-3xl font-extrabold leading-none tracking-tight text-[#D4AF37]/90">
+                    <span className="flex h-9 w-9 items-center justify-center text-3xl font-extrabold leading-none tracking-tight text-[#B8962E]">
                       {item.step}
                     </span>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#A07CC4]/30 text-[#E4D6F2]">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#7B60A1]/15 text-[#5C4A78]">
                       <Icon className="size-4" aria-hidden />
                     </span>
                   </div>
-                  <h3 className="mt-5 text-lg font-semibold text-[#F0EAF6]">
+                  <h3 className="mt-5 text-lg font-semibold text-[#292334]">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#C8BDD8]">
+                  <p className="mt-2 text-sm leading-relaxed text-[#5C5368]">
                     {item.hook}
                   </p>
                 </Link>

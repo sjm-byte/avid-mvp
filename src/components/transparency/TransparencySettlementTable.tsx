@@ -174,47 +174,49 @@ function TransparencySettlementMobileCards({ rows }: { rows: PublicProject[] }) 
         return (
           <article
             key={project.id}
-            className="rounded-lg border bg-card p-4 text-sm shadow-sm"
+            className="rounded-xl border border-white/18 bg-white/[0.12] p-4 text-sm text-[#F3EEF8] shadow-none backdrop-blur-md"
           >
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0 flex-1">
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-[#D2C8E0]">
                   ردیف {toPersianDigits(index + 1)}
                 </p>
                 <Link
                   href={`/projects/${project.slug}`}
-                  className="mt-1 block font-semibold leading-snug hover:text-primary hover:underline"
+                  className="mt-1 block font-semibold leading-snug text-[#F8F4FC] hover:text-[#E8DCF5] hover:underline"
                 >
                   {project.title}
                 </Link>
-                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                <p className="mt-1 text-xs leading-relaxed text-[#D2C8E0]">
                   {project.activity}
                 </p>
               </div>
             </div>
             <dl className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 text-xs">
               <div>
-                <dt className="text-muted-foreground">تاریخ شروع</dt>
-                <dd className="font-medium">
+                <dt className="text-[#C8BCD8]">تاریخ شروع</dt>
+                <dd className="font-medium text-[#F3EEF8]">
                   {formatJalaliDateDisplay(project.startDate)}
                 </dd>
               </div>
               <div>
-                <dt className="text-muted-foreground">تاریخ پایان</dt>
-                <dd className="font-medium">
+                <dt className="text-[#C8BCD8]">تاریخ پایان</dt>
+                <dd className="font-medium text-[#F3EEF8]">
                   {endDate ? formatJalaliDateDisplay(endDate) : "—"}
                 </dd>
               </div>
               <div className="col-span-2">
-                <dt className="text-muted-foreground">وضعیت تسویه</dt>
-                <dd className="mt-0.5 font-medium">
+                <dt className="text-[#C8BCD8]">وضعیت تسویه</dt>
+                <dd className="mt-0.5 font-medium text-[#F3EEF8]">
                   {outcomeLabel ? outcomeLabel.hint : "در جریان — بدون تیک"}
                 </dd>
               </div>
               {note ? (
                 <div className="col-span-2">
-                  <dt className="text-muted-foreground">توضیحات</dt>
-                  <dd className="mt-0.5 leading-relaxed">{note}</dd>
+                  <dt className="text-[#C8BCD8]">توضیحات</dt>
+                  <dd className="mt-0.5 leading-relaxed text-[#E8E0F2]">
+                    {note}
+                  </dd>
                 </div>
               ) : null}
             </dl>

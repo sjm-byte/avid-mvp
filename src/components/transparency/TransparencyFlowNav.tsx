@@ -49,8 +49,8 @@ export function TransparencyFlowNav({
                   "group relative flex items-center gap-2 rounded-xl border px-3 py-2.5 text-sm font-medium transition-all duration-300 sm:px-4",
                   !isActive && stepPulseClass[index],
                   isActive
-                    ? "border-gold/70 bg-navy text-white shadow-[0_4px_18px_-4px_rgba(13,27,62,0.45)]"
-                    : "border-border/80 bg-card text-foreground/90 shadow-sm hover:border-gold/45 hover:bg-gold/5 transparency-flow-shimmer",
+                    ? "border-gold/70 bg-navy text-white shadow-[0_4px_18px_-4px_rgba(13,27,62,0.45)] max-md:bg-[#4A3B66] max-md:shadow-none"
+                    : "border-border/80 bg-card text-foreground/90 shadow-sm hover:border-gold/45 hover:bg-gold/5 transparency-flow-shimmer max-md:border-[#1F1A2A]/12 max-md:bg-[#EFEAF6] max-md:text-[#3A2F4F] max-md:shadow-none",
                 )}
               >
                 <span
