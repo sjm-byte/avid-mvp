@@ -61,6 +61,26 @@ export function TransparencyHub({ rows }: TransparencyHubProps) {
         />
       </div>
 
+      <aside
+        className="relative mx-auto mt-5 max-w-3xl overflow-hidden rounded-2xl border border-[#C9A227]/55 bg-gradient-to-l from-[#FFF8E8] via-[#F7E9C8] to-[#EFE0B8] px-5 py-5 shadow-[0_12px_28px_-14px_rgba(120,90,20,0.35)] max-md:mt-4 max-md:px-4 max-md:py-4"
+        aria-label="پیشنهاد ویژه"
+      >
+        <span
+          className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-l from-transparent via-[#D4AF37] to-transparent"
+          aria-hidden
+        />
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <span className="inline-flex items-center rounded-full border border-[#B8962E]/45 bg-[#D4AF37]/20 px-3 py-1 text-xs font-bold tracking-wide text-[#5C4810]">
+            پیشنهاد ویژه
+          </span>
+        </div>
+        <p className="mt-3 text-center text-[15px] font-semibold leading-8 text-[#2F2610] md:text-base md:leading-8">
+          ایجاد سبد سرمایه‌گذاری علاوه بر کاهش ریسک می‌تواند به ایجاد سود
+          بیشتر کمک کند. ما با ایجاد تنوع در سبد شما می‌توانیم ترکیبی از سود
+          طلایی، دلاری و ریالی را ارائه کنیم.
+        </p>
+      </aside>
+
       <Card className="mt-6 border-muted/80 shadow-sm max-md:rounded-2xl max-md:border-[#1F1A2A]/10 max-md:bg-[#3A334C] max-md:text-[#F0EAF6] max-md:shadow-[0_14px_32px_-22px_rgba(40,30,60,0.28)]">
         <CardContent className="p-6 md:p-8 max-md:[&_.text-muted-foreground]:text-[#D2C8E0] max-md:[&_.text-foreground]:text-[#F3EEF8] max-md:[&_h2]:text-[#F3EEF8] max-md:[&_.bg-muted\/20]:bg-white/[0.1] max-md:[&_.bg-muted\/30]:bg-white/[0.1] max-md:[&_.bg-card]:bg-white/[0.12] max-md:[&_.bg-card]:backdrop-blur-md max-md:[&_.bg-card]:border-white/18 max-md:[&_.bg-card]:text-[#F3EEF8] max-md:[&_.bg-card_.text-muted-foreground]:text-[#D8CFE8] max-md:[&_.border-muted\/80]:border-white/18 max-md:[&_.border-orange-200\/90]:border-amber-300/35 max-md:[&_.from-orange-50]:from-amber-400/15 max-md:[&_.to-amber-50\/80]:to-amber-400/8 max-md:[&_.text-orange-950]:text-amber-50 max-md:[&_.text-orange-900]:text-amber-50">
           {activeMeta?.description ? (
