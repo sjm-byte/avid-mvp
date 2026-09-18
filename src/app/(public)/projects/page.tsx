@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { getPublicProjectsSorted } from "@/lib/data/public-projects";
+import { getPublicProjectsArchive } from "@/lib/data/public-projects";
 import { PublicProjectCard } from "@/components/projects/PublicProjectCard";
 import { ProjectRiskDisclaimer } from "@/components/projects/ProjectRiskDisclaimer";
 import { Button } from "@/components/ui/button";
 import { MobilePublicPageShell } from "@/components/layout/mobile/MobilePublicPageShell";
 
 export default function ProjectsPage() {
-  const projects = getPublicProjectsSorted();
+  const projects = getPublicProjectsArchive();
 
   return (
     <>

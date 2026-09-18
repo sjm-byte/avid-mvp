@@ -276,9 +276,24 @@ export function getPublicProjectsSorted(): PublicProject[] {
   });
 }
 
-/** Newest-first slice for homepage featured strip. */
+/**
+ * Public archive / homepage showcase: one card per title (newest kept).
+ * Full settlement history still uses PUBLIC_PROJECTS unchanged.
+ */
+export function getPublicProjectsArchive(): PublicProject[] {
+  const seenTitles = new Set<string>();
+  const unique: PublicProject[] = [];
+  for (const project of getPublicProjectsSorted()) {
+    if (seenTitles.has(project.title)) continue;
+    seenTitles.add(project.title);
+    unique.push(project);
+  }
+  return unique;
+}
+
+/** Newest-first unique titles for homepage featured strip. */
 export function getFeaturedPublicProjects(limit = 3): PublicProject[] {
-  return getPublicProjectsSorted().slice(0, limit);
+  return getPublicProjectsArchive().slice(0, limit);
 }
 
 export function getPublicProjectBySlug(
