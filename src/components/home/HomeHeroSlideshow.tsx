@@ -8,16 +8,35 @@ import { cn } from "@/lib/utils";
  * Slide order matches MobileHomeHero (no slide-1).
  */
 const SLIDES = [
-  "/assets/hero/slide-12.png",
-  "/assets/hero/slide-11.png",
-  "/assets/hero/slide-6.png",
-  "/assets/hero/slide-3.png",
-  "/assets/hero/slide-7.png",
-  "/assets/hero/slide-10.png",
+  {
+    src: "/assets/hero/slide-12.png",
+    /** Wider scene — avoid corner crop that feels over-zoomed. */
+    objectClass: "object-cover object-center",
+  },
+  {
+    src: "/assets/hero/slide-11.png",
+    objectClass: "object-cover object-center",
+  },
+  {
+    src: "/assets/hero/slide-6.png",
+    objectClass: "object-cover object-left-top",
+  },
+  {
+    src: "/assets/hero/slide-3.png",
+    objectClass: "object-cover object-left-top",
+  },
+  {
+    src: "/assets/hero/slide-7.png",
+    objectClass: "object-cover object-left-top",
+  },
+  {
+    src: "/assets/hero/slide-10.png",
+    objectClass: "object-cover object-center",
+  },
 ] as const;
 
 const HERO_OVERLAY =
-  "linear-gradient(to left, rgba(13, 27, 62, 0.48) 0%, rgba(13, 27, 62, 0.2) 34%, transparent 62%)";
+  "linear-gradient(to left, rgba(13, 27, 62, 0.52) 0%, rgba(13, 27, 62, 0.22) 34%, transparent 62%)";
 
 export function HomeHeroSlideshow({
   children,
@@ -34,17 +53,17 @@ export function HomeHeroSlideshow({
   }, []);
 
   return (
-    <section className="relative h-[min(72vh,44rem)] min-h-[28rem] overflow-hidden bg-[#0d1b3e] text-white">
+    <section className="relative min-h-dvh overflow-hidden bg-[#0d1b3e] text-white">
       <div className="absolute inset-0" aria-hidden>
-        {SLIDES.map((src, index) => (
+        {SLIDES.map((slide, index) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            key={src}
-            src={src}
+            key={slide.src}
+            src={slide.src}
             alt=""
             className={cn(
-              // Center crop + shorter hero = less aggressive zoom than full-viewport left-top.
-              "absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000",
+              "absolute inset-0 h-full w-full transition-opacity duration-1000",
+              slide.objectClass,
               index === current ? "opacity-100" : "opacity-0",
             )}
           />
@@ -55,16 +74,16 @@ export function HomeHeroSlideshow({
         style={{ background: HERO_OVERLAY }}
         aria-hidden
       />
-      <div className="relative z-10 flex h-full flex-col justify-end gap-6 pb-10 pt-24 md:pb-12">
+      <div className="relative z-10 flex min-h-dvh flex-col justify-end gap-6 pb-14 pt-32 md:pb-16">
         {children}
         <div className="container mx-auto max-w-6xl px-4">
           <div
             className="inline-flex flex-wrap items-center gap-2.5 rounded-full bg-navy/55 px-3.5 py-2.5 backdrop-blur-sm ring-1 ring-white/15"
             aria-label="انتخاب تصویر پس‌زمینه"
           >
-            {SLIDES.map((src, index) => (
+            {SLIDES.map((slide, index) => (
               <button
-                key={src}
+                key={slide.src}
                 type="button"
                 aria-label={`تصویر ${index + 1}`}
                 aria-current={index === current ? "true" : undefined}
