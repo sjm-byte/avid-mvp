@@ -5,19 +5,19 @@ import { cn } from "@/lib/utils";
 
 /**
  * Desktop hero slideshow. Mobile homepage uses MobileHomeHero instead.
+ * Slide order matches MobileHomeHero (no slide-1).
  */
 const SLIDES = [
+  "/assets/hero/slide-12.png",
+  "/assets/hero/slide-11.png",
   "/assets/hero/slide-6.png",
-  "/assets/hero/slide-1.png",
   "/assets/hero/slide-3.png",
   "/assets/hero/slide-7.png",
   "/assets/hero/slide-10.png",
-  "/assets/hero/slide-11.png",
-  "/assets/hero/slide-12.png",
 ] as const;
 
 const HERO_OVERLAY =
-  "linear-gradient(to left, rgba(13, 27, 62, 0.52) 0%, rgba(13, 27, 62, 0.22) 34%, transparent 62%)";
+  "linear-gradient(to left, rgba(13, 27, 62, 0.48) 0%, rgba(13, 27, 62, 0.2) 34%, transparent 62%)";
 
 export function HomeHeroSlideshow({
   children,
@@ -34,7 +34,7 @@ export function HomeHeroSlideshow({
   }, []);
 
   return (
-    <section className="relative min-h-dvh overflow-hidden bg-[#0d1b3e] text-white">
+    <section className="relative h-[min(72vh,44rem)] min-h-[28rem] overflow-hidden bg-[#0d1b3e] text-white">
       <div className="absolute inset-0" aria-hidden>
         {SLIDES.map((src, index) => (
           // eslint-disable-next-line @next/next/no-img-element
@@ -43,7 +43,8 @@ export function HomeHeroSlideshow({
             src={src}
             alt=""
             className={cn(
-              "absolute inset-0 h-full w-full object-cover object-left-top transition-opacity duration-1000",
+              // Center crop + shorter hero = less aggressive zoom than full-viewport left-top.
+              "absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000",
               index === current ? "opacity-100" : "opacity-0",
             )}
           />
@@ -54,7 +55,7 @@ export function HomeHeroSlideshow({
         style={{ background: HERO_OVERLAY }}
         aria-hidden
       />
-      <div className="relative z-10 flex min-h-dvh flex-col justify-end gap-6 pb-14 pt-32 md:pb-16">
+      <div className="relative z-10 flex h-full flex-col justify-end gap-6 pb-10 pt-24 md:pb-12">
         {children}
         <div className="container mx-auto max-w-6xl px-4">
           <div
