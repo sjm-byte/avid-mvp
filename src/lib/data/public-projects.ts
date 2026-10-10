@@ -1,6 +1,6 @@
 /**
  * Real public projects catalog (static mock — no DB).
- * Image files: /public/assets/projects/public/{id}-cover.jpg
+ * Image files: /public/assets/projects/public/{id}-cover.webp
  *
  * Display order is by startDate (Jalali) newest first — not by id order.
  */
@@ -29,7 +29,7 @@ export interface PublicProject {
 }
 
 function coverImage(id: string): string {
-  return `/assets/projects/public/${id}-cover.jpg`;
+  return `/assets/projects/public/${id}-cover.webp`;
 }
 
 /** Exact source list; dates normalized to Jalali YYYY/MM/DD. */

@@ -2,14 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useDeferredSlides } from "@/components/home/useDeferredSlides";
 
 const SLIDES = [
-  "/assets/hero/slide-12.png",
-  "/assets/hero/slide-11.png",
-  "/assets/hero/slide-6.png",
-  "/assets/hero/slide-3.png",
-  "/assets/hero/slide-7.png",
-  "/assets/hero/slide-10.png",
+  "/assets/hero/slide-12-m.webp",
+  "/assets/hero/slide-11-m.webp",
+  "/assets/hero/slide-6-m.webp",
+  "/assets/hero/slide-3-m.webp",
+  "/assets/hero/slide-7-m.webp",
+  "/assets/hero/slide-10-m.webp",
 ] as const;
 
 const SWIPE_THRESHOLD_PX = 48;
@@ -28,12 +29,8 @@ export function MobileHomeHero() {
     pauseUntil.current = Date.now() + AUTOPLAY_MS;
   }
 
-  useEffect(() => {
-    SLIDES.forEach((src) => {
-      const img = new window.Image();
-      img.src = src;
-    });
-  }, []);
+  const sectionRef = useRef<HTMLElement>(null);
+  const loadRest = useDeferredSlides(sectionRef);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -44,7 +41,7 @@ export function MobileHomeHero() {
   }, []);
 
   return (
-    <section className="bg-[#18141f] pb-4">
+    <section ref={sectionRef} className="bg-[#18141f] pb-4">
       <div
         className="relative aspect-[16/9] w-full overflow-hidden bg-[#18141f] touch-pan-y"
         onTouchStart={(e) => {
@@ -70,10 +67,10 @@ export function MobileHomeHero() {
           // eslint-disable-next-line @next/next/no-img-element
           <img
             key={src}
-            src={src}
+            src={index === 0 || loadRest ? src : undefined}
             alt=""
             draggable={false}
-            loading={index === 0 ? "eager" : "lazy"}
+            loading="lazy"
             decoding="async"
             className={cn(
               "absolute inset-0 h-full w-full select-none object-cover object-left-top transition-opacity duration-500",

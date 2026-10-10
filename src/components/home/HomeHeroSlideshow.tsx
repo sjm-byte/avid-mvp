@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useDeferredSlides } from "@/components/home/useDeferredSlides";
 import { cn } from "@/lib/utils";
 
 /**
@@ -9,28 +10,28 @@ import { cn } from "@/lib/utils";
  */
 const SLIDES = [
   {
-    src: "/assets/hero/slide-12.png",
+    src: "/assets/hero/slide-12.webp",
     /** Wider scene — avoid corner crop that feels over-zoomed. */
     objectClass: "object-cover object-center",
   },
   {
-    src: "/assets/hero/slide-11.png",
+    src: "/assets/hero/slide-11.webp",
     objectClass: "object-cover object-center",
   },
   {
-    src: "/assets/hero/slide-6.png",
+    src: "/assets/hero/slide-6.webp",
     objectClass: "object-cover object-left-top",
   },
   {
-    src: "/assets/hero/slide-3.png",
+    src: "/assets/hero/slide-3.webp",
     objectClass: "object-cover object-left-top",
   },
   {
-    src: "/assets/hero/slide-7.png",
+    src: "/assets/hero/slide-7.webp",
     objectClass: "object-cover object-left-top",
   },
   {
-    src: "/assets/hero/slide-10.png",
+    src: "/assets/hero/slide-10.webp",
     objectClass: "object-cover object-center",
   },
 ] as const;
@@ -44,6 +45,8 @@ export function HomeHeroSlideshow({
   children: React.ReactNode;
 }) {
   const [current, setCurrent] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  const loadRest = useDeferredSlides(sectionRef);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -53,14 +56,18 @@ export function HomeHeroSlideshow({
   }, []);
 
   return (
-    <section className="relative min-h-dvh overflow-hidden bg-[#0d1b3e] text-white">
+    <section
+      ref={sectionRef}
+      className="relative min-h-dvh overflow-hidden bg-[#0d1b3e] text-white">
       <div className="absolute inset-0" aria-hidden>
         {SLIDES.map((slide, index) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             key={slide.src}
-            src={slide.src}
+            src={index === 0 || loadRest ? slide.src : undefined}
             alt=""
+            loading="lazy"
+            decoding="async"
             className={cn(
               "absolute inset-0 h-full w-full transition-opacity duration-1000",
               slide.objectClass,

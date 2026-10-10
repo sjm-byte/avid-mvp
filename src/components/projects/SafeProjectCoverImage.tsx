@@ -33,6 +33,8 @@ export function SafeProjectCoverImage({
         src={imageSrc}
         alt={failed ? "" : alt}
         aria-hidden={failed}
+        loading="lazy"
+        decoding="async"
         className="h-full w-full object-cover"
         onError={() => setFailed(true)}
       />
