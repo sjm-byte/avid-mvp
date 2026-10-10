@@ -59,10 +59,12 @@ Copy from `.env.local.example`. Set these in ParsPack **Environment** (not in gi
 |----------|----------|-------------|
 | `NEXT_PUBLIC_SUPABASE_URL` | Optional | Supabase project URL |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Optional | Supabase anon (public) key |
-| `BALE_BOT_TOKEN` | Recommended | Bale bot token (from @botfather in Bale) — consultation-form leads are sent here |
-| `BALE_CHAT_ID` | Recommended | Bale chat id that receives the leads |
-| `LEADS_DIR` | Optional | Folder for the lead backup file `consultation-requests.jsonl` (default `./data`) |
+| `BALEBOTTOKEN` | Recommended | Bale bot token (from @botfather in Bale) — consultation-form leads are sent here |
+| `BALECHATID` | Recommended | Bale chat id that receives the leads |
+| `LEADSDIR` | Optional | Folder for the lead backup file `consultation-requests.jsonl` (default `./data`) |
 | `PORT` | Optional | Default `3000` |
+
+ParsPack's ENV form rejects `_` in names, so the Bale and leads variables use names without underscores (the code also accepts the underscore versions).
 | `NODE_ENV` | Auto | Set to `production` by host / Docker |
 | `HOSTNAME` | Optional | Docker uses `0.0.0.0` so the app listens externally |
 

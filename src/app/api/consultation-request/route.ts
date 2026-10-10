@@ -11,11 +11,20 @@ import { NextResponse } from "next/server";
  *  2. appended to a backup file + the server log, so a lead is never lost even if
  *     the Bale message fails.
  *
- * Env vars (set in the ParsPack panel, never in git):
- *  - BALE_BOT_TOKEN  token from @botfather in Bale
- *  - BALE_CHAT_ID    chat id of the person or group that receives the leads
- *  - LEADS_DIR       optional; folder for the backup file (default: ./data)
+ * Env vars (set in the ParsPack panel, never in git). ParsPack's ENV form does not
+ * accept "_" in names, so each one is also read under a name without underscores:
+ *  - BALEBOTTOKEN  (or BALE_BOT_TOKEN)  token from @botfather in Bale
+ *  - BALECHATID    (or BALE_CHAT_ID)    chat id of the person or group that receives the leads
+ *  - LEADSDIR      (or LEADS_DIR)       optional; folder for the backup file (default: ./data)
  */
+
+function env(...names: string[]): string | undefined {
+  for (const name of names) {
+    const value = process.env[name]?.trim();
+    if (value) return value;
+  }
+  return undefined;
+}
 
 const BALE_API = "https://tapi.bale.ai";
 
@@ -37,10 +46,10 @@ function tehranTime(date: Date): string {
 }
 
 async function notifyBale(phone: string, at: Date): Promise<boolean> {
-  const token = process.env.BALE_BOT_TOKEN;
-  const chatId = process.env.BALE_CHAT_ID;
+  const token = env("BALEBOTTOKEN", "BALE_BOT_TOKEN");
+  const chatId = env("BALECHATID", "BALE_CHAT_ID");
   if (!token || !chatId) {
-    console.warn("[Avid] BALE_BOT_TOKEN / BALE_CHAT_ID not set — lead kept in backup only.");
+    console.warn("[Avid] BALEBOTTOKEN / BALECHATID not set — lead kept in backup only.");
     return false;
   }
 
@@ -69,7 +78,7 @@ async function notifyBale(phone: string, at: Date): Promise<boolean> {
 
 async function saveBackup(phone: string, at: Date): Promise<boolean> {
   try {
-    const dir = process.env.LEADS_DIR || path.join(process.cwd(), "data");
+    const dir = env("LEADSDIR", "LEADS_DIR") || path.join(process.cwd(), "data");
     await mkdir(dir, { recursive: true });
     const line = JSON.stringify({ phone, at: at.toISOString(), tehran: tehranTime(at) });
     await appendFile(path.join(dir, "consultation-requests.jsonl"), line + "\n", "utf8");
