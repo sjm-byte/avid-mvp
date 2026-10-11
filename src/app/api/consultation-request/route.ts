@@ -14,6 +14,8 @@ import { NextResponse } from "next/server";
  * Env vars (set in the ParsPack panel, never in git). ParsPack's ENV form does not
  * accept "_" in names, so each one is also read under a name without underscores:
  *  - BALEBOTTOKEN  (or BALE_BOT_TOKEN)  token from @botfather in Bale
+ *    If the panel will not store a value containing ":", the token can be given in two
+ *    parts instead: BALEBOTID (the digits before ":") and BALEBOTKEY (everything after).
  *  - BALECHATID    (or BALE_CHAT_ID)    chat id of the person or group that receives the leads
  *  - LEADSDIR      (or LEADS_DIR)       optional; folder for the backup file (default: ./data)
  */
@@ -46,7 +48,10 @@ function tehranTime(date: Date): string {
 }
 
 async function notifyBale(phone: string, at: Date): Promise<boolean> {
-  const token = env("BALEBOTTOKEN", "BALE_BOT_TOKEN");
+  const botId = env("BALEBOTID");
+  const botKey = env("BALEBOTKEY");
+  const token =
+    env("BALEBOTTOKEN", "BALE_BOT_TOKEN") ?? (botId && botKey ? `${botId}:${botKey}` : undefined);
   const chatId = env("BALECHATID", "BALE_CHAT_ID");
   if (!token || !chatId) {
     console.warn("[Avid] BALEBOTTOKEN / BALECHATID not set — lead kept in backup only.");
