@@ -17,12 +17,23 @@ user flows, UI spec, API spec, development plan). Read the relevant doc before b
 - Supabase (`@supabase/ssr`); without Supabase env vars the app runs in demo mode (cookie-based mock login)
 - Route groups: `src/app/(public)`, `(dashboard)`, `(admin)`, plus `src/app/api`
 
+## English site
+
+- The public site is bilingual: Persian at `/…`, English at `/en/…` (`src/app/en`, `src/components/en`).
+- `<html lang dir>` is set per request from the `x-avid-locale` header added in `src/middleware.ts`.
+- Switching language is always a full page load (`LanguageSwitch`, plain `<a>`), never `next/link`.
+- English typography: Cormorant Garamond (`font-display`, headings and figures) + Source Sans 3 (`font-en`, body/UI). Tokens live under `.en-site` in `globals.css`.
+- When Persian public content changes, update the English page too. Shared data (projects, settlement table) is translated via `src/lib/i18n/en-projects.ts`; dates are shown in Gregorian (`src/lib/i18n/dates.ts`).
+
 ## Workflow and deployment
 
 - Commit and push directly to `main`.
 - ParsPack auto-deploys every push to `main` to the live site (https://avidinvest.ir).
   So every push is a production release.
 - Before every push, run `npm run build` and make sure it succeeds. Never push a broken build.
+  If npm is unreachable from the dev environment, push to a `claude/*` branch first: the
+  `preview` GitHub workflow builds it, takes screenshots of key pages (desktop + mobile) and
+  publishes them with the build log to the `ci-results/<branch>` branch. Merge to `main` only after it passes.
 - Never commit secrets or `.env*` files. Env vars are set in the ParsPack panel (see `DEPLOYMENT.md`).
 
 ## Critical financial rule

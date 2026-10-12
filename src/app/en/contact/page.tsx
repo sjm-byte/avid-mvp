@@ -34,14 +34,14 @@ export default function EnglishContactPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-20">
+    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
       <EnSectionHeading
         as="h1"
         title="Contact us"
         lead="For questions about the participation model, project risks, or to arrange expressing your interest, get in touch with the Avid office."
       />
 
-      <div className="mt-14 grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
+      <div className="mt-14 grid max-w-5xl gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
         <section aria-labelledby="office-heading">
           <h2 id="office-heading" className="text-3xl text-navy">Head office</h2>
           <ul className="mt-6 divide-y divide-border border-y border-border">

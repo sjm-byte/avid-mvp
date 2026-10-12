@@ -85,7 +85,7 @@ export function EnMethodologyPanel() {
 
       <Article title="1. The founding principle of investment">
         <div className={prose}>
-          <p>Our core rule for any financing or investment is this:</p>
+          <p className="text-muted-foreground">Our core rule for any financing or investment is this:</p>
         </div>
         <blockquote className="max-w-[60ch] border-l-2 border-gold ps-6 font-display text-[1.6rem] italic leading-snug text-navy">
           “An investor is entitled to a profit only if they accept at least some of the economic

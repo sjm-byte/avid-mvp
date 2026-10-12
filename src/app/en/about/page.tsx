@@ -31,7 +31,7 @@ export default function EnglishAboutPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-20">
+    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
       <EnSectionHeading
         as="h1"
         title="About Avid"
