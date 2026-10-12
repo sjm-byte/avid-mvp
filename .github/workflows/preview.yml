@@ -1,0 +1,46 @@
+name: Build & preview (claude branches)
+
+on:
+  push:
+    branches: ["claude/**"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Build
+        run: |
+          set -o pipefail
+          mkdir -p ci-out
+          npm run build 2>&1 | tee ci-out/build.log
+      - name: Start and screenshot
+        if: success()
+        run: |
+          npm run start > ci-out/server.log 2>&1 &
+          npx --yes wait-on@8 -t 60000 http://127.0.0.1:3000
+          npm i --no-save playwright@1.48.2
+          npx playwright install --with-deps chromium
+          node scripts/ci-screenshots.mjs
+      - name: Publish results to ci-results branch
+        if: always()
+        run: |
+          echo "${{ job.status }}" > ci-out/STATUS
+          echo "${{ github.sha }}" > ci-out/SHA
+          cd ci-out
+          git init -q
+          git config user.name "ci"
+          git config user.email "ci@users.noreply.github.com"
+          git checkout -q -b results
+          git add -A
+          git commit -qm "CI results for ${{ github.sha }}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:ci-results/${{ github.ref_name }}"
