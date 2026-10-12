@@ -1,0 +1,101 @@
+
+> avid-mvp@0.1.0 build
+> next build
+
+⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+   ▲ Next.js 15.5.20
+
+   Creating an optimized production build ...
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (106kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (253kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ⚠ Compiled with warnings in 1774ms
+
+./node_modules/@supabase/supabase-js/dist/index.mjs
+A Node.js API is used (process.version at line: 27) which is not supported in the Edge Runtime.
+Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+
+Import trace for requested module:
+./node_modules/@supabase/supabase-js/dist/index.mjs
+./node_modules/@supabase/ssr/dist/module/createBrowserClient.js
+./node_modules/@supabase/ssr/dist/module/index.js
+./src/lib/supabase/middleware.ts
+
+ ✓ Compiled successfully in 15.4s
+   Linting and checking validity of types ...
+   Collecting page data ...
+⚠️  Node.js 20 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 22 or later. For more information, visit: https://github.com/orgs/supabase/discussions/45715
+⚠️  Node.js 20 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 22 or later. For more information, visit: https://github.com/orgs/supabase/discussions/45715
+⚠️  Node.js 20 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 22 or later. For more information, visit: https://github.com/orgs/supabase/discussions/45715
+   Generating static pages (0/58) ...
+⚠️  Node.js 20 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 22 or later. For more information, visit: https://github.com/orgs/supabase/discussions/45715
+⚠️  Node.js 20 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 22 or later. For more information, visit: https://github.com/orgs/supabase/discussions/45715
+   Generating static pages (14/58) 
+   Generating static pages (28/58) 
+   Generating static pages (43/58) 
+ ✓ Generating static pages (58/58)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ƒ /                                    8.05 kB         122 kB
+├ ƒ /_not-found                            998 B         103 kB
+├ ƒ /about                                 167 B         103 kB
+├ ƒ /admin                               2.37 kB         117 kB
+├ ƒ /admin/documents                     3.17 kB         117 kB
+├ ƒ /admin/investors                       169 B         106 kB
+├ ƒ /admin/ledger                          167 B         103 kB
+├ ƒ /admin/projects                      2.79 kB         117 kB
+├ ƒ /admin/projects/[slug]               4.36 kB         122 kB
+├ ƒ /admin/receipts                      3.92 kB         115 kB
+├ ƒ /admin/reports                       2.77 kB         117 kB
+├ ƒ /admin/requests                         3 kB         114 kB
+├ ƒ /admin/settings                        167 B         103 kB
+├ ƒ /admin/settlements                   5.32 kB         120 kB
+├ ƒ /api/consultation-request              167 B         103 kB
+├ ƒ /contact                             2.69 kB         114 kB
+├ ƒ /contracts                             167 B         103 kB
+├ ƒ /dashboard                           2.71 kB         122 kB
+├ ƒ /dashboard/documents                   167 B         103 kB
+├ ƒ /dashboard/investments                 188 B         119 kB
+├ ƒ /dashboard/ledger                      167 B         103 kB
+├ ƒ /dashboard/notifications               167 B         103 kB
+├ ƒ /dashboard/profile                     167 B         103 kB
+├ ƒ /dashboard/projects                   2.7 kB         122 kB
+├ ƒ /dashboard/projects/[slug]           2.37 kB         117 kB
+├ ƒ /en                                  3.14 kB         117 kB
+├ ƒ /en/about                              167 B         103 kB
+├ ƒ /en/contact                           1.3 kB         104 kB
+├ ƒ /en/faq                                167 B         103 kB
+├ ƒ /en/projects                            1 kB         115 kB
+├ ● /en/projects/[slug]                     1 kB         115 kB
+├   ├ /en/projects/p001
+├   ├ /en/projects/p002
+├   ├ /en/projects/p003
+├   └ [+16 more paths]
+├ ƒ /en/transparency                     9.59 kB         124 kB
+├ ƒ /faq                                   167 B         103 kB
+├ ○ /icon.png                                0 B            0 B
+├ ƒ /login                               2.37 kB         117 kB
+├ ƒ /projects                            2.76 kB         117 kB
+├ ƒ /projects/[slug]                     2.76 kB         117 kB
+├ ƒ /risk                                  167 B         103 kB
+├ ƒ /risk-disclosure                       167 B         103 kB
+├ ƒ /signup                              2.37 kB         117 kB
+└ ƒ /transparency                        11.2 kB         126 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/1255-d90f22433f14e976.js      46.2 kB
+  ├ chunks/4bd1b696-f785427dddbba9fb.js  54.2 kB
+  └ other shared chunks (total)          1.94 kB
+
+
+ƒ Middleware                             90.3 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
