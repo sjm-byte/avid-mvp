@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { AvidLogo } from "@/components/brand/AvidLogo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { LanguageSwitch } from "@/components/i18n/LanguageSwitch";
 
 const navLinks = [
   { href: "/", label: "صفحه اصلی" },
@@ -103,6 +104,7 @@ export function PublicHeader() {
             </nav>
           </div>
           <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+            <LanguageSwitch current="fa" className="hidden md:inline-flex" />
             <Button
               type="button"
               variant="ghost"
@@ -158,6 +160,9 @@ export function PublicHeader() {
               </Link>
             </li>
           ))}
+          <li className="px-3 py-2 md:hidden">
+            <LanguageSwitch current="fa" />
+          </li>
           <li className="border-t border-white/10 pt-2 md:hidden">
             <Link
               href="/contact"

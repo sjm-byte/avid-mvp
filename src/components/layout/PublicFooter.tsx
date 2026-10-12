@@ -11,6 +11,7 @@ import {
   companyPhoneDisplay,
   companyPhoneTel,
 } from "@/lib/company-contact";
+import { LanguageSwitch } from "@/components/i18n/LanguageSwitch";
 
 export function PublicFooter() {
   const pathname = usePathname();
@@ -46,6 +47,13 @@ export function PublicFooter() {
                 <Link href="/contact" className="hover:text-gold">
                   تماس با ما
                 </Link>
+              </li>
+              <li>
+                <LanguageSwitch
+                  current="fa"
+                  variant="text"
+                  className="inline-flex items-center gap-1.5"
+                />
               </li>
             </ul>
           </div>

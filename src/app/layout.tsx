@@ -1,10 +1,28 @@
 import type { Metadata } from "next";
-import { Vazirmatn } from "next/font/google";
+import { headers } from "next/headers";
+import { Cormorant_Garamond, Source_Sans_3, Vazirmatn } from "next/font/google";
+import { LOCALE_HEADER } from "@/lib/i18n/locale";
 import "./globals.css";
 
 const vazirmatn = Vazirmatn({
   subsets: ["arabic"],
   variable: "--font-vazirmatn",
+  display: "swap",
+});
+
+/** English site: classic display serif for headings and figures. */
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+/** English site: humanist sans for body copy, tables and UI. */
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  variable: "--font-en-sans",
   display: "swap",
 });
 
@@ -21,18 +39,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isEnglish = (await headers()).get(LOCALE_HEADER) === "en";
+
   return (
     <html
-      lang="fa"
-      dir="rtl"
-      className={`${vazirmatn.variable} max-w-full overflow-x-hidden`}
+      lang={isEnglish ? "en" : "fa"}
+      dir={isEnglish ? "ltr" : "rtl"}
+      className={`${vazirmatn.variable} ${cormorant.variable} ${sourceSans.variable} max-w-full overflow-x-hidden`}
     >
-      <body className="min-h-screen max-w-full overflow-x-hidden font-sans antialiased">
+      <body
+        className={`min-h-screen max-w-full overflow-x-hidden antialiased ${isEnglish ? "font-en" : "font-sans"}`}
+      >
         {children}
       </body>
     </html>

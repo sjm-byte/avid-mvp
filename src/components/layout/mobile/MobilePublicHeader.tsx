@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AvidLogo } from "@/components/brand/AvidLogo";
 import { cn } from "@/lib/utils";
+import { LanguageSwitch } from "@/components/i18n/LanguageSwitch";
 
 const navLinks = [
   { href: "/", label: "شروع" },
@@ -79,6 +80,10 @@ export function MobilePublicHeader() {
               );
             })}
           </nav>
+          <LanguageSwitch
+            current="fa"
+            className="relative z-[1] h-8 shrink-0 gap-1 px-2 text-[11px]"
+          />
         </header>
       </div>
       <div className="h-16" aria-hidden />

@@ -10,6 +10,7 @@ import {
   companyPhoneDisplay,
   companyPhoneTel,
 } from "@/lib/company-contact";
+import { LanguageSwitch } from "@/components/i18n/LanguageSwitch";
 
 const quickLinks = [
   { href: "/transparency", label: "صفحه شفافیت" },
@@ -52,6 +53,13 @@ export function MobilePublicFooter() {
                 </Link>
               </li>
             ))}
+            <li>
+              <LanguageSwitch
+                current="fa"
+                variant="text"
+                className="flex items-center gap-1.5 rounded-xl bg-white/5 px-3 py-2.5 text-sm text-white/80 hover:bg-white/10 hover:text-white"
+              />
+            </li>
           </ul>
         </nav>
 

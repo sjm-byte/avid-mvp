@@ -7,6 +7,7 @@ import { HomeContractPrinciplesTeaser } from "@/components/home/HomeContractPrin
 import { ParticipationPathSection } from "@/components/home/ParticipationPathSection";
 import { TransparencyStatsCards } from "@/components/transparency/TransparencyStatsCards";
 import { MobileHomePage } from "@/components/home/mobile/MobileHomePage";
+import { LanguageSwitch } from "@/components/i18n/LanguageSwitch";
 import {
   Card,
   CardContent,
@@ -38,7 +39,11 @@ export default function HomePage() {
         <MobileHomePage projects={featuredProjects} />
       </div>
 
-      <div className="hidden md:block">
+      <div className="relative hidden md:block">
+        {/* Header is hidden over the hero until scroll, so offer the language here too. */}
+        <div className="absolute end-6 top-6 z-20">
+          <LanguageSwitch current="fa" className="bg-navy/45 backdrop-blur-sm" />
+        </div>
         <HomeHeroSlideshow>
           <div className="container mx-auto max-w-6xl px-4">
             <div className="relative max-w-3xl translate-x-4 rounded-xl border border-white/10 bg-navy/50 px-4 py-5 backdrop-blur-sm sm:translate-x-6 sm:px-5 sm:py-6 md:translate-x-8">

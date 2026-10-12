@@ -11,6 +11,10 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-vazirmatn)", "system-ui", "sans-serif"],
+        /** English site body / UI. */
+        en: ["var(--font-en-sans)", "system-ui", "sans-serif"],
+        /** English site headings and display figures. */
+        display: ["var(--font-display)", "Georgia", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",

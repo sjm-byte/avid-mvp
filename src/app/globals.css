@@ -220,3 +220,48 @@
     }
   }
 }
+
+/* ─── English site (/en) ───────────────────────────────────────────────
+   Cooler porcelain paper, navy ink, gold kept for rules and small accents.
+   Headings: Cormorant Garamond. Body/UI: Source Sans 3. */
+@layer base {
+  .en-site {
+    --background: 222 30% 97.5%;
+    --foreground: 222 47% 13%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 13%;
+    --muted: 222 22% 94%;
+    --muted-foreground: 222 13% 36%;
+    --secondary: 222 22% 94%;
+    --secondary-foreground: 222 47% 16%;
+    --accent: 222 22% 93%;
+    --accent-foreground: 222 47% 16%;
+    --border: 222 16% 87%;
+    --input: 222 16% 85%;
+    --radius: 0.375rem;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    font-feature-settings: "kern", "liga";
+  }
+
+  .en-site :where(h1, h2, h3) {
+    font-family: var(--font-display), Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    font-variant-numeric: lining-nums;
+    text-wrap: balance;
+  }
+
+  .en-site :where(p) {
+    text-wrap: pretty;
+  }
+
+  .en-site :where(table, .tabular) {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  .en-site :where(a, button, input, textarea):focus-visible {
+    outline: 2px solid hsl(var(--gold));
+    outline-offset: 2px;
+  }
+}

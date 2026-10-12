@@ -43,11 +43,18 @@ function isValidIranMobile(phone: string): boolean {
   return /^09\d{9}$/.test(phone);
 }
 
+/** English-site visitors may be abroad: accept +<country><number>, 8–15 digits. */
+function normalizeInternationalPhone(raw: string): string | null {
+  const cleaned = normalizeIranPhone(raw).replace(/^00/, "+");
+  if (isValidIranMobile(cleaned)) return cleaned;
+  return /^\+\d{8,15}$/.test(cleaned) ? cleaned : null;
+}
+
 function tehranTime(date: Date): string {
   return date.toLocaleString("fa-IR", { timeZone: "Asia/Tehran" });
 }
 
-async function notifyBale(phone: string, at: Date): Promise<boolean> {
+async function notifyBale(phone: string, at: Date, source: string): Promise<boolean> {
   const botId = env("BALEBOTID");
   const botKey = env("BALEBOTKEY");
   const token =
@@ -61,6 +68,7 @@ async function notifyBale(phone: string, at: Date): Promise<boolean> {
   const text = [
     "📞 درخواست مشاوره و اعلام آمادگی — آوید",
     `شماره: ${phone}`,
+    `منبع: ${source}`,
     `زمان: ${tehranTime(at)}`,
   ].join("\n");
 
@@ -81,11 +89,11 @@ async function notifyBale(phone: string, at: Date): Promise<boolean> {
   }
 }
 
-async function saveBackup(phone: string, at: Date): Promise<boolean> {
+async function saveBackup(phone: string, at: Date, source: string): Promise<boolean> {
   try {
     const dir = env("LEADSDIR", "LEADS_DIR") || path.join(process.cwd(), "data");
     await mkdir(dir, { recursive: true });
-    const line = JSON.stringify({ phone, at: at.toISOString(), tehran: tehranTime(at) });
+    const line = JSON.stringify({ phone, source, at: at.toISOString(), tehran: tehranTime(at) });
     await appendFile(path.join(dir, "consultation-requests.jsonl"), line + "\n", "utf8");
     return true;
   } catch (error) {
@@ -96,28 +104,44 @@ async function saveBackup(phone: string, at: Date): Promise<boolean> {
 
 export async function POST(request: Request) {
   let phone: string;
+  let english = false;
   try {
-    const body = (await request.json()) as { phone?: string };
-    phone = normalizeIranPhone(body.phone ?? "");
+    const body = (await request.json()) as { phone?: string; locale?: string };
+    english = body.locale === "en";
+    phone = english
+      ? normalizeInternationalPhone(body.phone ?? "") ?? ""
+      : normalizeIranPhone(body.phone ?? "");
   } catch {
     return NextResponse.json({ error: "درخواست نامعتبر است." }, { status: 400 });
   }
 
-  if (!isValidIranMobile(phone)) {
-    return NextResponse.json({ error: "شماره موبایل معتبر نیست." }, { status: 400 });
+  if (english ? !phone : !isValidIranMobile(phone)) {
+    return NextResponse.json(
+      {
+        error: english
+          ? "Enter a valid phone number, including the country code (e.g. +44 7700 900123)."
+          : "شماره موبایل معتبر نیست.",
+      },
+      { status: 400 },
+    );
   }
+  const source = english ? "سایت انگلیسی" : "سایت فارسی";
 
   const at = new Date();
   // Always visible in the ParsPack app logs, whatever else happens.
-  console.info("[Avid] consultation-request:", phone, at.toISOString());
+  console.info("[Avid] consultation-request:", phone, english ? "en" : "fa", at.toISOString());
 
-  const [notified, saved] = await Promise.all([notifyBale(phone, at), saveBackup(phone, at)]);
+  const [notified, saved] = await Promise.all([
+    notifyBale(phone, at, source),
+    saveBackup(phone, at, source),
+  ]);
 
   if (!notified && !saved) {
     return NextResponse.json(
       {
-        error:
-          "ثبت درخواست در حال حاضر ممکن نشد. لطفاً دوباره تلاش کنید یا با شماره ۰۲۱۹۱۰۳۵۹۱۴ تماس بگیرید.",
+        error: english
+          ? "We could not record your request just now. Please try again, or call +98 21 9103 5914."
+          : "ثبت درخواست در حال حاضر ممکن نشد. لطفاً دوباره تلاش کنید یا با شماره ۰۲۱۹۱۰۳۵۹۱۴ تماس بگیرید.",
       },
       { status: 503 },
     );

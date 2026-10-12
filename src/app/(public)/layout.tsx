@@ -3,6 +3,7 @@ import { PublicFooter } from "@/components/layout/PublicFooter";
 import { MobilePublicHeader } from "@/components/layout/mobile/MobilePublicHeader";
 import { MobilePublicFooter } from "@/components/layout/mobile/MobilePublicFooter";
 import { cn } from "@/lib/utils";
+import { EnglishSuggestion } from "@/components/i18n/EnglishSuggestion";
 
 export default function PublicLayout({
   children,
@@ -51,6 +52,7 @@ export default function PublicLayout({
       <div className="hidden md:block">
         <PublicFooter />
       </div>
+      <EnglishSuggestion />
     </div>
   );
 }
