@@ -43,7 +43,7 @@ export function EnTransparencyHub({ rows }: { rows: PublicProject[] }) {
         className="mt-10 max-w-3xl border-l-2 border-gold bg-[hsl(43_60%_95%)] px-6 py-5"
       >
         <p className="text-sm font-semibold text-[#6b5413]">Featured offer</p>
-        <p className="mt-1.5 font-display text-[1.45rem] leading-snug text-[#2F2610]">
+        <p className="mt-1.5 font-display text-[1.25rem] leading-snug text-[#2F2610] sm:text-[1.45rem]">
           Building a portfolio can lower risk and also help increase returns. By diversifying your
           portfolio, we can offer a mix of gold-based, dollar-based and rial-based returns.
         </p>
@@ -53,11 +53,11 @@ export function EnTransparencyHub({ rows }: { rows: PublicProject[] }) {
         aria-label="Transparency sections"
         className="sticky top-16 z-30 -mx-4 mt-12 border-b border-border bg-background/95 px-4 backdrop-blur sm:top-[72px] sm:-mx-6 sm:px-6"
       >
-        <ol role="tablist" className="flex gap-1 overflow-x-auto [scrollbar-width:none]">
+        <ol role="tablist" className="grid grid-cols-3 sm:flex sm:gap-1">
           {EN_TRANSPARENCY_SECTIONS.map((s, i) => {
             const selected = s.id === active;
             return (
-              <li key={s.id} className="shrink-0">
+              <li key={s.id} className="min-w-0">
                 <button
                   type="button"
                   role="tab"
@@ -66,9 +66,9 @@ export function EnTransparencyHub({ rows }: { rows: PublicProject[] }) {
                   aria-controls={`panel-${s.id}`}
                   onClick={() => router.replace(enTransparencyHref(s.id), { scroll: false })}
                   className={cn(
-                    "relative flex items-baseline gap-2 px-3 py-4 text-[0.95rem] transition-colors sm:px-4",
+                    "relative flex h-full w-full flex-col items-start gap-0.5 px-2 py-3 text-left text-sm leading-tight transition-colors sm:flex-row sm:items-baseline sm:gap-2 sm:px-4 sm:py-4 sm:text-[0.95rem]",
                     selected
-                      ? "font-semibold text-navy after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-gold sm:after:inset-x-4"
+                      ? "font-semibold text-navy after:absolute after:inset-x-2 after:bottom-0 after:h-0.5 after:bg-gold sm:after:inset-x-4"
                       : "text-muted-foreground hover:text-navy",
                   )}
                 >

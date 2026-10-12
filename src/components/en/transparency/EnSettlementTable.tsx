@@ -66,7 +66,7 @@ export function EnSettlementTable({ rows }: { rows: PublicProject[] }) {
           <thead>
             <tr className="border-b border-border align-bottom text-sm text-muted-foreground">
               <th rowSpan={2} scope="col" className="w-10 py-3 pe-2 font-medium">#</th>
-              <th rowSpan={2} scope="col" className="py-3 pe-4 font-medium">Project</th>
+              <th rowSpan={2} scope="col" className="w-[13.5rem] py-3 pe-4 font-medium">Project</th>
               <th rowSpan={2} scope="col" className="py-3 pe-4 font-medium">Line of business</th>
               <th rowSpan={2} scope="col" className="whitespace-nowrap py-3 pe-4 font-medium">Start</th>
               <th rowSpan={2} scope="col" className="whitespace-nowrap py-3 pe-4 font-medium">End</th>

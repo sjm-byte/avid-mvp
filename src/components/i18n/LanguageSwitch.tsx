@@ -12,15 +12,18 @@ export function LanguageSwitch({
   current,
   className,
   variant = "pill",
+  short = false,
 }: {
   current: Locale;
   className?: string;
   /** "pill": compact chip for headers; "text": inline footer link. */
   variant?: "pill" | "text";
+  /** Show "EN" / "فا" instead of the full language name. */
+  short?: boolean;
 }) {
   const pathname = usePathname() || "/";
   const target = current === "fa" ? toEnglishPath(pathname) : toPersianPath(pathname);
-  const label = current === "fa" ? "English" : "فارسی";
+  const label = short ? (current === "fa" ? "EN" : "فا") : current === "fa" ? "English" : "فارسی";
   const hrefLang = current === "fa" ? "en" : "fa";
 
   return (

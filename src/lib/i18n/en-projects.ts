@@ -53,9 +53,12 @@ export function projectActivityEn(project: PublicProject): string {
   return COMPANY_EN[project.title]?.activity ?? project.activity;
 }
 
-/** 2000000000 → "2,000,000,000 Toman" */
+/** 2_000_000_000 → "2 billion Toman", 4_500_000_000 → "4.5 billion Toman", 700_000_000 → "700 million Toman" */
 export function formatTomanEn(amount: number): string {
-  return `${new Intl.NumberFormat("en-US").format(amount)} Toman`;
+  const fmt = new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 });
+  if (amount >= 1_000_000_000) return `${fmt.format(amount / 1_000_000_000)} billion Toman`;
+  if (amount >= 1_000_000) return `${fmt.format(amount / 1_000_000)} million Toman`;
+  return `${fmt.format(amount)} Toman`;
 }
 
 /** "۶ ماهه" → "6 months", "۲٫۵ ماهه" → "2.5 months". */

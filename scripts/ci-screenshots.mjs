@@ -20,7 +20,14 @@ for (const [vpName, vp] of Object.entries(viewports)) {
   for (const p of pages) {
     errors.length = 0;
     const res = await page.goto(base + p, { waitUntil: "networkidle" }).catch((e) => ({ status: () => String(e) }));
-    await page.waitForTimeout(800);
+    await page.evaluate(async () => {
+      for (let y = 0; y < document.body.scrollHeight; y += 600) {
+        window.scrollTo(0, y);
+        await new Promise((r) => setTimeout(r, 120));
+      }
+      window.scrollTo(0, 0);
+    });
+    await page.waitForTimeout(1500);
     const name = `${vpName}${p.replace(/[/?=&]+/g, "_") || "_home"}`;
     await page.screenshot({ path: `ci-out/shots/${name}.png`, fullPage: true });
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);

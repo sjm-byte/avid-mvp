@@ -82,6 +82,7 @@ export function MobilePublicHeader() {
           </nav>
           <LanguageSwitch
             current="fa"
+            short
             className="relative z-[1] h-8 shrink-0 gap-1 px-2 text-[11px]"
           />
         </header>

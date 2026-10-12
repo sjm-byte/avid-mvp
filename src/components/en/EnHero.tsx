@@ -4,13 +4,18 @@ import { useEffect, useRef, useState } from "react";
 import { useDeferredSlides } from "@/components/home/useDeferredSlides";
 import { cn } from "@/lib/utils";
 
+/**
+ * Some scenes carry a Persian "made in Iran" badge in the top-left corner,
+ * where the English logo sits; those are scaled from the bottom-right so the
+ * badge falls outside the frame.
+ */
 const SLIDES = [
-  { name: "slide-12", position: "object-center" },
-  { name: "slide-11", position: "object-center" },
-  { name: "slide-6", position: "object-left-top" },
-  { name: "slide-3", position: "object-left-top" },
-  { name: "slide-7", position: "object-left-top" },
-  { name: "slide-10", position: "object-center" },
+  { name: "slide-12", position: "object-center", hideCorner: true },
+  { name: "slide-11", position: "object-center", hideCorner: true },
+  { name: "slide-6", position: "object-left-top", hideCorner: false },
+  { name: "slide-3", position: "object-left-top", hideCorner: false },
+  { name: "slide-7", position: "object-left-top", hideCorner: false },
+  { name: "slide-10", position: "object-center", hideCorner: true },
 ] as const;
 
 /** Full-bleed photographic hero with a quiet cross-fade between scenes. */
@@ -43,8 +48,9 @@ export function EnHero() {
               loading="lazy"
               decoding="async"
               className={cn(
-                "absolute inset-0 h-full w-full object-cover transition-opacity duration-[1400ms]",
+                "absolute inset-0 h-full w-full object-cover transition-opacity duration-1000",
                 s.position,
+                s.hideCorner && "origin-bottom-right scale-[1.18]",
                 i === current ? "opacity-100" : "opacity-0",
               )}
             />
