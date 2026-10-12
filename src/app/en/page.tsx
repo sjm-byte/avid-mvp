@@ -8,12 +8,18 @@ import { EnParticipationPath } from "@/components/en/EnParticipationPath";
 import { EnFaqList } from "@/components/en/EnFaqList";
 import { EnSectionHeading } from "@/components/en/EnSection";
 import { EN_FAQ_HOME } from "@/components/en/en-faq";
+import { EnMobileHome } from "@/components/en/mobile/EnMobileHome";
 
 export default function EnglishHomePage() {
   const projects = getFeaturedPublicProjects(3);
 
   return (
     <>
+      <div className="md:hidden">
+        <EnMobileHome projects={projects} />
+      </div>
+
+      <div className="hidden md:block">
       <EnHero />
 
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6 md:py-24">
@@ -76,6 +82,7 @@ export default function EnglishHomePage() {
           All questions
         </Link>
       </section>
+      </div>
     </>
   );
 }

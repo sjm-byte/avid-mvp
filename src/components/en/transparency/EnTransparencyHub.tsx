@@ -26,13 +26,13 @@ export function EnTransparencyHub({ rows }: { rows: PublicProject[] }) {
   const active: SectionId = isSection(raw) ? raw : "history";
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
-      <header className="max-w-3xl">
-        <h1 className="text-[2.5rem] leading-[1.08] text-navy sm:text-5xl md:text-[3.5rem]">
+    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 max-md:px-3 max-md:py-6">
+      <header className="max-w-3xl max-md:rounded-2xl max-md:border max-md:border-[#1F1A2A]/10 max-md:bg-[#E4DEEE]/90 max-md:px-4 max-md:py-5">
+        <h1 className="text-[2.5rem] leading-[1.08] text-navy sm:text-5xl md:text-[3.5rem] max-md:text-[2rem] max-md:font-bold max-md:text-[#1F1A2A]">
           Avid’s transparency page
         </h1>
-        <span className="mt-4 block h-px w-12 bg-gold" aria-hidden />
-        <p className="mt-5 text-[1.0625rem] leading-relaxed text-muted-foreground">
+        <span className="mt-4 block h-px w-12 bg-gold max-md:hidden" aria-hidden />
+        <p className="mt-5 text-[1.0625rem] leading-relaxed text-muted-foreground max-md:mt-3 max-md:text-sm">
           Review our track record and get to know the principles and working methods behind Avid’s
           approach to investment.
         </p>
@@ -40,7 +40,7 @@ export function EnTransparencyHub({ rows }: { rows: PublicProject[] }) {
 
       <aside
         aria-label="Featured offer"
-        className="mt-10 max-w-3xl border-l-2 border-gold bg-[hsl(43_60%_95%)] px-6 py-5"
+        className="mt-10 max-w-3xl border-l-2 border-gold bg-[hsl(43_60%_95%)] px-6 py-5 max-md:mt-5 max-md:rounded-2xl max-md:border max-md:border-[#C9A227]/55 max-md:bg-gradient-to-r max-md:from-[#FFF8E8] max-md:to-[#EFE0B8] max-md:px-4 max-md:py-4"
       >
         <p className="text-sm font-semibold text-[#6b5413]">Featured offer</p>
         <p className="mt-1.5 font-display text-[1.25rem] leading-snug text-[#2F2610] sm:text-[1.45rem]">
@@ -51,7 +51,7 @@ export function EnTransparencyHub({ rows }: { rows: PublicProject[] }) {
 
       <nav
         aria-label="Transparency sections"
-        className="sticky top-16 z-30 -mx-4 mt-12 border-b border-border bg-background/95 px-4 backdrop-blur sm:top-[72px] sm:-mx-6 sm:px-6"
+        className="sticky top-16 z-30 -mx-4 mt-12 border-b border-border bg-background/95 px-4 backdrop-blur sm:top-[72px] sm:-mx-6 sm:px-6 max-md:mx-0 max-md:mt-4 max-md:rounded-2xl max-md:border max-md:border-[#1F1A2A]/12 max-md:bg-[#DDD6EA]/95 max-md:px-1"
       >
         <ol role="tablist" className="grid grid-cols-3 sm:flex sm:gap-1">
           {EN_TRANSPARENCY_SECTIONS.map((s, i) => {
@@ -87,7 +87,14 @@ export function EnTransparencyHub({ rows }: { rows: PublicProject[] }) {
         role="tabpanel"
         id={`panel-${active}`}
         aria-labelledby={`tab-${active}`}
-        className="pt-12"
+        className={cn(
+          "pt-12",
+          // Phones: dark purple reading surface, as on the Persian mobile page.
+          "max-md:mt-4 max-md:rounded-2xl max-md:bg-[#3A334C] max-md:px-4 max-md:py-6 max-md:text-[#F0EAF6]",
+          "max-md:[&_.text-muted-foreground]:text-[#D2C8E0] max-md:[&_.text-navy]:text-[#F3EEF8] max-md:[&_.text-foreground]:text-[#F3EEF8]",
+          "max-md:[&_.bg-card]:bg-white/10 max-md:[&_.border-border]:border-white/15 max-md:[&_.divide-border]:divide-white/15",
+          "max-md:[&_.text-emerald-800]:text-emerald-300 max-md:[&_.text-emerald-700]:text-emerald-300",
+        )}
       >
         {active === "history" && <EnHistoryPanel rows={rows} />}
         {active === "methodology" && <EnMethodologyPanel />}

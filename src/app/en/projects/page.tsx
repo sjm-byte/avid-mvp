@@ -4,6 +4,8 @@ import { getPublicProjectsArchive } from "@/lib/data/public-projects";
 import { EnProjectCard } from "@/components/en/EnProjectCard";
 import { EnRiskNote, EnSectionHeading } from "@/components/en/EnSection";
 import { EN_PROJECT_RISK } from "@/components/en/en-copy";
+import { MobilePublicPageShell } from "@/components/layout/mobile/MobilePublicPageShell";
+import { EnMobileProjectCard } from "@/components/en/mobile/EnMobileProjectCard";
 
 export const metadata: Metadata = {
   title: "Archive of past projects",
@@ -17,7 +19,29 @@ export default function EnglishProjectsPage() {
   const projects = getPublicProjectsArchive();
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
+    <>
+    <div className="md:hidden">
+      <MobilePublicPageShell
+        title="Archive of past projects"
+        lead="This page is not a showcase of open opportunities. It shows a selection of Avid’s past projects so you can see our track record. New opportunities are arranged through contact and introduction."
+      >
+        <div className="rounded-2xl border border-[#1F1A2A]/10 bg-[#242030] px-4 py-3.5 text-sm leading-relaxed text-white/75">
+          To compare projections with actual results, see the{" "}
+          <Link href="/en/transparency" className="font-medium text-[#C9B4DE]">transparency page</Link>.
+          To express your interest,{" "}
+          <Link href="/en/contact" className="font-medium text-[#C9B4DE]">contact the Avid office</Link>.
+        </div>
+        <EnRiskNote title="Important risk warning" className="rounded-2xl border-amber-300/80 bg-amber-50/95 text-sm">
+          {EN_PROJECT_RISK}
+        </EnRiskNote>
+        <div className="space-y-4 pt-2">
+          {projects.map((p) => (
+            <EnMobileProjectCard key={p.id} project={p} />
+          ))}
+        </div>
+      </MobilePublicPageShell>
+    </div>
+    <div className="mx-auto hidden max-w-6xl px-4 py-16 sm:px-6 md:block md:py-20">
       <EnSectionHeading
         as="h1"
         title="Archive of past projects"
@@ -39,5 +63,6 @@ export default function EnglishProjectsPage() {
         ))}
       </div>
     </div>
+    </>
   );
 }

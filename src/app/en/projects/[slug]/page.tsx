@@ -42,14 +42,14 @@ export default async function EnglishProjectPage({ params }: Props) {
   const start = formatJalaliAsGregorian(project.startDate);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-16">
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-16 max-md:py-6">
       <div className="grid gap-12 border-b border-border pb-14 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-14">
         <div className="min-w-0">
           <SafeProjectCoverImage
             src={project.image}
             alt={name}
             aspectClassName="aspect-[21/9]"
-            className="rounded-md"
+            className="rounded-md max-md:rounded-2xl"
           />
           <p className="mt-8 text-sm font-medium text-gold">Past project in the public archive</p>
           <h1 className="mt-2 text-[2.5rem] leading-[1.08] text-navy sm:text-5xl">{name}</h1>
@@ -61,7 +61,10 @@ export default async function EnglishProjectPage({ params }: Props) {
           </p>
         </div>
 
-        <aside className="self-start border-t-2 border-gold/60 bg-card p-6" aria-labelledby="summary-heading">
+        <aside
+          className="self-start border-t-2 border-gold/60 bg-card p-6 max-md:rounded-2xl max-md:border-t-0 max-md:bg-[#242030] max-md:p-5 max-md:text-white max-md:[&_.text-muted-foreground]:text-white/60 max-md:[&_.text-navy]:text-[#E8DCF5] max-md:[&_.divide-border]:divide-white/10 max-md:[&_.text-amber-900]:text-amber-100/85"
+          aria-labelledby="summary-heading"
+        >
           <h2 id="summary-heading" className="text-2xl text-navy">Project summary</h2>
           <dl className="mt-4 divide-y divide-border text-[0.95rem] tabular">
             {[
@@ -84,13 +87,13 @@ export default async function EnglishProjectPage({ params }: Props) {
           <div className="mt-6 grid gap-2.5">
             <Link
               href="/en/contact"
-              className="inline-flex h-11 items-center justify-center rounded-md bg-navy text-[0.95rem] font-semibold text-white hover:bg-navy-light"
+              className="inline-flex h-11 items-center justify-center rounded-md bg-navy text-[0.95rem] font-semibold text-white hover:bg-navy-light max-md:rounded-full max-md:bg-[#A07CC4]"
             >
               Express interest / contact
             </Link>
             <Link
               href="/en/transparency"
-              className="inline-flex h-11 items-center justify-center rounded-md border border-border text-[0.95rem] font-semibold text-navy hover:border-gold"
+              className="inline-flex h-11 items-center justify-center rounded-md border border-border text-[0.95rem] font-semibold text-navy hover:border-gold max-md:rounded-full max-md:border-white/20 max-md:text-white"
             >
               See transparency and results
             </Link>

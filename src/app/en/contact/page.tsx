@@ -4,6 +4,8 @@ import { EnSectionHeading } from "@/components/en/EnSection";
 import { EnConsultationForm } from "@/components/en/EnConsultationForm";
 import { EN_COMPANY } from "@/components/en/en-company";
 import { companyEmail, companyPhoneTel } from "@/lib/company-contact";
+import { MobilePublicPageShell, MobileSurface } from "@/components/layout/mobile/MobilePublicPageShell";
+import { EnMobilePhoneCapture } from "@/components/en/mobile/EnMobilePhoneCapture";
 
 export const metadata: Metadata = {
   title: "Contact us",
@@ -33,8 +35,33 @@ export default function EnglishContactPage() {
     { icon: MapPin, label: "Office address", value: <address className="not-italic">{EN_COMPANY.address}</address> },
   ];
 
+  const lead =
+    "For questions about the participation model, project risks, or to arrange expressing your interest, get in touch with the Avid office.";
+
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
+    <>
+    <div className="md:hidden">
+      <MobilePublicPageShell title="Contact us" lead={lead}>
+        <MobileSurface>
+          <h2 className="font-display text-xl font-bold text-white">Head office</h2>
+          <ul className="mt-3 space-y-4">
+            {items.map(({ icon: Icon, label, value }) => (
+              <li key={label} className="flex gap-3">
+                <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-full border border-white/15 bg-[#7B60A1]/25 text-[#C9B4DE]">
+                  <Icon className="size-4" aria-hidden />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-xs text-white/55">{label}</p>
+                  <div className="mt-0.5 text-[15px] font-medium text-[#E8DCF5]">{value}</div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </MobileSurface>
+        <EnMobilePhoneCapture />
+      </MobilePublicPageShell>
+    </div>
+    <div className="mx-auto hidden max-w-6xl px-4 py-16 sm:px-6 md:block md:py-20">
       <EnSectionHeading
         as="h1"
         title="Contact us"
@@ -62,5 +89,6 @@ export default function EnglishContactPage() {
         <EnConsultationForm id="contact-consultation" />
       </div>
     </div>
+    </>
   );
 }

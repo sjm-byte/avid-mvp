@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { EnRiskNote, EnSectionHeading } from "@/components/en/EnSection";
 import { EN_COMPANY } from "@/components/en/en-company";
 import { companyEmail } from "@/lib/company-contact";
+import { MobilePublicPageShell, MobileSurface } from "@/components/layout/mobile/MobilePublicPageShell";
 
 export const metadata: Metadata = {
   title: "About Avid",
@@ -30,8 +31,46 @@ export default function EnglishAboutPage() {
     ],
   ];
 
+  const lead =
+    "Avid is a platform for managing participation in projects. Review each project on its own, read the risks and terms, and follow your capital as the project runs.";
+
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
+    <>
+    <div className="md:hidden">
+      <MobilePublicPageShell title="About Avid" lead={lead}>
+        <h2 className="pt-1 font-display text-2xl font-bold text-[#1F1A2A]">Legal identity</h2>
+        <p className="text-sm leading-relaxed text-[#292334]/65">
+          The Avid platform operates under the following legal entity.
+        </p>
+        <MobileSurface>
+          <p className="font-display text-xl font-bold text-[#E8DCF5]">{EN_COMPANY.legalName}</p>
+          <dl className="mt-3 divide-y divide-white/10 text-sm">
+            {rows.map(([label, value]) => (
+              <div key={label} className="py-2.5">
+                <dt className="text-white/55">{label}</dt>
+                <dd className="mt-0.5 text-white [&_a]:text-[#C9B4DE] [&_a]:no-underline">{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </MobileSurface>
+
+        <h2 className="pt-4 font-display text-2xl font-bold text-[#1F1A2A]">Key principles</h2>
+        {PRINCIPLES.map((text, i) => (
+          <MobileSurface key={text} className="flex items-start gap-3">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#7B60A1] text-xs font-bold text-white">
+              {i + 1}
+            </span>
+            <p className="text-sm leading-relaxed text-white/90">{text}</p>
+          </MobileSurface>
+        ))}
+
+        <EnRiskNote className="mt-2 rounded-2xl border-amber-300/70 bg-amber-50/90 text-sm">
+          Investing in Avid projects carries risk. The projected return is only a scenario and is
+          not the project’s actual result. Avid does not promise any participation amount or return.
+        </EnRiskNote>
+      </MobilePublicPageShell>
+    </div>
+    <div className="mx-auto hidden max-w-6xl px-4 py-16 sm:px-6 md:block md:py-20">
       <EnSectionHeading
         as="h1"
         title="About Avid"
@@ -80,5 +119,6 @@ export default function EnglishAboutPage() {
         the project’s actual result. Avid does not promise any participation amount or return.
       </EnRiskNote>
     </div>
+    </>
   );
 }
